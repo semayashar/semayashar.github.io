@@ -12,18 +12,40 @@ export function initMobileMenuToggle() {
 
     if (!toggleButton || !navMenu) return;
 
+    // Функция за затваряне на менюто
+    const closeMenu = () => {
+        navMenu.classList.remove('is-open');
+        toggleButton.setAttribute('aria-expanded', 'false');
+        // Сменяме иконката обратно на "хамбургер"
+        toggleButton.querySelector('span').classList.remove('fa-times');
+        toggleButton.querySelector('span').classList.add('fa-bars');
+    };
+    
     // 1. Управление на бутона за превключване
     toggleButton.addEventListener('click', () => {
         const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
         toggleButton.setAttribute('aria-expanded', !isExpanded);
         navMenu.classList.toggle('is-open');
+
+        // Смяна на иконката (отваряне/затваряне)
+        const icon = toggleButton.querySelector('span');
+        if (navMenu.classList.contains('is-open')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times'); // Предполагам, че използваш Font Awesome 6
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
     });
 
-    // 2. Затваряне на менюто при клик върху линк
-    navMenu.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('is-open');
-            toggleButton.setAttribute('aria-expanded', 'false');
+    // 2. Затваряне на менюто при клик върху линк ИЛИ бутон за език
+    // Селектираме всички навигационни линкове и бутоните за език вътре в менюто
+    const closableElements = navMenu.querySelectorAll('.nav-link, .lang-btn');
+
+    closableElements.forEach(element => {
+        element.addEventListener('click', () => {
+            // Затваряме менюто
+            closeMenu();
         });
     });
 }
