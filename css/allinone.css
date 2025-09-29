@@ -415,10 +415,10 @@ h2 {
 .icon-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 15%);
     gap: 20px;
     text-align: center;
-    justify-content: space-evenly;
+    justify-content: center;
     place-items: center;
 }
 
@@ -1082,7 +1082,7 @@ h2 {
     }
 
     .icon-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(6, 1fr);
     }
 
     .horizontal-timeline {
