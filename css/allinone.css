@@ -362,7 +362,7 @@ h2 {
 
 .left-square .welcomeImage, .whoAmI .right-side .image-aurora img {
     max-height: 500px;
-    width: fit-content;
+    width: initial;
     display: block;
     position: relative;
     border-radius: 25px;
@@ -410,7 +410,6 @@ h2 {
 
 .whoAmI .right-side .image-aurora {
     height: 100%;
-    width: auto;
 }
 
 .icon-grid {
@@ -1110,7 +1109,7 @@ h2 {
     }
 
     .left-square .welcomeImage {
-        height: 400px;
+        height: auto;
         transform: rotateZ(0deg);
     }
 
@@ -1239,7 +1238,7 @@ h2 {
     }
 
     .left-square .welcomeImage {
-        /* height: 220px; */
+        width: fit-content;
     }
 
     .icon-grid {
