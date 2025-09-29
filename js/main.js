@@ -129,8 +129,8 @@ function loadNavigation() {
       document.getElementById('nav-container').innerHTML = data;
       console.log("Навигацията е заредена успешно.");
 
-      // 1. Инициализация на езика: Проверява запазен език или използва 'bg'
-      const defaultLang = localStorage.getItem('userLang') || 'bg';
+      // 1. Инициализация на езика: Проверява запазен език или използва 'en'
+      const defaultLang = localStorage.getItem('userLang') || 'en';
       setLanguage(defaultLang);
       initLanguageSwitcher();
 
