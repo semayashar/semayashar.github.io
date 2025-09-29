@@ -438,7 +438,6 @@ h2 {
     backdrop-filter: blur(4px);
     cursor: pointer;
     transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, filter 0.3s;
-    filter: grayscale(100%);
 }
 
 .icon-item i {
@@ -456,7 +455,6 @@ h2 {
     transform: scale(1.08);
     border-color: rgba(255, 255, 255, 0.9);
     box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 15px;
-    filter: grayscale(0%);
 }
 
 .icon-item:hover span, .icon-item:focus span {
