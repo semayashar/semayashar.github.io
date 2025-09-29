@@ -360,7 +360,7 @@ h2 {
 }
 
 .left-square .welcomeImage, .whoAmI .right-side .image-aurora img {
-    height: 500px;
+    max-height: 500px;
     width: fit-content;
     display: block;
     position: relative;
