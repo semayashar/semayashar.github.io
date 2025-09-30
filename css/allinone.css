@@ -845,32 +845,37 @@ h2 {
     filter: blur(var(--blur));
     mix-blend-mode: overlay;
     overflow: hidden;
+    /* OPTIMIZATION: Hint to the browser to prepare for changes. */
+    will-change: transform, border-radius; 
 }
 
+/* --- MODIFIED --- */
+/* Set a static starting position and use a new transform-based animation. */
 .aurora__item:nth-of-type(1) {
-    top: -50%;
-    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 12s ease-in-out 0s infinite alternate none running aurora-1;
+    top: -25%;
+    left: -25%;
+    animation: 6s ease-in-out infinite aurora-border, 12s ease-in-out infinite alternate aurora-move-1;
 }
 
 .aurora__item:nth-of-type(2) {
     background-color: var(--clr-3);
-    right: 0px;
-    top: 0px;
-    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 12s ease-in-out 0s infinite alternate none running aurora-2;
+    top: -25%;
+    left: 65%;
+    animation: 6s ease-in-out infinite aurora-border, 12s ease-in-out infinite alternate aurora-move-2;
 }
 
 .aurora__item:nth-of-type(3) {
     background-color: var(--clr-2);
-    left: 0px;
-    bottom: 0px;
-    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 8s ease-in-out 0s infinite alternate none running aurora-3;
+    top: 65%;
+    left: -25%;
+    animation: 6s ease-in-out infinite aurora-border, 8s ease-in-out infinite alternate aurora-move-3;
 }
 
 .aurora__item:nth-of-type(4) {
     background-color: var(--clr-4);
-    right: 0px;
-    bottom: -50%;
-    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 24s ease-in-out 0s infinite alternate none running aurora-4;
+    top: 65%;
+    left: 65%;
+    animation: 6s ease-in-out infinite aurora-border, 24s ease-in-out infinite alternate aurora-move-4;
 }
 
 .image-aurora {
@@ -933,111 +938,43 @@ h2 {
     height: 100%;
 }
 
-@keyframes aurora-1 {
-    0% {
-        top: 0px;
-        right: 0px;
-    }
-
-    50% {
-        top: 100%;
-        right: 75%;
-    }
-
-    75% {
-        top: 100%;
-        right: 25%;
-    }
-
-    100% {
-        top: 0px;
-        right: 0px;
-    }
+/* --- NEW KEYFRAMES --- */
+/* New keyframes using transform for smooth, hardware-accelerated animation. */
+@keyframes aurora-move-1 {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(50vw, 50vh) rotate(360deg); }
 }
 
-@keyframes aurora-2 {
-    0% {
-        top: -50%;
-        left: 0px;
-    }
-
-    60% {
-        top: 100%;
-        left: 75%;
-    }
-
-    85% {
-        top: 100%;
-        left: 25%;
-    }
-
-    100% {
-        top: -50%;
-        left: 0px;
-    }
+@keyframes aurora-move-2 {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(-50vw, 30vh) rotate(-360deg); }
 }
 
-@keyframes aurora-3 {
-    0% {
-        bottom: 0px;
-        left: 0px;
-    }
-
-    40% {
-        bottom: 100%;
-        left: 75%;
-    }
-
-    65% {
-        bottom: 40%;
-        left: 50%;
-    }
-
-    100% {
-        bottom: 0px;
-        left: 0px;
-    }
+@keyframes aurora-move-3 {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(40vw, -60vh) rotate(360deg); }
 }
 
-@keyframes aurora-4 {
-    0% {
-        bottom: -50%;
-        right: 0px;
-    }
-
-    50% {
-        bottom: 0px;
-        right: 40%;
-    }
-
-    90% {
-        bottom: 50%;
-        right: 25%;
-    }
-
-    100% {
-        bottom: -50%;
-        right: 0px;
-    }
+@keyframes aurora-move-4 {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(-30vw, -40vh) rotate(-360deg); }
 }
 
+/* --- UNCHANGED KEYFRAME --- */
+/* This keyframe remains as it's crucial for the blob effect. */
 @keyframes aurora-border {
     0% {
         border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
     }
-
     25% {
         border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%;
     }
-
     50% {
         border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%;
     }
-
     75% {
         border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%;
     }
-
     100% {
         border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
     }
