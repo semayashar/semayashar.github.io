@@ -276,6 +276,7 @@ h2 {
 
 .welcomePage .left-square,
 .welcomePage .right-square {
+    border-radius: 25px;
     overflow: hidden;
     width: fit-content;
     align-content: center;
@@ -299,7 +300,7 @@ h2 {
 .whoAmI .right-side {
     overflow: hidden;
     border-radius: initial;
-    height: 500px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -312,6 +313,7 @@ h2 {
 }
 
 .left-square .welcomeImage {
+    border-radius: 25px;
     margin: t;
     height: 500px;
 }
@@ -1125,8 +1127,9 @@ h2 {
     }
 
     .left-square .welcomeImage {
+        border-radius: 25px;
         height: auto;
-        transform: rotateZ(0deg);
+        transform: rotateZ(-2deg);
     }
 
     .whoAmI .right-side {
@@ -1188,6 +1191,7 @@ h2 {
     }
 
     .left-square .welcomeImage {
+        border-radius: 25px;
         height: 400px;
     }
 
@@ -1255,6 +1259,7 @@ h2 {
     }
 
     .left-square .welcomeImage {
+        border-radius: 25px;
         width: initial;
     }
 
