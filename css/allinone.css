@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap"); :root {
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap");
+
+:root {
     --bg: #000000;
     --clr-1: #ffbfe4;
     --clr-2: #ff94eb;
@@ -15,7 +17,9 @@
     --scroller-speed: 25s;
 }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -39,14 +43,16 @@ a {
 h2 {
     display: block;
     font-size: 1.5em;
-    margin-block: 10px; font-weight: bold;
+    margin-block: 10px;
+    font-weight: bold;
 }
 
 .content {
     text-align: center;
 }
 
-.fab, .fas {
+.fab,
+.fas {
     font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free";
     font-weight: 900;
 }
@@ -57,67 +63,11 @@ h2 {
     letter-spacing: var(--ls);
     position: relative;
     overflow: hidden;
-    background: var(--bg);
+    /* background: var(--bg); */
     margin: 0px;
     text-align: center;
 }
 
-.section-title-aurora {
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 700;
-    letter-spacing: var(--ls);
-    position: relative;
-    overflow: hidden;
-    background: var(--bg);
-    margin: 20px 0px;
-    padding: 10px 0px;
-    text-align: center;
-}
-
-.aurora {
-    position: absolute;
-    inset: 0px;
-    z-index: 2;
-    pointer-events: none;
-    mix-blend-mode: darken;
-}
-
-.aurora__item {
-    position: absolute;
-    width: 60vw;
-    height: 60vw;
-    background-color: var(--clr-1);
-    border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
-    filter: blur(var(--blur));
-    mix-blend-mode: overlay;
-    overflow: hidden;
-}
-
-.aurora__item:nth-of-type(1) {
-    top: -50%;
-    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 12s ease-in-out 0s infinite alternate none running aurora-1;
-}
-
-.aurora__item:nth-of-type(2) {
-    background-color: var(--clr-3);
-    right: 0px;
-    top: 0px;
-    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 12s ease-in-out 0s infinite alternate none running aurora-2;
-}
-
-.aurora__item:nth-of-type(3) {
-    background-color: var(--clr-2);
-    left: 0px;
-    bottom: 0px;
-    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 8s ease-in-out 0s infinite alternate none running aurora-3;
-}
-
-.aurora__item:nth-of-type(4) {
-    background-color: var(--clr-4);
-    right: 0px;
-    bottom: -50%;
-    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 24s ease-in-out 0s infinite alternate none running aurora-4;
-}
 
 .container {
     width: 100%;
@@ -125,10 +75,11 @@ h2 {
     grid-template-areas: "welcomePage" "whoAmI" "graduation" "certificates" "programmingTools" "enviroments" "recentProjects" "connectWithMe" "footer";
     grid-template-columns: 1fr;
     grid-template-rows: 100vh repeat(8, auto);
-    overflow-x: hidden; /* <-- ADD THIS LINE */
+    overflow-x: hidden;
+    /* <-- ADD THIS LINE */
 }
 
-.container > div {
+.container>div {
     width: 100%;
     padding: 20px 5%;
     box-sizing: border-box;
@@ -137,42 +88,42 @@ h2 {
     place-items: center;
 }
 
-.container > div.welcomePage {
+.container>div.welcomePage {
     grid-area: welcomePage;
 }
 
-.container > div.whoAmI {
+.container>div.whoAmI {
     grid-area: whoAmI;
 }
 
-.container > div.graduation {
+.container>div.graduation {
     grid-area: graduation;
 }
 
-.container > div.certificates {
+.container>div.certificates {
     grid-area: certificates;
     padding-bottom: 50px;
     min-height: 100%;
 }
 
-.container > div.programmingTools {
+.container>div.programmingTools {
     grid-area: programmingTools;
 }
 
-.container > div.enviroments {
+.container>div.enviroments {
     grid-area: enviroments;
 }
 
-.container > div.recentProjects {
+.container>div.recentProjects {
     width: auto;
     grid-area: recentProjects;
 }
 
-.container > div.connectWithMe {
+.container>div.connectWithMe {
     grid-area: connectWithMe;
 }
 
-.container > div.footer {
+.container>div.footer {
     grid-area: footer;
 }
 
@@ -204,7 +155,8 @@ h2 {
     text-shadow: 0 0 5px var(--clr-2);
 }
 
-.nav-brand-link:hover, .nav-brand-link:focus {
+.nav-brand-link:hover,
+.nav-brand-link:focus {
     color: var(--clr-1);
     text-shadow: 0 0 8px var(--clr-1);
 }
@@ -225,10 +177,11 @@ h2 {
     transition: color 0.3s;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    padding: 0.5rem;
+    margin: 0.5rem;
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover,
+.nav-link:focus {
     color: var(--clr-2);
 }
 
@@ -245,7 +198,9 @@ h2 {
     border-radius: 2px;
 }
 
-.nav-link:hover::after, .nav-link:focus::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link:focus::after,
+.nav-link.active::after {
     width: 100%;
     left: 0px;
 }
@@ -281,7 +236,8 @@ h2 {
     text-transform: uppercase;
 }
 
-.lang-btn:hover:not(.active), .lang-btn:focus:not(.active) {
+.lang-btn:hover:not(.active),
+.lang-btn:focus:not(.active) {
     border-color: var(--clr-2);
     color: var(--clr-2);
 }
@@ -306,7 +262,8 @@ h2 {
     box-shadow: 0 0 5px var(--clr-2);
 }
 
-.menu-toggle:hover, .menu-toggle:focus {
+.menu-toggle:hover,
+.menu-toggle:focus {
     background-color: rgba(255, 148, 235, 0.1);
     box-shadow: 0 0 10px var(--clr-2);
 }
@@ -317,7 +274,8 @@ h2 {
     place-items: stretch center;
 }
 
-.welcomePage .left-square, .welcomePage .right-square {
+.welcomePage .left-square,
+.welcomePage .right-square {
     width: fit-content;
     align-content: center;
 }
@@ -350,67 +308,9 @@ h2 {
     object-fit: contain;
 }
 
-.image-aurora {
-    width: inherit;
-    margin-top: 15%;
-    position: relative;
-    display: inline-block;
-    border-radius: 25px;
-    overflow: hidden;
-    z-index: 3;
-}
-
-.left-square .welcomeImage, .whoAmI .right-side .image-aurora img {
-    height: 400px;
-    max-height: 500px;
-    width: initial;
-    display: block;
-    position: relative;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    border: 12px solid rgba(255, 255, 255, 0.25);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 12px 40px, rgba(255, 255, 255, 0.1) 0px 0px 40px inset;
-    transform: rotateZ(-2deg);
-    z-index: 3;
-}
-
 .left-square .welcomeImage {
     margin: t;
     height: 500px;
-}
-
-.left-square .welcomeImage::before, .whoAmI .right-side .image-aurora img::before {
-    content: "";
-    position: absolute;
-    inset: 0px;
-    border-radius: 25px;
-    padding: 12px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)) 0% 0% / 300% 300%;
-    animation: 8s ease 0s infinite normal none running liquidBorder;
-    pointer-events: none;
-    z-index: 2;
-    mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px);
-}
-
-.image-aurora .aurora {
-    position: absolute;
-    inset: -30px;
-    border-radius: inherit;
-    z-index: 2;
-    pointer-events: none;
-    mix-blend-mode: lighten;
-}
-
-.image-aurora .aurora__item {
-    width: 80%;
-    height: 80%;
-    filter: blur(40px);
-    opacity: 0.8;
-}
-
-.whoAmI .right-side .image-aurora {
-    height: 100%;
 }
 
 .icon-grid {
@@ -452,13 +352,15 @@ h2 {
     transition: color 0.3s;
 }
 
-.icon-item:hover, .icon-item:focus {
+.icon-item:hover,
+.icon-item:focus {
     transform: scale(1.08);
     border-color: rgba(255, 255, 255, 0.9);
     box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 15px;
 }
 
-.icon-item:hover span, .icon-item:focus span {
+.icon-item:hover span,
+.icon-item:focus span {
     color: rgb(255, 235, 59);
 }
 
@@ -510,7 +412,7 @@ h2 {
     z-index: 3;
 }
 
-.timeline-trail[style*="width"] + .shooting-star {
+.timeline-trail[style*="width"]+.shooting-star {
     opacity: 1;
 }
 
@@ -576,7 +478,8 @@ h2 {
     transform: scale(1);
 }
 
-.timeline-point:nth-child(2) .postcard-container, .timeline-point:nth-child(4) .postcard-container {
+.timeline-point:nth-child(2) .postcard-container,
+.timeline-point:nth-child(4) .postcard-container {
     bottom: calc(50% + 20px);
     left: 50%;
     transform: translateX(-50%);
@@ -630,7 +533,8 @@ h2 {
     margin: 30px auto;
 }
 
-.scroller-container::before, .scroller-container::after {
+.scroller-container::before,
+.scroller-container::after {
     content: "";
     position: absolute;
     top: 0px;
@@ -679,7 +583,8 @@ h2 {
     perspective: 1000px;
 }
 
-.card:hover, .card:focus-within {
+.card:hover,
+.card:focus-within {
     transform: rotateY(180deg);
 }
 
@@ -744,16 +649,19 @@ h2 {
     transition: color 0.5s;
 }
 
-.ag-courses-item_link:hover, .ag-courses-item_link:focus {
+.ag-courses-item_link:hover,
+.ag-courses-item_link:focus {
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
 
-.ag-courses-item_link:hover .ag-courses-item_date, .ag-courses-item_link:focus .ag-courses-item_date {
+.ag-courses-item_link:hover .ag-courses-item_date,
+.ag-courses-item_link:focus .ag-courses-item_date {
     color: rgb(255, 255, 255);
 }
 
-.ag-courses-item_link:hover .ag-courses-item_bg, .ag-courses-item_link:focus .ag-courses-item_bg {
+.ag-courses-item_link:hover .ag-courses-item_bg,
+.ag-courses-item_link:focus .ag-courses-item_bg {
     transform: scale(10);
 }
 
@@ -853,7 +761,8 @@ h2 {
     background: rgb(51, 51, 51);
 }
 
-.social-icons a:hover, .social-icons a:focus {
+.social-icons a:hover,
+.social-icons a:focus {
     animation: 0.6s ease 0s 1 normal none running bounce;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 20px;
 }
@@ -888,7 +797,8 @@ h2 {
     color: rgb(0, 119, 181);
 }
 
-.contact-item:hover, .contact-item:focus {
+.contact-item:hover,
+.contact-item:focus {
     transform: translateX(5px);
 }
 
@@ -901,128 +811,180 @@ h2 {
     font-size: 0.9rem;
 }
 
+/* Titles with Aurora effect */
+.section-title-aurora {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: var(--ls);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  margin: 20px 0;
+  padding: 10px 0;
+  text-align: center;
+  will-change: transform, opacity;
+}
+
+/* Aurora container */
+.aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: darken;
+  contain: layout paint style;
+}
+
+/* Aurora blobs */
+.aurora__item {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  background-color: var(--clr-1);
+  border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+  filter: blur(var(--blur));
+  mix-blend-mode: overlay;
+  will-change: transform, border-radius;
+  opacity: 0.9;
+  transform: translate3d(0,0,0);
+}
+
+/* Animate each item with GPU transforms */
+.aurora__item:nth-of-type(1) {
+  animation: aurora-border 6s ease-in-out infinite,
+             aurora-1 12s ease-in-out infinite alternate;
+}
+.aurora__item:nth-of-type(2) {
+  background-color: var(--clr-3);
+  animation: aurora-border 6s ease-in-out infinite,
+             aurora-2 12s ease-in-out infinite alternate;
+}
+.aurora__item:nth-of-type(3) {
+  background-color: var(--clr-2);
+  animation: aurora-border 6s ease-in-out infinite,
+             aurora-3 8s ease-in-out infinite alternate;
+}
+.aurora__item:nth-of-type(4) {
+  background-color: var(--clr-4);
+  animation: aurora-border 6s ease-in-out infinite,
+             aurora-4 24s ease-in-out infinite alternate;
+}
+
+/* Image aurora frame */
+.image-aurora {
+  margin-top: 15%;
+  position: relative;
+  display: inline-block;
+  border-radius: 25px;
+  overflow: hidden;
+  z-index: 3;
+}
+
+/* Image itself */
+.left-square .welcomeImage,
+.whoAmI .right-side .image-aurora img {
+  height: 400px;
+  max-height: 500px;
+  display: block;
+  position: relative;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 12px solid rgba(255, 255, 255, 0.25);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 12px 40px,
+              rgba(255, 255, 255, 0.1) 0px 0px 40px inset;
+  transform: rotateZ(-2deg) translateZ(0);
+  z-index: 3;
+  will-change: transform;
+}
+
+/* Liquid border effect (hidden until img loaded) */
+.left-square .welcomeImage::before,
+.whoAmI .right-side .image-aurora img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 25px;
+  padding: 12px;
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.2)
+    ) 0% 0% / 300% 300%;
+  animation: liquidBorder 8s ease infinite;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  mask: linear-gradient(#000 0 0) content-box exclude,
+        linear-gradient(#000 0 0);
+}
+
+/* Show animated border only after image loads */
+.whoAmI .right-side .image-aurora img[data-loaded="true"]::before,
+.left-square .welcomeImage[data-loaded="true"]::before {
+  opacity: 1;
+}
+
+/* Aurora inside image frame */
+.image-aurora .aurora {
+  position: absolute;
+  inset: -30px;
+  border-radius: inherit;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: lighten;
+}
+
+.image-aurora .aurora__item {
+  width: 80%;
+  height: 80%;
+  filter: blur(40px);
+  opacity: 0.8;
+}
+
+/* Animations using transform instead of top/left */
 @keyframes aurora-1 {
-    0% {
-        top: 0px;
-        right: 0px;
-    }
-
-    50% {
-        top: 100%;
-        right: 75%;
-    }
-
-    75% {
-        top: 100%;
-        right: 25%;
-    }
-
-    100% {
-        top: 0px;
-        right: 0px;
-    }
+  0%   { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(-75%, 100%, 0); }
+  75%  { transform: translate3d(-25%, 100%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
-
 @keyframes aurora-2 {
-    0% {
-        top: -50%;
-        left: 0px;
-    }
-
-    60% {
-        top: 100%;
-        left: 75%;
-    }
-
-    85% {
-        top: 100%;
-        left: 25%;
-    }
-
-    100% {
-        top: -50%;
-        left: 0px;
-    }
+  0%   { transform: translate3d(0, -50%, 0); }
+  60%  { transform: translate3d(75%, 100%, 0); }
+  85%  { transform: translate3d(25%, 100%, 0); }
+  100% { transform: translate3d(0, -50%, 0); }
 }
-
 @keyframes aurora-3 {
-    0% {
-        bottom: 0px;
-        left: 0px;
-    }
-
-    40% {
-        bottom: 100%;
-        left: 75%;
-    }
-
-    65% {
-        bottom: 40%;
-        left: 50%;
-    }
-
-    100% {
-        bottom: 0px;
-        left: 0px;
-    }
+  0%   { transform: translate3d(0, 0, 0); }
+  40%  { transform: translate3d(75%, -100%, 0); }
+  65%  { transform: translate3d(50%, -40%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
-
 @keyframes aurora-4 {
-    0% {
-        bottom: -50%;
-        right: 0px;
-    }
-
-    50% {
-        bottom: 0px;
-        right: 40%;
-    }
-
-    90% {
-        bottom: 50%;
-        right: 25%;
-    }
-
-    100% {
-        bottom: -50%;
-        right: 0px;
-    }
+  0%   { transform: translate3d(0, -50%, 0); }
+  50%  { transform: translate3d(-40%, 0, 0); }
+  90%  { transform: translate3d(-25%, 50%, 0); }
+  100% { transform: translate3d(0, -50%, 0); }
 }
 
+/* Border morphing */
 @keyframes aurora-border {
-    0% {
-        border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
-    }
-
-    25% {
-        border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%;
-    }
-
-    50% {
-        border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%;
-    }
-
-    75% {
-        border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%;
-    }
-
-    100% {
-        border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
-    }
+  0%   { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
+  25%  { border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%; }
+  50%  { border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%; }
+  75%  { border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%; }
+  100% { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
 }
 
+/* Liquid border gradient */
 @keyframes liquidBorder {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes moveLeft {
@@ -1093,7 +1055,7 @@ h2 {
 }
 
 @media (max-width: 991px) {
-    .welcomePage{
+    .welcomePage {
         height: auto;
         margin-top: 100px;
         grid-template-columns: 1fr;
@@ -1166,10 +1128,10 @@ h2 {
         grid-template-rows: auto;
     }
 
-    .container > div {
+    .container>div {
         width: auto;
         padding-inline: 5%;
-        }
+    }
 
     .left-square .welcomeImage {
         height: 400px;
@@ -1268,6 +1230,7 @@ h2 {
     .postcard p {
         font-size: 0.85rem;
     }
+
     .scroller-container {
         /* Ensure the fading edges don't cause overflow on very small screens */
         padding: 0;

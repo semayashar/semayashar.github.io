@@ -12,17 +12,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
     <link rel="stylesheet" href="css/allinone.css">
-
+    <link rel="stylesheet" href="css/preloader.css">
 </head>
 
-<body>
-    <div id="nav-container"></div>
-    <div class="container">
+<body class="loading"> 
 
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    
+    <div id="nav-container"></div>
+
+    <div class="container">
         <div class="welcomePage" id="welcomePage">
             <div class="left-square">
                 <div class="image-aurora">
-                    <img class="welcomeImage" src="/images/semaWelcome2.png" data-bg-alt="Добре дошли"
+                    <img class="welcomeImage" src="/images/semaWelcome2.webp" loading="lazy" data-bg-alt="Добре дошли"
                         data-en-alt="Welcome" alt="Welcome">
                     <div class="aurora">
                         <div class="aurora__item"></div>
@@ -46,8 +51,8 @@
                         </div>
                     </h1>
 
-                    <h2 class="subtitle" data-bg="Наскоро завършила софтуерен инженер."
-                        data-en="A recently graduated Software Engineer.">A recently graduated Software Engineer.</h2>
+                    <h2 class="subtitle" data-bg="Наскоро завършила &quot;Софтуерено инженерство&quot;."
+                        data-en="Recently graduated software engineer.">A recently graduated Software Engineer.</h2>
                 </div>
             </div>
         </div>
@@ -67,13 +72,17 @@
                 <div class="bottom-square">
                     <p data-bg="Наскоро завършила бакалавърска степен по Софтуерно инженерство в Русенския университет „Ангел Кънчев“. По време на обучението си натрупах стабилни умения в езици като Java, C++, C# и JavaScript, главно чрез курсови проекти и практическа работа. Обичам да решавам проблеми чрез програмиране и намирам голямо удоволствие в работата в екип. Харесва ми да уча нови неща, да обменям идеи и да използвам логическото си мислене, за да стигам до добри решения."
                         data-en="I recently graduated with a Bachelor's degree in Software Engineering from the University of Ruse Angel Kanchev. Throughout my studies, I built strong skills in Java, C++, C#, and JavaScript, mostly through hands-on projects and coursework. I really enjoy solving problems through code and love working in a team environment. I'm always curious to learn new things, share ideas, and use logical thinking to find effective solutions.">
-                        I recently graduated with a Bachelor's degree in Software Engineering from the University of Ruse Angel Kanchev. Throughout my studies, I built strong skills in Java, C++, C#, and JavaScript, mostly through hands-on projects and coursework. I really enjoy solving problems through code and love working in a team environment. I'm always curious to learn new things, share ideas, and use logical thinking to find effective solutions.</p>
+                        I recently graduated with a Bachelor's degree in Software Engineering from the University of
+                        Ruse Angel Kanchev. Throughout my studies, I built strong skills in Java, C++, C#, and
+                        JavaScript, mostly through hands-on projects and coursework. I really enjoy solving problems
+                        through code and love working in a team environment. I'm always curious to learn new things,
+                        share ideas, and use logical thinking to find effective solutions.</p>
                 </div>
             </div>
 
             <div class="right-side">
                 <div class="image-aurora">
-                    <img src="/images/graduation.png" data-bg-alt="Дипломиране" data-en-alt="Graduation"
+                    <img src="/images/graduation.webp" loading="lazy" data-bg-alt="Дипломиране" data-en-alt="Graduation"
                         alt="Graduation">
                     <div class="aurora">
                         <div class="aurora__item"></div>
@@ -87,14 +96,14 @@
 
         <div class="graduation" id="education">
             <div class="section-title-aurora">
-                <h2 data-bg="Образование" data-en="Education">Education
+                <h2 data-bg="Образование" data-en="Education">Education</h2>
                     <div class="aurora">
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                     </div>
-                </h2>
+                
             </div>
             <div class="horizontal-timeline">
                 <div class="timeline-line">
@@ -106,7 +115,7 @@
                 <div class="timeline-point" data-delay="2000">
                     <div class="postcard-container">
                         <div class="postcard">
-                            <img src="/images/schools/su_hristo_botev.jpg" data-bg-alt="Гимназия"
+                            <img src="/images/schools/su_hristo_botev.webp" loading="lazy" data-bg-alt="Гимназия"
                                 data-en-alt="High School" alt="High School">
                             <div class="postcard-content">
                                 <h3 data-bg='Профил "Софтуерни и хардуерни науки"'
@@ -125,7 +134,7 @@
                 <div class="timeline-point" data-delay="4000">
                     <div class="postcard-container">
                         <div class="postcard">
-                            <img src="images/schools/rusenksi_uni.jpg" data-bg-alt="Бакалавърска степен"
+                            <img src="images/schools/rusenksi_uni.webp" loading="lazy" data-bg-alt="Бакалавърска степен"
                                 data-en-alt="Bachelor's Degree" alt="Bachelor's Degree">
                             <div class="postcard-content">
                                 <h3 data-bg="Бакалавър по софтуерно инженерство"
@@ -144,7 +153,7 @@
                 <div class="timeline-point" data-delay="6000">
                     <div class="postcard-container">
                         <div class="postcard">
-                            <img src="images/schools/rusenksi_uni2.jpg" data-bg-alt="Магистърска степен"
+                            <img src="images/schools/rusenksi_uni2.webp" loading="lazy" data-bg-alt="Магистърска степен"
                                 data-en-alt="Master's Degree" alt="Master's Degree">
                             <div class="postcard-content">
                                 <h3 data-bg="Магистър по софтуерно инженерство"
@@ -164,14 +173,14 @@
 
         <div class="certificates" id="certificates">
             <div class="section-title-aurora">
-                <h2 data-bg="Сертификати" data-en="Certificates">Certificates
+                <h2 data-bg="Сертификати" data-en="Certificates">Certificates</h2>
                     <div class="aurora">
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                     </div>
-                </h2>
+                
             </div>
             <div class="scroller-container">
                 <div class="scroller-wrapper">
@@ -179,42 +188,42 @@
                     <!-- C++ Advanced May 2022 -->
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202022%20-%20Certificate-1.jpg"
-                                data-bg-alt="C++ Напреднали - Май 2022 Отпред"
+                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202022%20-%20Certificate-1.webp"
+                                loading="lazy" data-bg-alt="C++ Напреднали - Май 2022 Отпред"
                                 data-en-alt="C++ Advanced - May 2022 Front" alt="C++ Advanced - May 2022 Front" />
                         </div>
                         <div class="card__face card__face--back">
-                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202022%20-%20Certificate-2.jpg"
-                                data-bg-alt="C++ Напреднали - Май 2022 Отзад" data-en-alt="C++ Advanced - May 2022 Back"
-                                alt="C++ Advanced - May 2022 Back" />
+                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202022%20-%20Certificate-2.webp"
+                                loading="lazy" data-bg-alt="C++ Напреднали - Май 2022 Отзад"
+                                data-en-alt="C++ Advanced - May 2022 Back" alt="C++ Advanced - May 2022 Back" />
                         </div>
                     </div>
 
                     <!-- C++ Advanced May 2023 -->
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202023%20-%20Certificate-1.jpg"
-                                data-bg-alt="C++ Напреднали - Май 2023 Отпред"
+                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202023%20-%20Certificate-1.webp"
+                                loading="lazy" data-bg-alt="C++ Напреднали - Май 2023 Отпред"
                                 data-en-alt="C++ Advanced - May 2023 Front" alt="C++ Advanced - May 2023 Front" />
                         </div>
                         <div class="card__face card__face--back">
-                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202023%20-%20Certificate-2.jpg"
-                                data-bg-alt="C++ Напреднали - Май 2023 Отзад" data-en-alt="C++ Advanced - May 2023 Back"
-                                alt="C++ Advanced - May 2023 Back" />
+                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202023%20-%20Certificate-2.webp"
+                                loading="lazy" data-bg-alt="C++ Напреднали - Май 2023 Отзад"
+                                data-en-alt="C++ Advanced - May 2023 Back" alt="C++ Advanced - May 2023 Back" />
                         </div>
                     </div>
 
                     <!-- C++ Fundamentals March 2022 -->
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/C%2B%2B%20Fundamentals%20-%20March%202022%20-%20Certificate-1.jpg"
-                                data-bg-alt="C++ Основи - Март 2022 Отпред"
+                            <img src="images/Certificates/C%2B%2B%20Fundamentals%20-%20March%202022%20-%20Certificate-1.webp"
+                                loading="lazy" data-bg-alt="C++ Основи - Март 2022 Отпред"
                                 data-en-alt="C++ Fundamentals - March 2022 Front"
                                 alt="C++ Fundamentals - March 2022 Front" />
                         </div>
                         <div class="card__face card__face--back">
-                            <img src="images/Certificates/C%2B%2B%20Fundamentals%20-%20March%202022%20-%20Certificate-2.jpg"
-                                data-bg-alt="C++ Основи - Март 2022 Отзад"
+                            <img src="images/Certificates/C%2B%2B%20Fundamentals%20-%20March%202022%20-%20Certificate-2.webp"
+                                loading="lazy" data-bg-alt="C++ Основи - Март 2022 Отзад"
                                 data-en-alt="C++ Fundamentals - March 2022 Back"
                                 alt="C++ Fundamentals - March 2022 Back" />
                         </div>
@@ -223,28 +232,28 @@
                     <!-- MS SQL September 2023 -->
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/MS%20SQL%20-%20September%202023%20-%20Certificate-1.jpg"
-                                data-bg-alt="MS SQL - Септември 2023 Отпред" data-en-alt="MS SQL - September 2023 Front"
-                                alt="MS SQL - September 2023 Front" />
+                            <img src="images/Certificates/MS%20SQL%20-%20September%202023%20-%20Certificate-1.webp"
+                                loading="lazy" data-bg-alt="MS SQL - Септември 2023 Отпред"
+                                data-en-alt="MS SQL - September 2023 Front" alt="MS SQL - September 2023 Front" />
                         </div>
                         <div class="card__face card__face--back">
-                            <img src="images/Certificates/MS%20SQL%20-%20September%202023%20-%20Certificate-2.jpg"
-                                data-bg-alt="MS SQL - Септември 2023 Отзад" data-en-alt="MS SQL - September 2023 Back"
-                                alt="MS SQL - September 2023 Back" />
+                            <img src="images/Certificates/MS%20SQL%20-%20September%202023%20-%20Certificate-2.webp"
+                                loading="lazy" data-bg-alt="MS SQL - Септември 2023 Отзад"
+                                data-en-alt="MS SQL - September 2023 Back" alt="MS SQL - September 2023 Back" />
                         </div>
                     </div>
 
                     <!-- Programming Basics July 2021 -->
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming%20Basics%20-%20July%202021%20-%20Certificate-1.jpg"
-                                data-bg-alt="Основи на програмирането - Юли 2021 Отпред"
+                            <img src="images/Certificates/Programming%20Basics%20-%20July%202021%20-%20Certificate-1.webp"
+                                loading="lazy" data-bg-alt="Основи на програмирането - Юли 2021 Отпред"
                                 data-en-alt="Programming Basics - July 2021 Front"
                                 alt="Programming Basics - July 2021 Front" />
                         </div>
                         <div class="card__face card__face--back">
-                            <img src="images/Certificates/Programming%20Basics%20-%20July%202021%20-%20Certificate-2.jpg"
-                                data-bg-alt="Основи на програмирането - Юли 2021 Отзад"
+                            <img src="images/Certificates/Programming%20Basics%20-%20July%202021%20-%20Certificate-2.webp"
+                                loading="lazy" data-bg-alt="Основи на програмирането - Юли 2021 Отзад"
                                 data-en-alt="Programming Basics - July 2021 Back"
                                 alt="Programming Basics - July 2021 Back" />
                         </div>
@@ -253,14 +262,14 @@
                     <!-- Programming Basics March 2023 -->
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming%20Basics%20-%20March%202023%20-%20Certificate-1.jpg"
-                                data-bg-alt="Основи на програмирането - Март 2023 Отпред"
+                            <img src="images/Certificates/Programming%20Basics%20-%20March%202023%20-%20Certificate-1.webp"
+                                loading="lazy" data-bg-alt="Основи на програмирането - Март 2023 Отпред"
                                 data-en-alt="Programming Basics - March 2023 Front"
                                 alt="Programming Basics - March 2023 Front" />
                         </div>
                         <div class="card__face card__face--back">
-                            <img src="images/Certificates/Programming%20Basics%20-%20March%202023%20-%20Certificate-2.jpg"
-                                data-bg-alt="Основи на програмирането - Март 2023 Отзад"
+                            <img src="images/Certificates/Programming%20Basics%20-%20March%202023%20-%20Certificate-2.webp"
+                                loading="lazy" data-bg-alt="Основи на програмирането - Март 2023 Отзад"
                                 data-en-alt="Programming Basics - March 2023 Back"
                                 alt="Programming Basics - March 2023 Back" />
                         </div>
@@ -269,14 +278,14 @@
                     <!-- Programming Basics with C++ January 2022 -->
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming%20Basics%20with%20C%2B%2B%20-%20January%202022%20-%20Certificate-1.jpg"
-                                data-bg-alt="Основи на програмирането с C++ - Януари 2022 Отпред"
+                            <img src="images/Certificates/Programming%20Basics%20with%20C%2B%2B%20-%20January%202022%20-%20Certificate-1.webp"
+                                loading="lazy" data-bg-alt="Основи на програмирането с C++ - Януари 2022 Отпред"
                                 data-en-alt="Programming Basics with C++ - January 2022 Front"
                                 alt="Programming Basics with C++ - January 2022 Front" />
                         </div>
                         <div class="card__face card__face--back">
-                            <img src="images/Certificates/Programming%20Basics%20with%20C%2B%2B%20-%20January%202022%20-%20Certificate-2.jpg"
-                                data-bg-alt="Основи на програмирането с C++ - Януари 2022 Отзад"
+                            <img src="images/Certificates/Programming%20Basics%20with%20C%2B%2B%20-%20January%202022%20-%20Certificate-2.webp"
+                                loading="lazy" data-bg-alt="Основи на програмирането с C++ - Януари 2022 Отзад"
                                 data-en-alt="Programming Basics with C++ - January 2022 Back"
                                 alt="Programming Basics with C++ - January 2022 Back" />
                         </div>
@@ -285,14 +294,14 @@
                     <!-- Programming Fundamentals with C# May 2023 -->
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-1.jpg"
-                                data-bg-alt="Програмни основи с C# - Май 2023 Отпред 1"
+                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-1.webp"
+                                loading="lazy" data-bg-alt="Програмни основи с C# - Май 2023 Отпред 1"
                                 data-en-alt="Programming Fundamentals with C# - May 2023 Front 1"
                                 alt="Programming Fundamentals with C# - May 2023 Front 1" />
                         </div>
                         <div class="card__face card__face--back">
-                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-2.jpg"
-                                data-bg-alt="Програмни основи с C# - Май 2023 Отзад 2"
+                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-2.webp"
+                                loading="lazy" data-bg-alt="Програмни основи с C# - Май 2023 Отзад 2"
                                 data-en-alt="Programming Fundamentals with C# - May 2023 Back 2"
                                 alt="Programming Fundamentals with C# - May 2023 Back 2" />
                         </div>
@@ -300,8 +309,8 @@
 
                     <div class="card scroller-slide">
                         <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-3.jpg"
-                                data-bg-alt="Програмни основи с C# - Май 2023 Отпред 2"
+                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-3.webp"
+                                loading="lazy" data-bg-alt="Програмни основи с C# - Май 2023 Отпред 2"
                                 data-en-alt="Programming Fundamentals with C# - May 2023 Front 2"
                                 alt="Programming Fundamentals with C# - May 2023 Front 2" />
                         </div>
@@ -313,14 +322,14 @@
 
         <div class="programmingTools" id="programming">
             <div class="section-title-aurora">
-                <h2 data-bg="Програмиране и Уеб" data-en="Programming & Web">Programming & Web
+                <h2 data-bg="Програмиране и Уеб" data-en="Programming & Web">Programming & Web</h2>
                     <div class="aurora">
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                     </div>
-                </h2>
+                
             </div>
             <div class="icon-grid">
                 <a href="https://www.java.com/" target="_blank" class="icon-link">
@@ -402,15 +411,14 @@
 
         <div class="enviroments" id="tools">
             <div class="section-title-aurora">
-                <h2 data-bg="Инструменти и среди" data-en="Tools & Environments">Tools &
-                    Environments
+                <h2 data-bg="Инструменти и среди" data-en="Tools & Environments">Tools & Environments</h2>
                     <div class="aurora">
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                     </div>
-                </h2>
+                
             </div>
             <div class="icon-grid">
                 <a href="https://visualstudio.microsoft.com/" target="_blank" class="icon-link">
@@ -478,14 +486,14 @@
 
         <div class="recentProjects" id="projects">
             <div class="section-title-aurora">
-                <h2 data-bg="Последни проекти" data-en="Recent Projects">Recent Projects
+                <h2 data-bg="Последни проекти" data-en="Recent Projects">Recent Projects</h2>
                     <div class="aurora">
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                     </div>
-                </h2>
+                
             </div>
             <div class="ag-format-container">
                 <div class="ag-courses_box">
@@ -496,7 +504,8 @@
                             <div class="ag-courses-item_title" data-bg="Уеб-базирана платформа за езиково обучение"
                                 data-en="Web-based language learning platform">LangForU - Web-based language learning
                                 platform</div>
-                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2025" data-en="Finished: 2025">Finished: 2025
+                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2025" data-en="Finished: 2025">
+                                Finished: 2025
                             </div>
                         </a>
                     </div>
@@ -506,7 +515,8 @@
                             <div class="ag-courses-item_bg"></div>
                             <div class="ag-courses-item_title" data-bg="Уебсайт за електронна търговия"
                                 data-en="E-commerce website">SportArete - E-commerce website</div>
-                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2023" data-en="Finished: 2023">Finished: 2023
+                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2023" data-en="Finished: 2023">
+                                Finished: 2023
                             </div>
                         </a>
                     </div>
@@ -516,19 +526,22 @@
                             <div class="ag-courses-item_bg"></div>
                             <div class="ag-courses-item_title"
                                 data-bg="Платформа за социална мрежа (в процес на разработка)"
-                                data-en="Social Network Platform (Work In Progress)">ConeXion - Social Network Platform (WIP)</div>
-                            <div class="ag-courses-item_date-box" data-bg="Начало: 2023" data-en="Start: 2023">Start: 2023
+                                data-en="Social Network Platform (Work In Progress)">ConeXion - Social Network Platform
+                                (WIP)</div>
+                            <div class="ag-courses-item_date-box" data-bg="Начало: 2023" data-en="Start: 2023">Start:
+                                2023
                             </div>
                         </a>
                     </div>
-                    
-                     <div class="ag-courses_item">
-                        <a href="https://github.com/semayashar/Personal_Portfolio-CV_Website" class="ag-courses-item_link"  target="_blank"> 
+
+                    <div class="ag-courses_item">
+                        <a href="https://github.com/semayashar/Personal_Portfolio-CV_Website"
+                            class="ag-courses-item_link" target="_blank">
                             <div class="ag-courses-item_bg"></div>
-                            <div class="ag-courses-item_title" 
-                            data-bg="Лично Портфолио/CV Уебсайт" 
-                            data-en="Personal Portfolio/CV Website">Personal Portfolio/CV Website</div>
-                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2025" data-en="Finished: 2025">Finished: 2025
+                            <div class="ag-courses-item_title" data-bg="Лично Портфолио/CV Уебсайт"
+                                data-en="Personal Portfolio/CV Website">Personal Portfolio/CV Website</div>
+                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2025" data-en="Finished: 2025">
+                                Finished: 2025
                             </div>
                         </a>
                     </div>
@@ -562,14 +575,14 @@
 
         <div class="connectWithMe" id="contact">
             <div class="section-title-aurora">
-                <h2 data-bg="Свържи се с мен" data-en="Connect With Me">Connect With Me
+                <h2 data-bg="Свържи се с мен" data-en="Connect With Me">Connect With Me </h2>
                     <div class="aurora">
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                         <div class="aurora__item"></div>
                     </div>
-                </h2>
+               
             </div>
             <!-- Social Icons -->
             <div class="social-icons">
@@ -609,8 +622,7 @@
         </div>
 
         <div class="footer">
-            <p data-bg="&copy; 2025 Сема Яшарова."
-                data-en="&copy; 2025 Sema Yasharova.">&copy; 2025 Sema Yasharova.</p>
+            <p data-bg="&copy; 2025 Сема Яшарова." data-en="&copy; 2025 Sema Yasharova.">&copy; 2025 Sema Yasharova.</p>
         </div>
 
         <script src="js/main.js"></script>
