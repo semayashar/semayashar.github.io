@@ -813,6 +813,8 @@ h2 {
 
 /* Titles with Aurora effect */
 .section-title-aurora {
+  width: auto;
+  height: auto;
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
   letter-spacing: var(--ls);
@@ -822,7 +824,7 @@ h2 {
   margin: 20px 0;
   padding: 10px 0;
   text-align: center;
-  will-change: transform, opacity;
+  /* will-change: transform, opacity; */
 }
 
 /* Aurora container */
