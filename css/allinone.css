@@ -814,182 +814,231 @@ h2 {
     font-size: 0.9rem;
 }
 
-/* Titles with Aurora effect */
 .section-title-aurora {
-  width: auto;
-  height: auto;
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: var(--ls);
-  position: relative;
-  overflow: hidden;
-  background: var(--bg);
-  margin: 20px 0;
-  padding: 10px 0;
-  text-align: center;
-  /* will-change: transform, opacity; */
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: var(--ls);
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    margin: 20px 0px;
+    padding: 10px 0px;
+    text-align: center;
 }
 
-/* Aurora container */
 .aurora {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  mix-blend-mode: darken;
-  contain: layout paint style;
+    position: absolute;
+    inset: 0px;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: darken;
 }
 
-/* Aurora blobs */
 .aurora__item {
-  position: absolute;
-  width: 60vw;
-  height: 60vw;
-  background-color: var(--clr-1);
-  border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
-  filter: blur(var(--blur));
-  mix-blend-mode: overlay;
-  will-change: transform, border-radius;
-  opacity: 0.9;
-  transform: translate3d(0,0,0);
+    position: absolute;
+    width: 60vw;
+    height: 60vw;
+    background-color: var(--clr-1);
+    border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+    filter: blur(var(--blur));
+    mix-blend-mode: overlay;
+    overflow: hidden;
 }
 
-/* Animate each item with GPU transforms */
 .aurora__item:nth-of-type(1) {
-  animation: aurora-border 6s ease-in-out infinite,
-             aurora-1 12s ease-in-out infinite alternate;
+    top: -50%;
+    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 12s ease-in-out 0s infinite alternate none running aurora-1;
 }
+
 .aurora__item:nth-of-type(2) {
-  background-color: var(--clr-3);
-  animation: aurora-border 6s ease-in-out infinite,
-             aurora-2 12s ease-in-out infinite alternate;
+    background-color: var(--clr-3);
+    right: 0px;
+    top: 0px;
+    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 12s ease-in-out 0s infinite alternate none running aurora-2;
 }
+
 .aurora__item:nth-of-type(3) {
-  background-color: var(--clr-2);
-  animation: aurora-border 6s ease-in-out infinite,
-             aurora-3 8s ease-in-out infinite alternate;
+    background-color: var(--clr-2);
+    left: 0px;
+    bottom: 0px;
+    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 8s ease-in-out 0s infinite alternate none running aurora-3;
 }
+
 .aurora__item:nth-of-type(4) {
-  background-color: var(--clr-4);
-  animation: aurora-border 6s ease-in-out infinite,
-             aurora-4 24s ease-in-out infinite alternate;
+    background-color: var(--clr-4);
+    right: 0px;
+    bottom: -50%;
+    animation: 6s ease-in-out 0s infinite normal none running aurora-border, 24s ease-in-out 0s infinite alternate none running aurora-4;
 }
 
-/* Image aurora frame */
 .image-aurora {
-  margin-top: 15%;
-  position: relative;
-  display: inline-block;
-  border-radius: 25px;
-  overflow: hidden;
-  z-index: 3;
+    width: inherit;
+    margin-top: 15%;
+    position: relative;
+    display: inline-block;
+    border-radius: 25px;
+    overflow: hidden;
+    z-index: 3;
 }
 
-/* Image itself */
 .left-square .welcomeImage,
 .whoAmI .right-side .image-aurora img {
-  height: 400px;
-  max-height: 500px;
-  display: block;
-  position: relative;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border: 12px solid rgba(255, 255, 255, 0.25);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 12px 40px,
-              rgba(255, 255, 255, 0.1) 0px 0px 40px inset;
-  transform: rotateZ(-2deg) translateZ(0);
-  z-index: 3;
-  will-change: transform;
+    height: 400px;
+    max-height: 500px;
+    width: initial;
+    display: block;
+    position: relative;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border: 12px solid rgba(255, 255, 255, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 12px 40px, rgba(255, 255, 255, 0.1) 0px 0px 40px inset;
+    transform: rotateZ(-2deg);
+    z-index: 3;
 }
 
-/* Liquid border effect (hidden until img loaded) */
 .left-square .welcomeImage::before,
 .whoAmI .right-side .image-aurora img::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 25px;
-  padding: 12px;
-  background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.4),
-      rgba(255, 255, 255, 0.2)
-    ) 0% 0% / 300% 300%;
-  animation: liquidBorder 8s ease infinite;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease-in;
-  mask: linear-gradient(#000 0 0) content-box exclude,
-        linear-gradient(#000 0 0);
+    content: "";
+    position: absolute;
+    inset: 0px;
+    border-radius: 25px;
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)) 0% 0% / 300% 300%;
+    animation: 8s ease 0s infinite normal none running liquidBorder;
+    pointer-events: none;
+    z-index: 2;
+    mask: linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px) content-box exclude, linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px);
 }
 
-/* Show animated border only after image loads */
-.whoAmI .right-side .image-aurora img[data-loaded="true"]::before,
-.left-square .welcomeImage[data-loaded="true"]::before {
-  opacity: 1;
-}
-
-/* Aurora inside image frame */
 .image-aurora .aurora {
-  position: absolute;
-  inset: -30px;
-  border-radius: inherit;
-  z-index: 2;
-  pointer-events: none;
-  mix-blend-mode: lighten;
+    position: absolute;
+    inset: -30px;
+    border-radius: inherit;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: lighten;
 }
 
 .image-aurora .aurora__item {
-  width: 80%;
-  height: 80%;
-  filter: blur(40px);
-  opacity: 0.8;
+    width: 80%;
+    height: 80%;
+    filter: blur(40px);
+    opacity: 0.8;
 }
 
-/* Animations using transform instead of top/left */
+.whoAmI .right-side .image-aurora {
+    height: 100%;
+}
+
 @keyframes aurora-1 {
-  0%   { transform: translate3d(0, 0, 0); }
-  50%  { transform: translate3d(-75%, 100%, 0); }
-  75%  { transform: translate3d(-25%, 100%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+    0% {
+        top: 0px;
+        right: 0px;
+    }
+
+    50% {
+        top: 100%;
+        right: 75%;
+    }
+
+    75% {
+        top: 100%;
+        right: 25%;
+    }
+
+    100% {
+        top: 0px;
+        right: 0px;
+    }
 }
+
 @keyframes aurora-2 {
-  0%   { transform: translate3d(0, -50%, 0); }
-  60%  { transform: translate3d(75%, 100%, 0); }
-  85%  { transform: translate3d(25%, 100%, 0); }
-  100% { transform: translate3d(0, -50%, 0); }
+    0% {
+        top: -50%;
+        left: 0px;
+    }
+
+    60% {
+        top: 100%;
+        left: 75%;
+    }
+
+    85% {
+        top: 100%;
+        left: 25%;
+    }
+
+    100% {
+        top: -50%;
+        left: 0px;
+    }
 }
+
 @keyframes aurora-3 {
-  0%   { transform: translate3d(0, 0, 0); }
-  40%  { transform: translate3d(75%, -100%, 0); }
-  65%  { transform: translate3d(50%, -40%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+    0% {
+        bottom: 0px;
+        left: 0px;
+    }
+
+    40% {
+        bottom: 100%;
+        left: 75%;
+    }
+
+    65% {
+        bottom: 40%;
+        left: 50%;
+    }
+
+    100% {
+        bottom: 0px;
+        left: 0px;
+    }
 }
+
 @keyframes aurora-4 {
-  0%   { transform: translate3d(0, -50%, 0); }
-  50%  { transform: translate3d(-40%, 0, 0); }
-  90%  { transform: translate3d(-25%, 50%, 0); }
-  100% { transform: translate3d(0, -50%, 0); }
+    0% {
+        bottom: -50%;
+        right: 0px;
+    }
+
+    50% {
+        bottom: 0px;
+        right: 40%;
+    }
+
+    90% {
+        bottom: 50%;
+        right: 25%;
+    }
+
+    100% {
+        bottom: -50%;
+        right: 0px;
+    }
 }
 
-/* Border morphing */
 @keyframes aurora-border {
-  0%   { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
-  25%  { border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%; }
-  50%  { border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%; }
-  75%  { border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%; }
-  100% { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
-}
+    0% {
+        border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+    }
 
-/* Liquid border gradient */
-@keyframes liquidBorder {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+    25% {
+        border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%;
+    }
+
+    50% {
+        border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%;
+    }
+
+    75% {
+        border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%;
+    }
+
+    100% {
+        border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+    }
 }
 
 @keyframes moveLeft {
