@@ -276,6 +276,7 @@ h2 {
 
 .welcomePage .left-square,
 .welcomePage .right-square {
+    overflow: hidden;
     width: fit-content;
     align-content: center;
 }
@@ -296,6 +297,8 @@ h2 {
 }
 
 .whoAmI .right-side {
+    overflow: hidden;
+    border-radius: initial;
     height: 500px;
     display: flex;
     align-items: center;
@@ -1140,6 +1143,7 @@ h2 {
     }
 
     .whoAmI .right-side {
+        overflow: hidden;
         height: auto;
     }
 
