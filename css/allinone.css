@@ -842,11 +842,16 @@ h2 {
     height: 60vw;
     background-color: var(--clr-1);
     border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+    
+    /* --- FIXES START HERE --- */
+    -webkit-filter: blur(var(--blur)); /* Prefixed for compatibility */
     filter: blur(var(--blur));
+    isolation: isolate; /* This is the key: creates a new stacking context */
+    /* --- FIXES END HERE --- */
+    
     mix-blend-mode: overlay;
-    overflow: hidden;
-    /* OPTIMIZATION: Hint to the browser to prepare for changes. */
-    will-change: transform, border-radius; 
+    overflow: hidden; 
+    will-change: transform, border-radius;
 }
 
 /* --- MODIFIED --- */
