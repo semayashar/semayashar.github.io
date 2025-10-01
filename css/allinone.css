@@ -276,7 +276,7 @@ h2 {
 
 .welcomePage .left-square,
 .welcomePage .right-square {
-    height: auto;
+    height: fit-content;
     border-radius: 25px;
     overflow: hidden;
     width: fit-content;
@@ -885,9 +885,8 @@ h2 {
 }
 
 .image-aurora {
-    height: auto;
-    width: inherit;
-    margin-top: 15%;
+    height: fit-content;
+    width: fit-content;
     position: relative;
     display: inline-block;
     border-radius: 25px !important;
