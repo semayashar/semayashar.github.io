@@ -290,7 +290,8 @@ h2 {
 }
 
 .whoAmI .left-side {
-    height: 80%;
+    margin-bottom: 50px;
+    height: 550px;
     font-size: 26px;
     padding-inline: 37px;
     display: grid;
@@ -1143,6 +1144,13 @@ h2 {
         height: auto;
     }
 
+    .whoAmI .right-side .image-aurora img {
+        width: 298.289px;
+        transform: rotate(0deg);
+        overflow: hidden;
+        height: auto;
+    }
+
     .icon-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -1170,6 +1178,7 @@ h2 {
     }
 
     .image-aurora img {
+        transform: rotate(0deg);
         max-width: 100%;
         height: auto;
     }
@@ -1202,6 +1211,7 @@ h2 {
     }
 
     .left-square .welcomeImage {
+        transform: rotate(0deg);
         border-radius: 25px;
         width: initial;
     }
