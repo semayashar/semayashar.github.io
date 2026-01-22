@@ -1,645 +1,1116 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Sema Yasharova</title>
 
-    <title>Портфолио — Сема Яшарова</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/allinone.css">
-    <link rel="stylesheet" href="css/preloader.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body class="loading">
+<body class="text-slate-800 antialiased selection:bg-primary selection:text-white">
 
-    <div id="preloader">
-        <div id="loader"></div>
+    <div class="gradient-bg">
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+        <div class="gradient-blob blob-3"></div>
     </div>
 
-    <div id="nav-container"></div>
-
-    <div class="container">
-        <div class="welcomePage" id="welcomePage">
-            <div class="left-square">
-                <div class="image-aurora">
-                    <img class="welcomeImage" src="/images/semaWelcome2.webp" loading="lazy" data-bg-alt="Добре дошли"
-                        data-en-alt="Welcome" data-tr-alt="Hoş geldiniz" alt="Welcome">
-                    <div class="aurora">
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="right-square">
-                <div class="content">
-                    <h1 class="title">
-                        <span data-bg="Здравейте! Аз съм" data-en="Hi! My name is" data-tr="Merhaba! Benim adım">Hi! My
-                            name is</span><br>
-                        <span data-bg="Сема Яшарова!" data-en="Sema Yasharova!" data-tr="Sema Yaşarova!">Sema
-                            Yasharova!</span>
-                        <div class="aurora">
-                            <div class="aurora__item"></div>
-                            <div class="aurora__item"></div>
-                            <div class="aurora__item"></div>
-                            <div class="aurora__item"></div>
+    <nav class="fixed w-full z-50 glass shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="https://github.com/semayashar" class="flex items-center gap-2 group">
+                    <div class="relative">
+                        <div
+                            class="absolute inset-0 bg-primary blur-md opacity-50 rounded-full group-hover:opacity-80 transition">
                         </div>
-                    </h1>
+                        <div
+                            class="relative w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-xl group-hover:rotate-12 transition-transform duration-300 shadow-lg border border-white/20">
+                            SY</div>
+                    </div>
+                    <span
+                        class="font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Sema.Dev</span>
+                </a>
 
-                    <h2 class="subtitle" data-bg="Наскоро завършила &quot;Софтуерено инженерство&quot;."
-                        data-en="Recently graduated software engineer." data-tr="Yeni mezun bir Yazılım Mühendisiyim.">A
-                        recently graduated Software Engineer.</h2>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#welcomePage"
+                        class="text-sm font-medium hover:text-primary transition lang-text relative group py-2"
+                        data-en="Home" data-bg="Начало" data-tr="Ana Sayfa">Home <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#whoami"
+                        class="text-sm font-medium hover:text-primary transition lang-text relative group py-2"
+                        data-en="About" data-bg="За Мен" data-tr="Hakkımda">About <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#skills"
+                        class="text-sm font-medium hover:text-primary transition lang-text relative group py-2"
+                        data-en="Skills" data-bg="Умения" data-tr="Beceriler">Skills <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#certificates"
+                        class="text-sm font-medium hover:text-primary transition lang-text relative group py-2"
+                        data-en="Certificates" data-bg="Сертификати" data-tr="Sertifikalar">Certificates <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#projects"
+                        class="text-sm font-medium hover:text-primary transition lang-text relative group py-2"
+                        data-en="Projects" data-bg="Проекти" data-tr="Projeler">Projects <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+
+                    <div
+                        class="flex items-center bg-white/50 backdrop-blur rounded-full p-1 border border-white shadow-inner">
+                        <button onclick="changeLanguage('en')"
+                            class="lang-btn-en px-3 py-1 text-xs font-bold rounded-full bg-white shadow text-primary transition-all duration-300">EN</button>
+                        <button onclick="changeLanguage('bg')"
+                            class="lang-btn-bg px-3 py-1 text-xs font-bold rounded-full text-gray-500 hover:text-primary transition-all duration-300">BG</button>
+                        <button onclick="changeLanguage('tr')"
+                            class="lang-btn-tr px-3 py-1 text-xs font-bold rounded-full text-gray-500 hover:text-primary transition-all duration-300">TR</button>
+                    </div>
+
+                    <a href="#contact"
+                        class="px-5 py-2.5 bg-dark text-white rounded-full text-sm font-medium hover:bg-primary hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 lang-text"
+                        data-en="Contact Me" data-bg="Контакт" data-tr="İletişim">Contact Me</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-dark p-2 focus:outline-none">
+                        <i class="fas fa-bars text-3xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <div class="whoAmI" id="whoami">
-            <div class="left-side">
-                <div class="section-title-aurora">
-                    <h2 data-bg="Коя съм аз?" data-en="Who Am I?" data-tr="Ben Kimim?">Who Am I?</h2>
-                    <div class="aurora">
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                    </div>
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 absolute w-full shadow-2xl z-50">
+            <div class="px-4 py-6 space-y-6 flex flex-col items-center">
+                <a href="#welcomePage" class="mobile-link text-xl font-medium hover:text-primary lang-text"
+                    data-en="Home" data-bg="Начало" data-tr="Ana Sayfa">Home</a>
+                <a href="#whoami" class="mobile-link text-xl font-medium hover:text-primary lang-text" data-en="About"
+                    data-bg="За Мен" data-tr="Hakkımda">About</a>
+                <a href="#skills" class="mobile-link text-xl font-medium hover:text-primary lang-text" data-en="Skills"
+                    data-bg="Умения" data-tr="Beceriler">Skills</a>
+                <a href="#projects" class="mobile-link text-xl font-medium hover:text-primary lang-text"
+                    data-en="Projects" data-bg="Проекти" data-tr="Projeler">Projects</a>
+                <a href="#contact" class="mobile-link text-xl font-medium text-primary lang-text" data-en="Contact"
+                    data-bg="Контакт" data-tr="İletişim">Contact</a>
+
+                <div class="flex items-center bg-gray-100 rounded-full p-1.5 mt-4 border border-gray-200">
+                    <button onclick="changeLanguage('en')"
+                        class="lang-btn-en w-12 h-10 flex items-center justify-center text-sm font-bold rounded-full bg-white shadow text-primary transition-all duration-300">EN</button>
+                    <button onclick="changeLanguage('bg')"
+                        class="lang-btn-bg w-12 h-10 flex items-center justify-center text-sm font-bold rounded-full text-gray-500 hover:text-primary transition-all duration-300">BG</button>
+                    <button onclick="changeLanguage('tr')"
+                        class="lang-btn-tr w-12 h-10 flex items-center justify-center text-sm font-bold rounded-full text-gray-500 hover:text-primary transition-all duration-300">TR</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="welcomePage" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 space-y-6 text-center md:text-left" data-aos="fade-right"
+                data-aos-duration="1000">
+                <div class="inline-block px-4 py-1.5 bg-white/80 backdrop-blur border border-white/50 rounded-full shadow-sm mb-2 animate-bounce"
+                    style="animation-duration: 3s">
+                    <span
+                        class="text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary lang-text"
+                        data-en="Software Engineer" data-bg="Софтуерен Инженер" data-tr="Yazılım Mühendisi">Software
+                        Engineer</span>
                 </div>
 
-                <div class="bottom-square">
-                    <p data-bg="Наскоро завършила бакалавърска степен по Софтуерно инженерство в Русенския университет „Ангел Кънчев“. По време на обучението си натрупах стабилни умения в езици като Java, C++, C# и JavaScript, главно чрез курсови проекти и практическа работа. Обичам да решавам проблеми чрез програмиране и намирам голямо удоволствие в работата в екип. Харесва ми да уча нови неща, да обменям идеи и да използвам логическото си мислене, за да стигам до добри решения."
-                        data-en="I recently graduated with a Bachelor's degree in Software Engineering from the University of Ruse Angel Kanchev. Throughout my studies, I built strong skills in Java, C++, C#, and JavaScript, mostly through hands-on projects and coursework. I really enjoy solving problems through code and love working in a team environment. I'm always curious to learn new things, share ideas, and use logical thinking to find effective solutions."
-                        data-tr="Rusçuk Angel Kanchev Üniversitesi'nden Yazılım Mühendisliği lisans derecesiyle yeni mezun oldum. Öğrenimim boyunca, çoğunlukla uygulamalı projeler ve ders çalışmaları sayesinde Java, C++, C# ve JavaScript gibi dillerde sağlam beceriler edindim. Kodlama yoluyla problem çözmekten büyük keyif alıyorum ve ekip çalışması ortamını çok seviyorum. Her zaman yeni şeyler öğrenmeye, fikir alışverişinde bulunmaya ve etkili çözümler bulmak için mantıksal düşüncemi kullanmaya hevesliyim.">
-                        I recently graduated with a Bachelor's degree in Software Engineering from the University of
-                        Ruse Angel Kanchev. Throughout my studies, I built strong skills in Java, C++, C#, and
-                        JavaScript, mostly through hands-on projects and coursework. I really enjoy solving problems
-                        through code and love working in a team environment. I'm always curious to learn new things,
-                        share ideas, and use logical thinking to find effective solutions.</p>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-dark tracking-tight leading-tight">
+                    <span class="lang-text block text-2xl md:text-3xl font-medium text-gray-500 mb-2"
+                        data-en="Hello, I'm" data-bg="Здравейте, аз съм" data-tr="Merhaba, ben">Hello, I'm</span>
+                    <span
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent drop-shadow-sm">Sema
+                        Yasharova</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed lang-text"
+                    data-en="A passionate programmer from Bulgaria seeking to apply analytical and communication skills in a dynamic team. I specialize in Java, C++, C#, and JavaScript development."
+                    data-bg="Страстен програмист от България, търсещ възможност да приложи аналитичните и комуникационните си умения в динамичен екип. Специализирам в Java, C++, C# и JavaScript."
+                    data-tr="Bulgaristan'dan, dinamik bir ekipte analitik ve iletişim becerilerini uygulamak isteyen tutkulu bir programcı. Java, C++, C# ve JavaScript konusunda uzmanım.">
+                    A passionate programmer from Bulgaria seeking to apply analytical and communication skills in a
+                    dynamic team. I specialize in Java, C++, C#, and JavaScript development.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 pt-6">
+                    <a href="#projects"
+                        class="px-8 py-4 bg-dark text-white rounded-xl font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 group">
+                        <span class="lang-text" data-en="View My Work" data-bg="Вижте Проектите"
+                            data-tr="Projelerimi Gör">View My Work</span>
+                        <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#contact"
+                        class="px-8 py-4 bg-white/80 backdrop-blur border border-white text-dark rounded-xl font-semibold hover:border-primary hover:text-primary hover:bg-white transition-all duration-300 lang-text"
+                        data-en="Contact Me" data-bg="Свържете се" data-tr="İletişime Geç">Contact Me</a>
+                </div>
+
+                <div class="flex items-center justify-center md:justify-start gap-4 pt-4 text-gray-400">
+                    <a href="https://github.com/semayashar" target="_blank"
+                        class="hover:text-dark transition-colors transform hover:scale-110"><i
+                            class="fab fa-github text-2xl"></i></a>
+                    <a href="https://www.linkedin.com/in/SemaYasharova" target="_blank"
+                        class="hover:text-blue-600 transition-colors transform hover:scale-110"><i
+                            class="fab fa-linkedin text-2xl"></i></a>
+                    <a href="mailto:semayasharova@gmail.com"
+                        class="hover:text-red-500 transition-colors transform hover:scale-110"><i
+                            class="fas fa-envelope text-2xl"></i></a>
                 </div>
             </div>
 
-            <div class="right-side">
-                <div class="image-aurora">
-                    <img src="/images/graduation.webp" loading="lazy" data-bg-alt="Дипломиране" data-en-alt="Graduation"
-                        data-tr-alt="Mezuniyet" alt="Graduation">
-                    <div class="aurora">
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
+            <div class="order-1 md:order-2 flex justify-center relative" data-aos="fade-left" data-aos-duration="1000">
+                <div
+                    class="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[28rem] md:h-[28rem] rounded-full p-2 border-2 border-dashed border-primary/30 animate-float">
+                    <img src="images/semaWelcome2.webp" alt="Sema Yasharova"
+                        onerror="this.src='https://placehold.co/500x500?text=Sema+Yasharova'"
+                        class="w-full h-full object-cover object-top rounded-full shadow-2xl ring-4 ring-white/50 lang-alt"
+                        data-en-alt="Portrait" data-bg-alt="Портрет" data-tr-alt="Portre">
+
+                    <div
+                        class="absolute bottom-10 -left-4 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-float-delayed border border-white/50">
+                        <div class="bg-green-100 p-2.5 rounded-full text-green-600"><i class="fas fa-check"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-wider lang-text"
+                                data-en="Status" data-bg="Статус" data-tr="Durum">Status</p>
+                            <p class="text-sm font-bold text-dark lang-text" data-en="Open to Work"
+                                data-bg="Търся работа" data-tr="İş Arıyor">Open to Work</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="graduation" id="education">
-            <div class="section-title-aurora">
-                <h2 data-bg="Образование" data-en="Education" data-tr="Eğitim">Education</h2>
-                <div class="aurora">
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                </div>
-
+    <section id="whoami" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm lang-text" data-en="Biography"
+                    data-bg="Биография" data-tr="Biyografi">Biography</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-dark mt-2 lang-text" data-en="About Me" data-bg="За Мен"
+                    data-tr="Hakkımda">About Me</h2>
             </div>
-            <div class="horizontal-timeline">
-                <div class="timeline-line">
-                    <div class="timeline-trail"></div>
-                    <span class="shooting-star"></span>
+
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div class="relative group" data-aos="fade-right">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-secondary to-primary rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-500">
+                    </div>
+                    <img src="images/graduation.webp"
+                        onerror="this.src='https://placehold.co/600x800?text=Graduation+Photo'"
+                        class="relative w-full rounded-2xl shadow-xl transform transition duration-500 group-hover:scale-[1.02] border-4 border-white"
+                        alt="Graduation">
                 </div>
 
-                <div class="timeline-point" data-delay="2000">
-                    <div class="postcard-container">
-                        <div class="postcard">
-                            <img src="/images/schools/su_hristo_botev.webp" loading="lazy" data-bg-alt="Гимназия"
-                                data-en-alt="High School" data-tr-alt="Lise" alt="High School">
-                            <div class="postcard-content">
-                                <h3 data-bg='Профил "Софтуерни и хардуерни науки"'
-                                    data-en='Profile "Software and Hardware Sciences'
-                                    data-tr='“Yazılım ve Donanım Bilimleri” Alanı'>Profile "Software and Hardware
-                                    Sciences</h3>
-                                <p data-bg="Средно училище „Христо Ботев“, Русе, България"
-                                    data-en="Hristo Botev Secondary School, Ruse, Bulgaria"
-                                    data-tr="Hristo Botev Ortaokulu, Rusçuk, Bulgaristan">Hristo Botev Secondary
-                                    School, Ruse, Bulgaria</p>
-                                <p data-bg="2016–2021" data-en="2016–2021" data-tr="2016–2021">2016–2021</p>
+                <div class="space-y-8" data-aos="fade-left">
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border border-white/60">
+                        <p class="text-lg text-gray-700 leading-relaxed lang-text"
+                            data-en="I am a recently graduated Software Engineer with a Bachelor's degree from the University of Ruse 'Angel Kanchev'. My journey in tech has built a solid foundation in Java, C++, C#, and JavaScript through rigorous academic coursework and hands-on projects. I am adaptable, detail-oriented, and I thrive in collaborative environments where I can share ideas and solve complex problems."
+                            data-bg="Аз съм наскоро завършил софтуерен инженер с бакалавърска степен от Русенския университет „Ангел Кънчев“. Пътят ми в технологиите изгради солидна основа в Java, C++, C# и JavaScript чрез строго академично обучение и практически проекти. Аз съм адаптивна, ориентирана към детайлите и процъфтявам в екипна среда, където мога да споделям идеи и да решавам сложни проблеми."
+                            data-tr="Rusçuk 'Angel Kunchev' Üniversitesi Yazılım Mühendisliği bölümünden yeni mezun olmuş bir Yazılım Mühendisiyim. Teknoloji yolculuğum, yoğun akademik çalışmalar ve uygulamalı projelerle Java, C++, C# ve JavaScript konularında sağlam bir temel oluşturdu. Uyum sağlayabilen, detay odaklı biriyim ve fikir paylaşabileceğim, karmaşık sorunları çözebileceğim işbirlikçi ortamlarda başarılı olurum.">
+                            I am a recently graduated Software Engineer with a Bachelor's degree from the University of
+                            Ruse 'Angel Kanchev'. My journey in tech has built a solid foundation in Java, C++, C#, and
+                            JavaScript through rigorous academic coursework and hands-on projects. I am adaptable,
+                            detail-oriented, and I thrive in collaborative environments where I can share ideas and
+                            solve complex problems.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-dark flex items-center gap-2">
+                            <i class="fas fa-language text-secondary"></i>
+                            <span class="lang-text" data-en="Languages" data-bg="Езици"
+                                data-tr="Diller">Languages</span>
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div
+                                class="bg-white/60 p-4 rounded-xl border border-white shadow-sm hover:bg-white transition">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-dark lang-text" data-en="Bulgarian" data-bg="Български"
+                                        data-tr="Bulgarca">Bulgarian</span>
+                                    <span
+                                        class="text-primary text-xs font-bold uppercase bg-primary/10 px-2 py-0.5 rounded">Native</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-white/60 p-4 rounded-xl border border-white shadow-sm hover:bg-white transition">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-dark lang-text" data-en="English" data-bg="Английски"
+                                        data-tr="İngilizce">English</span>
+                                    <span
+                                        class="text-secondary text-xs font-bold uppercase bg-secondary/10 px-2 py-0.5 rounded">B2</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-secondary h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-white/60 p-4 rounded-xl border border-white shadow-sm hover:bg-white transition">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-dark lang-text" data-en="Turkish" data-bg="Турски"
+                                        data-tr="Türkçe">Turkish</span>
+                                    <span
+                                        class="text-accent text-xs font-bold uppercase bg-accent/10 px-2 py-0.5 rounded">B2</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-white/60 p-4 rounded-xl border border-white shadow-sm hover:bg-white transition">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-dark lang-text" data-en="German" data-bg="Немски"
+                                        data-tr="Almanca">German</span>
+                                    <span
+                                        class="text-gray-500 text-xs font-bold uppercase bg-gray-200 px-2 py-0.5 rounded">A2</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gray-400 h-2 rounded-full" style="width: 30%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-dark mb-4 flex items-center gap-2">
+                            <i class="fas fa-users text-secondary"></i>
+                            <span class="lang-text" data-en="Soft Skills" data-bg="Меки Умения"
+                                data-tr="Yumuşak Beceriler">Soft Skills</span>
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-sm font-semibold border border-purple-200 hover:bg-purple-200 transition cursor-default lang-text"
+                                data-en="Project Management" data-bg="Управление на проекти"
+                                data-tr="Proje Yönetimi">Project Management</span>
+                            <span
+                                class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-sm font-semibold border border-blue-200 hover:bg-blue-200 transition cursor-default lang-text"
+                                data-en="Teamwork" data-bg="Екипна работа" data-tr="Takım Çalışması">Teamwork</span>
+                            <span
+                                class="px-4 py-2 bg-green-100 text-green-700 rounded-lg text-sm font-semibold border border-green-200 hover:bg-green-200 transition cursor-default lang-text"
+                                data-en="Adaptability" data-bg="Адаптивност" data-tr="Uyum Yeteneği">Adaptability</span>
+                            <span
+                                class="px-4 py-2 bg-pink-100 text-pink-700 rounded-lg text-sm font-semibold border border-pink-200 hover:bg-pink-200 transition cursor-default lang-text"
+                                data-en="Critical Thinking" data-bg="Критично мислене"
+                                data-tr="Eleştirel Düşünme">Critical Thinking</span>
+                            <span
+                                class="px-4 py-2 bg-orange-100 text-orange-700 rounded-lg text-sm font-semibold border border-orange-200 hover:bg-orange-200 transition cursor-default lang-text"
+                                data-en="Time Management" data-bg="Управление на времето" data-tr="Zaman Yönetimi">Time
+                                Management</span>
+                            <span
+                                class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm font-semibold border border-indigo-200 hover:bg-indigo-200 transition cursor-default lang-text"
+                                data-en="Communication" data-bg="Комуникация" data-tr="İletişim">Communication</span>
+                            <span
+                                class="px-4 py-2 bg-teal-100 text-teal-700 rounded-lg text-sm font-semibold border border-teal-200 hover:bg-teal-200 transition cursor-default lang-text"
+                                data-en="Problem-solving" data-bg="Решаване на проблеми"
+                                data-tr="Sorun Çözme">Problem-solving</span>
+                            <span
+                                class="px-4 py-2 bg-red-100 text-red-700 rounded-lg text-sm font-semibold border border-red-200 hover:bg-red-200 transition cursor-default lang-text"
+                                data-en="Multitasking" data-bg="Мултитаскинг" data-tr="Çoklu Görev">Multitasking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm lang-text"
+                    data-en="Academic Journey" data-bg="Академичен път" data-tr="Akademik Yolculuk">Academic
+                    Journey</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-dark mt-2 lang-text" data-en="Education"
+                    data-bg="Образование" data-tr="Eğitim">Education</h2>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <div class="timeline-line hidden md:block shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
+
+                <div class="relative z-10 grid md:grid-cols-2 gap-8 mb-16 items-center" data-aos="fade-left">
+                    <div
+                        class="md:text-right order-2 md:order-1 glass-card bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-xl font-bold text-dark lang-text" data-en="Master's in Software Engineering"
+                            data-bg="Магистър по софтуерно инженерство" data-tr="Yazılım Mühendisliği Yüksek Lisans">
+                            Master's Degree</h3>
+                        <p class="text-primary font-bold text-lg mt-1 lang-text" data-en="2025 - Present"
+                            data-bg="2025 - Настояще" data-tr="2025 - Günümüz">2025 - Present</p>
+                        <p class="text-gray-600 mt-2 font-medium lang-text" data-en='University of Ruse "Angel Kanchev"'
+                            data-bg='Русенски университет „Ангел Кънчев“' data-tr='Rusçuk Üniversitesi "Angel Kançev"'>
+                            University of Ruse "Angel Kanchev"</p>
+                        <p class="text-gray-400 text-sm mt-1 lang-text" data-en="Ruse, Bulgaria"
+                            data-bg="Русе, България" data-tr="Rusçuk, Bulgaristan">Ruse, Bulgaria</p>
+                    </div>
+                    <div
+                        class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white rounded-full border-4 border-primary shadow-lg hidden md:block">
+                    </div>
+                    <div class="order-1 md:order-2 flex justify-center md:justify-start">
+                        <div
+                            class="w-24 h-24 bg-white rounded-2xl p-2 shadow-md flex items-center justify-center border border-gray-100 transform hover:rotate-3 transition duration-300">
+                            <img src="images/schools/rusenksi_uni2.webp"
+                                onerror="this.src='https://placehold.co/100x100?text=Uni'" alt="Uni"
+                                class="w-full h-full object-contain">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="timeline-point" data-delay="4000">
-                    <div class="postcard-container">
-                        <div class="postcard">
-                            <img src="images/schools/rusenksi_uni.webp" loading="lazy" data-bg-alt="Бакалавърска степен"
-                                data-en-alt="Bachelor's Degree" data-tr-alt="Lisans Derecesi" alt="Bachelor's Degree">
-                            <div class="postcard-content">
-                                <h3 data-bg="Бакалавър по софтуерно инженерство"
-                                    data-en="Bachelor's Degree in Software Engineering"
-                                    data-tr="Yazılım Mühendisliği Lisans Derecesi">Bachelor's Degree in Software
-                                    Engineering</h3>
-                                <p data-bg="Русенски университет „Ангел Кънчев“, Русе, България"
-                                    data-en='University of Ruse "Angel Kunchev", Ruse, Bulgaria'
-                                    data-tr='Rusçuk "Angel Kunchev" Üniversitesi, Rusçuk, Bulgaristan'>University of
-                                    Ruse
-                                    "Angel Kunchev", Ruse, Bulgaria</p>
-                                <p data-bg="2021–2025" data-en="2021–2025" data-tr="2021–2025">2021–2025</p>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8 mb-16 items-center" data-aos="fade-right">
+                    <div class="flex justify-center md:justify-end order-1">
+                        <div
+                            class="w-24 h-24 bg-white rounded-2xl p-2 shadow-md flex items-center justify-center border border-gray-100 transform hover:-rotate-3 transition duration-300">
+                            <img src="images/schools/rusenksi_uni.webp"
+                                onerror="this.src='https://placehold.co/100x100?text=Uni'" alt="Uni"
+                                class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white rounded-full border-4 border-secondary shadow-lg hidden md:block">
+                    </div>
+                    <div
+                        class="order-2 glass-card bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-xl font-bold text-dark lang-text" data-en="Bachelor's in Software Engineering"
+                            data-bg="Бакалавър по софтуерно инженерство" data-tr="Yazılım Mühendisliği Lisans">
+                            Bachelor's Degree</h3>
+                        <p class="text-secondary font-bold text-lg mt-1">2021 - 2025</p>
+                        <p class="text-gray-600 mt-2 font-medium lang-text" data-en='University of Ruse "Angel Kanchev"'
+                            data-bg='Русенски университет „Ангел Кънчев“' data-tr='Rusçuk Üniversitesi "Angel Kançev"'>
+                            University of Ruse "Angel Kanchev"</p>
+                        <p class="text-gray-400 text-sm mt-1 lang-text" data-en="Ruse, Bulgaria"
+                            data-bg="Русе, България" data-tr="Rusçuk, Bulgaristan">Ruse, Bulgaria</p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center" data-aos="fade-left">
+                    <div
+                        class="md:text-right order-2 md:order-1 glass-card bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-xl font-bold text-dark lang-text" data-en="Software & Hardware Sciences"
+                            data-bg="Софтуерни и хардуерни науки" data-tr="Yazılım ve Donanım Bilimleri">Secondary
+                            Profile</h3>
+                        <p class="text-accent font-bold text-lg mt-1">2016 - 2021</p>
+                        <p class="text-gray-600 mt-2 font-medium lang-text" data-en="Hristo Botev Secondary School"
+                            data-bg="СУ „Христо Ботев“" data-tr="Hristo Botev Lisesi">Hristo Botev Secondary School</p>
+                        <p class="text-gray-400 text-sm mt-1 lang-text" data-en="Ruse, Bulgaria"
+                            data-bg="Русе, България" data-tr="Rusçuk, Bulgaristan">Ruse, Bulgaria</p>
+                    </div>
+                    <div
+                        class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white rounded-full border-4 border-accent shadow-lg hidden md:block">
+                    </div>
+                    <div class="order-1 md:order-2 flex justify-center md:justify-start">
+                        <div
+                            class="w-24 h-24 bg-white rounded-2xl p-2 shadow-md flex items-center justify-center border border-gray-100 transform hover:rotate-3 transition duration-300">
+                            <img src="images/schools/su_hristo_botev.webp"
+                                onerror="this.src='https://placehold.co/100x100?text=School'" alt="School"
+                                class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 bg-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-dark to-slate-900 z-0"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse-slow"
+            style="animation-delay: 2s"></div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm lang-text" data-en="Tech Stack"
+                    data-bg="Технологичен стек" data-tr="Teknoloji Yığını">Tech Stack</span>
+                <h2 class="text-3xl md:text-5xl font-bold mt-2 lang-text" data-en="Programming & Tools"
+                    data-bg="Програмиране и инструменти" data-tr="Programlama ve Araçlar">Skills</h2>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold mb-6 text-gray-400 border-b border-gray-700 pb-2 lang-text"
+                    data-en="Languages" data-bg="Езици" data-tr="Diller">Languages</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center">
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in" data-aos-delay="0">
+                        <i class="devicon-java-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">Java</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in" data-aos-delay="100">
+                        <i class="devicon-cplusplus-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">C++</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in" data-aos-delay="200">
+                        <i class="devicon-csharp-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">C#</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in" data-aos-delay="300">
+                        <i class="devicon-python-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">Python</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in" data-aos-delay="400">
+                        <i class="devicon-javascript-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">JavaScript</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in" data-aos-delay="450">
+                        <i class="devicon-typescript-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">TypeScript</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in" data-aos-delay="500">
+                        <i class="devicon-html5-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold mb-6 text-gray-400 border-b border-gray-700 pb-2 lang-text"
+                    data-en="Web Frameworks & Databases" data-bg="Уеб рамки и бази данни"
+                    data-tr="Web Çatıları ve Veritabanları">Web Frameworks & Databases</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-react-original colored text-5xl mb-2"></i>
+                        <span class="font-medium">React</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-vuejs-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">Vue.js</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-nodejs-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">Node.js</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-spring-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">Spring</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="fas fa-database text-blue-400 text-5xl mb-2"></i> <span class="font-medium">Entity
+                            Fw</span>
+                    </div>
+
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-microsoftsqlserver-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">MS SQL</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-postgresql-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">PostgreSQL</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-mysql-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">MySQL</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-mongodb-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">MongoDB</span>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl flex flex-col items-center hover:bg-slate-700 transition hover:scale-110 duration-300 border border-slate-700/50"
+                        data-aos="zoom-in">
+                        <i class="devicon-jquery-plain colored text-5xl mb-2"></i>
+                        <span class="font-medium">jQuery</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-6 text-gray-400 border-b border-gray-700 pb-2 lang-text"
+                    data-en="IDEs, DevOps & Design" data-bg="Среди за разработка и дизайн"
+                    data-tr="Geliştirme Ortamları ve Tasarım">IDEs, DevOps & Design</h3>
+                <div class="flex flex-wrap gap-6 justify-center">
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up">
+                        <i class="devicon-visualstudio-plain colored text-3xl"></i> Visual Studio
+                    </div>
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <i class="devicon-vscode-plain colored text-3xl"></i> VS Code
+                    </div>
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <i class="devicon-intellij-plain colored text-3xl"></i> IntelliJ IDEA
+                    </div>
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <i class="devicon-androidstudio-plain colored text-3xl"></i> Android Studio
+                    </div>
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up" data-aos-delay="400">
+                        <i class="devicon-git-plain colored text-3xl"></i> Git/GitHub
+                    </div>
+
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up" data-aos-delay="500">
+                        <i class="devicon-docker-plain colored text-3xl"></i> Docker
+                    </div>
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up" data-aos-delay="600">
+                        <i class="devicon-postman-plain colored text-3xl"></i> Postman
+                    </div>
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up" data-aos-delay="700">
+                        <i class="devicon-figma-plain colored text-3xl"></i> Figma
+                    </div>
+                    <div class="bg-slate-800/50 px-6 py-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:border-primary transition duration-300 hover:shadow-lg hover:shadow-primary/20"
+                        data-aos="fade-up" data-aos-delay="800">
+                        <i class="devicon-photoshop-plain colored text-3xl"></i> Photoshop
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-secondary font-bold tracking-wider uppercase text-sm lang-text" data-en="Achievements"
+                    data-bg="Постижения" data-tr="Başarılar">Achievements</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-dark mt-2 lang-text" data-en="Certificates & Courses"
+                    data-bg="Сертификати и Курсове" data-tr="Sertifikalar ve Kurslar">Certificates</h2>
+                <p class="text-gray-500 mt-4 max-w-2xl mx-auto lang-text" data-en="Click cards to see the reverse side."
+                    data-bg="Натиснете картата за обратната страна." data-tr="Arka yüzü görmek için karta tıklayın.">
+                    Interactive flip cards.</p>
+            </div>
+
+            <div class="mb-12 flex flex-wrap justify-center gap-3" data-aos="fade-up">
+                <span
+                    class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 rounded-full text-sm font-bold shadow-sm hover:scale-105 transition cursor-default">SoftUni:
+                    C# DB</span>
+                <span
+                    class="px-4 py-2 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 rounded-full text-sm font-bold shadow-sm hover:scale-105 transition cursor-default">SoftUni:
+                    Entity Framework Core</span>
+                <span
+                    class="px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-200 text-purple-800 rounded-full text-sm font-bold shadow-sm hover:scale-105 transition cursor-default">SoftUni:
+                    C++ Advanced</span>
+                <span
+                    class="px-4 py-2 bg-gradient-to-r from-green-100 to-green-200 text-green-800 rounded-full text-sm font-bold shadow-sm hover:scale-105 transition cursor-default">C#onference
+                    2023</span>
+                <span
+                    class="px-4 py-2 bg-gradient-to-r from-teal-100 to-teal-200 text-teal-800 rounded-full text-sm font-bold shadow-sm hover:scale-105 transition cursor-default">ChatGPT
+                    App Dev</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="perspective-1000 aspect-[3/4] w-full" data-aos="flip-left">
+                    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                        <div class="flip-card-front bg-white p-2 border border-gray-100">
+                            <img src="images/certificates/C++ Fundamentals - March 2022 - Certificate-1.webp" alt="Cert"
+                                class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C++Fund+Front'">
+                        </div>
+                        <div class="flip-card-back p-2 border border-gray-100">
+                            <img src="images/certificates/C++ Fundamentals - March 2022 - Certificate-2.webp" alt="Cert"
+                                class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C++Fund+Back'">
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 font-semibold text-gray-700">C++ Fundamentals (March 2022)</p>
+                </div>
+
+                <div class="perspective-1000 aspect-[3/4] w-full" data-aos="flip-left" data-aos-delay="100">
+                    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                        <div class="flip-card-front bg-white p-2 border border-gray-100">
+                            <img src="images/certificates/Programming Basics - July 2021 - Certificate-1.webp"
+                                alt="Cert" class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=Prog+Basics+Front'">
+                        </div>
+                        <div class="flip-card-back p-2 border border-gray-100">
+                            <img src="images/certificates/Programming Basics - July 2021 - Certificate-2.webp"
+                                alt="Cert" class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=Prog+Basics+Back'">
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 font-semibold text-gray-700">Programming Basics (July 2021)</p>
+                </div>
+
+                <div class="perspective-1000 aspect-[3/4] w-full" data-aos="flip-left" data-aos-delay="200">
+                    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                        <div class="flip-card-front bg-white p-2 border border-gray-100">
+                            <img src="images/certificates/Programming Basics - March 2023 - Certificate-1.webp"
+                                alt="Cert" class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=Prog+Basics+2+Front'">
+                        </div>
+                        <div class="flip-card-back p-2 border border-gray-100">
+                            <img src="images/certificates/Programming Basics - March 2023 - Certificate-2.webp"
+                                alt="Cert" class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=Prog+Basics+2+Back'">
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 font-semibold text-gray-700">Programming Basics (March 2023)</p>
+                </div>
+
+                <div class="perspective-1000 aspect-[3/4] w-full" data-aos="flip-left">
+                    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                        <div class="flip-card-front bg-white p-2 border border-gray-100">
+                            <img src="images/certificates/Programming Basics with C++ - January 2022 - Certificate-1.webp"
+                                alt="Cert" class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C+++Basics+Front'">
+                        </div>
+                        <div class="flip-card-back p-2 border border-gray-100">
+                            <img src="images/certificates/Programming Basics with C++ - January 2022 - Certificate-2.webp"
+                                alt="Cert" class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C+++Basics+Back'">
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 font-semibold text-gray-700">Prog. Basics C++ (Jan 2022)</p>
+                </div>
+
+                <div class="perspective-1000 aspect-[3/4] w-full" data-aos="flip-left" data-aos-delay="100">
+                    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                        <div class="flip-card-front bg-white p-2 border border-gray-100">
+                            <img src="images/certificates/C++ Advanced - May 2022 - Certificate-1.webp" alt="Cert"
+                                class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C+++Adv+Front'">
+                        </div>
+                        <div class="flip-card-back p-2 border border-gray-100">
+                            <img src="images/certificates/C++ Advanced - May 2022 - Certificate-2.webp" alt="Cert"
+                                class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C+++Adv+Back'">
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 font-semibold text-gray-700">C++ Advanced (May 2022)</p>
+                </div>
+
+                <div class="perspective-1000 aspect-[3/4] w-full" data-aos="flip-left" data-aos-delay="200">
+                    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                        <div class="flip-card-front bg-white p-2 border border-gray-100">
+                            <img src="images/certificates/MS SQL - September 2023 - Certificate-1.webp" alt="Cert"
+                                class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=SQL+Front'">
+                        </div>
+                        <div class="flip-card-back p-2 border border-gray-100">
+                            <img src="images/certificates/MS SQL - September 2023 - Certificate-2.webp" alt="Cert"
+                                class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=SQL+Back'">
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 font-semibold text-gray-700">MS SQL (Sept 2023)</p>
+                </div>
+
+                <div class="perspective-1000 aspect-[3/4] w-full" data-aos="flip-left" data-aos-delay="300">
+                    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                        <div class="flip-card-front bg-white p-2 border border-gray-100">
+                            <img src="images/certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-1.webp"
+                                alt="Cert" class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C#+Fund+Front'">
+                        </div>
+                        <div class="flip-card-back p-2 border border-gray-100">
+                            <img src="images/certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-2.webp"
+                                alt="Cert" class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C#+Fund+Back'">
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 font-semibold text-gray-700">C# Fundamentals (May 2023)</p>
+                </div>
+
+                <div class="perspective-1000 aspect-[3/4] w-full" data-aos="flip-left" data-aos-delay="400">
+                    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                        <div class="flip-card-front bg-white p-2 border border-gray-100">
+                            <img src="images/certificates/C++ Advanced - May 2023 - Certificate-1.webp" alt="Cert"
+                                class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C+++Adv+2023+Front'">
+                        </div>
+                        <div class="flip-card-back p-2 border border-gray-100">
+                            <img src="images/certificates/C++ Advanced - May 2023 - Certificate-2.webp" alt="Cert"
+                                class="w-full h-full object-contain bg-white rounded-lg"
+                                onerror="this.src='https://placehold.co/400x300?text=C+++Adv+2023+Back'">
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 font-semibold text-gray-700">C++ Advanced (May 2023)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm lang-text" data-en="Portfolio"
+                    data-bg="Портфолио" data-tr="Portföy">Portfolio</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-dark mt-2 lang-text" data-en="Recent Projects"
+                    data-bg="Последни Проекти" data-tr="Son Projeler">Projects</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <div class="group relative bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+                    data-aos="fade-up">
+                    <div class="absolute top-0 right-0 bg-gradient-to-l from-green-500 to-emerald-400 text-white text-xs font-bold px-4 py-2 rounded-bl-xl z-10 shadow-md lang-text"
+                        data-en="Finished 2025" data-bg="Завършен 2025" data-tr="Bitti 2025">Finished 2025</div>
+
+                    <div class="h-64 bg-gray-100 relative overflow-hidden group-hover:opacity-90 transition">
+                        <img src="images/langforu/index.png"
+                            onerror="this.src='https://placehold.co/600x400?text=LangForU'"
+                            class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            alt="LangForU">
+                    </div>
+
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-dark mb-2 group-hover:text-primary transition">LangForU</h3>
+                        <p class="text-gray-600 mb-6 lang-text" data-en="Web-based language learning platform."
+                            data-bg="Уеб-базирана платформа за езиково обучение."
+                            data-tr="Web Tabanlı Dil Öğrenme Platformu">Web-based language learning platform.</p>
+
+                        <div class="flex gap-4">
+                            <button onclick="openModal('langforu')"
+                                class="flex-1 bg-dark text-white py-3 rounded-xl font-medium hover:bg-primary transition text-center shadow-lg shadow-dark/20 lang-text"
+                                data-en="View Details" data-bg="Детайли" data-tr="Detaylar">View Details</button>
+                            <a href="https://github.com/semayashar" target="_blank"
+                                class="px-5 py-3 bg-gray-100 rounded-xl text-dark hover:bg-gray-200 transition">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 bg-gradient-to-l from-blue-500 to-indigo-400 text-white text-xs font-bold px-4 py-2 rounded-bl-xl z-10 shadow-md lang-text"
+                        data-en="Finished 2023" data-bg="Завършен 2023" data-tr="Bitti 2023">Finished 2023</div>
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img src="images/sportarete/index.png"
+                            onerror="this.src='https://placehold.co/600x400?text=SportArete'"
+                            class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            alt="SportArete">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-dark mb-2 group-hover:text-primary transition">SportArete
+                        </h3>
+                        <p class="text-gray-600 mb-6 lang-text" data-en="E-commerce website for sports equipment."
+                            data-bg="Уебсайт за електронна търговия." data-tr="E-ticaret Web Sitesi">E-commerce website
+                            for sports equipment.</p>
+                        <div class="flex gap-4">
+                            <button onclick="openModal('sportarete')"
+                                class="flex-1 bg-dark text-white py-3 rounded-xl font-medium hover:bg-primary transition text-center shadow-lg shadow-dark/20 lang-text"
+                                data-en="View Details" data-bg="Детайли" data-tr="Detaylar">View Details</button>
+                            <a href="https://github.com/semayashar" target="_blank"
+                                class="px-5 py-3 bg-gray-100 rounded-xl text-dark hover:bg-gray-200 transition">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 bg-gradient-to-l from-yellow-500 to-orange-400 text-white text-xs font-bold px-4 py-2 rounded-bl-xl z-10 shadow-md lang-text"
+                        data-en="In Progress" data-bg="В процес" data-tr="Devam Ediyor">In Progress</div>
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img src="images/conexion/index.png"
+                            onerror="this.src='https://placehold.co/600x400?text=ConeXion'"
+                            class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            alt="ConeXion">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-dark mb-2 group-hover:text-primary transition">ConeXion</h3>
+                        <p class="text-gray-600 mb-6 lang-text" data-en="Social Network Platform (WIP)."
+                            data-bg="Платформа за социална мрежа (в процес)."
+                            data-tr="Sosyal Ağ Platformu (Yapım Aşamasında).">Social Network Platform (WIP).</p>
+                        <div class="flex gap-4">
+                            <button onclick="openModal('conexion')"
+                                class="flex-1 bg-dark text-white py-3 rounded-xl font-medium hover:bg-primary transition text-center shadow-lg shadow-dark/20 lang-text"
+                                data-en="View Details" data-bg="Детайли" data-tr="Detaylar">View Details</button>
+                            <a href="https://github.com/semayashar" target="_blank"
+                                class="px-5 py-3 bg-gray-100 rounded-xl text-dark hover:bg-gray-200 transition">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute top-0 right-0 bg-gradient-to-l from-cyan-500 to-blue-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl z-10 shadow-md lang-text"
+                        data-en="In Progress" data-bg="В процес" data-tr="Devam Ediyor">In Progress</div>
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <img src="images/travelis/index.png"
+                            onerror="this.src='https://placehold.co/600x400?text=Travelis'"
+                            class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            alt="Travelis">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-dark mb-2 group-hover:text-primary transition">Travelis</h3>
+                        <p class="text-gray-600 mb-6 lang-text"
+                            data-en="AI-powered travel assistant for booking & planning."
+                            data-bg="AI-базиран асистент за пътуване и резервации."
+                            data-tr="Rezervasyon ve planlama için yapay zeka destekli seyahat asistanı.">AI-powered
+                            travel assistant.</p>
+                        <div class="flex gap-4">
+                            <button onclick="openModal('travelis')"
+                                class="flex-1 bg-dark text-white py-3 rounded-xl font-medium hover:bg-primary transition text-center shadow-lg shadow-dark/20 lang-text"
+                                data-en="View Details" data-bg="Детайли" data-tr="Detaylar">View Details</button>
+                            <a href="https://github.com/semayashar" target="_blank"
+                                class="px-5 py-3 bg-gray-100 rounded-xl text-dark hover:bg-gray-200 transition">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="absolute top-0 right-0 bg-gradient-to-l from-purple-500 to-pink-400 text-white text-xs font-bold px-4 py-2 rounded-bl-xl z-10 shadow-md">
+                        2025</div>
+                    <div class="h-64 bg-gray-100 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-pink-400/20 flex items-center justify-center transform group-hover:scale-105 transition duration-700">
+                            <i class="fas fa-user-circle text-7xl text-pink-500/40"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-dark mb-2 group-hover:text-primary transition">Portfolio</h3>
+                        <p class="text-gray-600 mb-6 lang-text" data-en="Personal Portfolio/CV Website."
+                            data-bg="Лично Портфолио/CV Уебсайт." data-tr="Kişisel Portföy/Özgeçmiş Web Sitesi">Personal
+                            Portfolio/CV Website.</p>
+                        <div class="flex gap-4">
+                            <button onclick="openModal('portfolio')"
+                                class="flex-1 bg-dark text-white py-3 rounded-xl font-medium hover:bg-primary transition text-center shadow-lg shadow-dark/20 lang-text"
+                                data-en="View Details" data-bg="Детайли" data-tr="Detaylar">View Details</button>
+                            <a href="https://github.com/semayashar" target="_blank"
+                                class="px-5 py-3 bg-gray-100 rounded-xl text-dark hover:bg-gray-200 transition">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -z-10 animate-pulse-slow">
+        </div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] -z-10 animate-pulse-slow"
+            style="animation-delay: 2s"></div>
+
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold lang-text" data-en="Let's Connect" data-bg="Свържи се с мен"
+                    data-tr="Bana Ulaşın">Let's Connect</h2>
+                <div class="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm shadow-xl"
+                    data-aos="fade-right">
+                    <h3 class="text-2xl font-bold mb-6 lang-text" data-en="Send me a message"
+                        data-bg="Изпрати ми съобщение" data-tr="Bana mesaj gönder">Send me a message</h3>
+                    <form onsubmit="sendEmail(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-400 text-sm font-bold mb-2 lang-text" data-en="Your Name"
+                                    data-bg="Име" data-tr="Adınız">Your Name</label>
+                                <input type="text" id="name" required
+                                    class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition duration-300 shadow-inner"
+                                    placeholder="Ian Gross" data-en-placeholder="Ian Gross"
+                                    data-bg-placeholder="Иван Иванов" data-tr-placeholder="Ahmet Yılmaz">
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-sm font-bold mb-2 lang-text" data-en="Your Email"
+                                    data-bg="Имейл" data-tr="E-posta">Your Email</label>
+                                <input type="email" id="email" required
+                                    class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition duration-300 shadow-inner"
+                                    placeholder="youremail@example.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-400 text-sm font-bold mb-2 lang-text"
+                                data-en="Title (Subject)" data-bg="Тема" data-tr="Konu">Title (Subject)</label>
+                            <input type="text" id="subject" required
+                                class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition duration-300 shadow-inner"
+                                placeholder="Job Opportunity" data-en-placeholder="Job Opportunity"
+                                data-bg-placeholder="Предложение за работа" data-tr-placeholder="İş Fırsatı">
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-400 text-sm font-bold mb-2 lang-text" data-en="Message"
+                                data-bg="Съобщение" data-tr="Mesaj">Message</label>
+                            <textarea id="message" rows="4" required
+                                class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition duration-300 shadow-inner"
+                                placeholder="Hello Sema..." data-en-placeholder="Hello Sema..."
+                                data-bg-placeholder="Здравей Сема..." data-tr-placeholder="Merhaba Sema..."></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                            <span class="lang-text" data-en="Send Message" data-bg="Изпрати" data-tr="Gönder">Send
+                                Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="space-y-8" data-aos="fade-left">
+                    <div class="space-y-6">
+                        <div
+                            class="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition group hover:shadow-lg">
+                            <div
+                                class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-2xl group-hover:scale-110 transition shadow-lg shadow-primary/50">
+                                <i class="fas fa-envelope"></i></div>
+                            <div>
+                                <p class="text-gray-400 text-sm uppercase font-bold lang-text" data-en="Email"
+                                    data-bg="Имейл" data-tr="E-posta">Email</p>
+                                <a href="mailto:semayasharova@gmail.com"
+                                    class="text-xl font-medium hover:text-primary transition">semayasharova@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition group hover:shadow-lg">
+                            <div
+                                class="w-14 h-14 bg-secondary rounded-full flex items-center justify-center text-2xl group-hover:scale-110 transition shadow-lg shadow-secondary/50">
+                                <i class="fas fa-phone"></i></div>
+                            <div>
+                                <p class="text-gray-400 text-sm uppercase font-bold lang-text" data-en="Phone"
+                                    data-bg="Телефон" data-tr="Telefon">Phone</p>
+                                <span class="text-xl font-medium">+359 89 509 3716</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition group hover:shadow-lg">
+                            <div
+                                class="w-14 h-14 bg-accent rounded-full flex items-center justify-center text-2xl group-hover:scale-110 transition shadow-lg shadow-accent/50">
+                                <i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <p class="text-gray-400 text-sm uppercase font-bold lang-text" data-en="Location"
+                                    data-bg="Локация" data-tr="Konum">Location</p>
+                                <span class="text-xl font-medium">Ruse, Bulgaria</span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="timeline-point" data-delay="6000">
-                    <div class="postcard-container">
-                        <div class="postcard">
-                            <img src="images/schools/rusenksi_uni2.webp" loading="lazy" data-bg-alt="Магистърска степен"
-                                data-en-alt="Master's Degree" data-tr-alt="Yüksek Lisans Derecesi"
-                                alt="Master's Degree">
-                            <div class="postcard-content">
-                                <h3 data-bg="Магистър по софтуерно инженерство"
-                                    data-en="Master's Degree in Software Engineering"
-                                    data-tr="Yazılım Mühendisliği Yüksek Lisans Derecesi">Master's Degree in Software
-                                    Engineering</h3>
-                                <p data-bg="Русенски университет „Ангел Кънчев“, Русе, България"
-                                    data-en='University of Ruse "Angel Kunchev", Ruse, Bulgaria'
-                                    data-tr='Rusçuk "Angel Kunchev" Üniversitesi, Rusçuk, Bulgaristan'>University of
-                                    Ruse
-                                    "Angel Kunchev", Ruse, Bulgaria</p>
-                                <p data-bg="2025–Настояще" data-en="2025–Present" data-tr="2025–Günümüz">2025–Present
-                                </p>
-                            </div>
+                    <div class="pt-6 border-t border-gray-800">
+                        <p class="text-2xl font-light mb-8 text-gray-300 lang-text" data-en="Find me on social media"
+                            data-bg="Намерете ме в социалните мрежи" data-tr="Sosyal medyada beni bulun">Find me on
+                            social media</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                            <a href="https://www.linkedin.com/in/SemaYasharova" target="_blank"
+                                class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center text-2xl hover:-translate-y-2 hover:shadow-lg hover:shadow-blue-600/50 transition-all duration-300"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/semayashar" target="_blank"
+                                class="w-14 h-14 bg-gray-800 rounded-xl flex items-center justify-center text-2xl hover:-translate-y-2 hover:shadow-lg hover:shadow-gray-700/50 transition-all duration-300"><i
+                                    class="fab fa-github"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=100047554998619" target="_blank"
+                                class="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center text-2xl hover:-translate-y-2 hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/semayasharova/" target="_blank"
+                                class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-2xl hover:-translate-y-2 hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="https://x.com/SemaYasharova" target="_blank"
+                                class="w-14 h-14 bg-black rounded-xl flex items-center justify-center text-2xl hover:-translate-y-2 hover:shadow-lg hover:shadow-gray-500/50 transition-all duration-300"><i
+                                    class="fab fa-x-twitter"></i></a>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div class="text-center mt-20 pt-8 border-t border-gray-800 text-gray-500">
+                <p>&copy; 2025 Sema Yasharova. <span class="lang-text" data-en="Designed with" data-bg="Дизайн и код:"
+                        data-tr="Tasarım ve Kod:">Designed with</span> <i
+                        class="fas fa-heart text-secondary animate-pulse"></i> & Code.</p>
             </div>
         </div>
+    </section>
 
-        <div class="certificates" id="certificates">
-            <div class="section-title-aurora">
-                <h2 data-bg="Сертификати" data-en="Certificates" data-tr="Sertifikalar">Certificates</h2>
-                <div class="aurora">
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
+    <div id="project-modal"
+        class="modal hidden fixed inset-0 z-[100] flex items-center justify-center bg-dark/90 backdrop-blur-md p-4">
+        <button onclick="closeModal()"
+            class="absolute top-6 right-6 text-white text-5xl hover:text-primary z-50 transition transform hover:rotate-90 duration-300">&times;</button>
+
+        <div class="bg-white rounded-3xl w-full max-w-6xl h-[90vh] overflow-hidden relative shadow-2xl flex flex-col md:flex-row animate-float"
+            style="animation: none;">
+
+            <div class="w-full md:w-1/3 p-8 bg-slate-50 border-r border-gray-100 overflow-y-auto">
+                <h2 id="modal-title" class="text-3xl font-extrabold text-dark mb-4">Project Title</h2>
+                <div class="flex flex-wrap gap-2 mb-6" id="modal-tags"></div>
+                <div class="prose prose-sm text-gray-600 mb-8" id="modal-desc"></div>
+
+                <h3 class="text-lg font-bold text-dark mb-4 px-1 lang-text" data-en="Workflow / Features"
+                    data-bg="Функционалности" data-tr="İş Akışı ve Özellikler">Workflow / Features</h3>
+                <div id="modal-workflow" class="space-y-3 mb-8">
                 </div>
 
+                <a id="modal-link" href="https://github.com/semayashar" target="_blank"
+                    class="flex items-center justify-center w-full bg-dark text-white py-4 rounded-xl font-bold hover:bg-primary transition shadow-lg gap-2 group">
+                    <i class="fab fa-github text-xl"></i> <span class="lang-text" data-en="View Source"
+                        data-bg="Виж кода" data-tr="Kaynak Kodu Gör">View Source</span>
+                </a>
             </div>
-            <div class="scroller-container">
-                <div class="scroller-wrapper">
 
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202022%20-%20Certificate-1.webp"
-                                loading="lazy" data-bg-alt="C++ Напреднали - Май 2022 Отпред"
-                                data-en-alt="C++ Advanced - May 2022 Front"
-                                data-tr-alt="C++ İleri Seviye - Mayıs 2022 Ön Yüz"
-                                alt="C++ Advanced - May 2022 Front" />
+            <div class="w-full md:w-2/3 p-8 bg-gray-100 overflow-y-auto relative">
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden mb-4">
+                    <div class="bg-slate-100 px-4 py-2 border-b flex items-center gap-2">
+                        <div class="flex gap-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
                         </div>
-                        <div class="card__face card__face--back">
-                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202022%20-%20Certificate-2.webp"
-                                loading="lazy" data-bg-alt="C++ Напреднали - Май 2022 Отзад"
-                                data-en-alt="C++ Advanced - May 2022 Back"
-                                data-tr-alt="C++ İleri Seviye - Mayıs 2022 Arka Yüz"
-                                alt="C++ Advanced - May 2022 Back" />
-                        </div>
+                        <div class="text-xs text-gray-400 ml-2 lang-text" data-en="Main View" data-bg="Основен изглед"
+                            data-tr="Ana Görünüm">Main View</div>
                     </div>
-
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202023%20-%20Certificate-1.webp"
-                                loading="lazy" data-bg-alt="C++ Напреднали - Май 2023 Отпред"
-                                data-en-alt="C++ Advanced - May 2023 Front"
-                                data-tr-alt="C++ İleri Seviye - Mayıs 2023 Ön Yüz"
-                                alt="C++ Advanced - May 2023 Front" />
-                        </div>
-                        <div class="card__face card__face--back">
-                            <img src="images/Certificates/C%2B%2B%20Advanced%20-%20May%202023%20-%20Certificate-2.webp"
-                                loading="lazy" data-bg-alt="C++ Напреднали - Май 2023 Отзад"
-                                data-en-alt="C++ Advanced - May 2023 Back"
-                                data-tr-alt="C++ İleri Seviye - Mayıs 2023 Arka Yüz"
-                                alt="C++ Advanced - May 2023 Back" />
-                        </div>
+                    <div id="modal-main-img-container" class="aspect-video bg-gray-200 relative">
+                        <img src="" id="modal-main-img" class="w-full h-full object-cover object-top">
                     </div>
+                </div>
 
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/C%2B%2B%20Fundamentals%20-%20March%202022%20-%20Certificate-1.webp"
-                                loading="lazy" data-bg-alt="C++ Основи - Март 2022 Отпред"
-                                data-en-alt="C++ Fundamentals - March 2022 Front"
-                                data-tr-alt="C++ Temelleri - Mart 2022 Ön Yüz"
-                                alt="C++ Fundamentals - March 2022 Front" />
-                        </div>
-                        <div class="card__face card__face--back">
-                            <img src="images/Certificates/C%2B%2B%20Fundamentals%20-%20March%202022%20-%20Certificate-2.webp"
-                                loading="lazy" data-bg-alt="C++ Основи - Март 2022 Отзад"
-                                data-en-alt="C++ Fundamentals - March 2022 Back"
-                                data-tr-alt="C++ Temelleri - Mart 2022 Arka Yüz"
-                                alt="C++ Fundamentals - March 2022 Back" />
-                        </div>
-                    </div>
-
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/MS%20SQL%20-%20September%202023%20-%20Certificate-1.webp"
-                                loading="lazy" data-bg-alt="MS SQL - Септември 2023 Отпред"
-                                data-en-alt="MS SQL - September 2023 Front" data-tr-alt="MS SQL - Eylül 2023 Ön Yüz"
-                                alt="MS SQL - September 2023 Front" />
-                        </div>
-                        <div class="card__face card__face--back">
-                            <img src="images/Certificates/MS%20SQL%20-%20September%202023%20-%20Certificate-2.webp"
-                                loading="lazy" data-bg-alt="MS SQL - Септември 2023 Отзад"
-                                data-en-alt="MS SQL - September 2023 Back" data-tr-alt="MS SQL - Eylül 2023 Arka Yüz"
-                                alt="MS SQL - September 2023 Back" />
-                        </div>
-                    </div>
-
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming%20Basics%20-%20July%202021%20-%20Certificate-1.webp"
-                                loading="lazy" data-bg-alt="Основи на програмирането - Юли 2021 Отпред"
-                                data-en-alt="Programming Basics - July 2021 Front"
-                                data-tr-alt="Programlama Temelleri - Temmuz 2021 Ön Yüz"
-                                alt="Programming Basics - July 2021 Front" />
-                        </div>
-                        <div class="card__face card__face--back">
-                            <img src="images/Certificates/Programming%20Basics%20-%20July%202021%20-%20Certificate-2.webp"
-                                loading="lazy" data-bg-alt="Основи на програмирането - Юли 2021 Отзад"
-                                data-en-alt="Programming Basics - July 2021 Back"
-                                data-tr-alt="Programlama Temelleri - Temmuz 2021 Arka Yüz"
-                                alt="Programming Basics - July 2021 Back" />
-                        </div>
-                    </div>
-
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming%20Basics%20-%20March%202023%20-%20Certificate-1.webp"
-                                loading="lazy" data-bg-alt="Основи на програмирането - Март 2023 Отпред"
-                                data-en-alt="Programming Basics - March 2023 Front"
-                                data-tr-alt="Programlama Temelleri - Mart 2023 Ön Yüz"
-                                alt="Programming Basics - March 2023 Front" />
-                        </div>
-                        <div class="card__face card__face--back">
-                            <img src="images/Certificates/Programming%20Basics%20-%20March%202023%20-%20Certificate-2.webp"
-                                loading="lazy" data-bg-alt="Основи на програмирането - Март 2023 Отзад"
-                                data-en-alt="Programming Basics - March 2023 Back"
-                                data-tr-alt="Programlama Temelleri - Mart 2023 Arka Yüz"
-                                alt="Programming Basics - March 2023 Back" />
-                        </div>
-                    </div>
-
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming%20Basics%20with%20C%2B%2B%20-%20January%202022%20-%20Certificate-1.webp"
-                                loading="lazy" data-bg-alt="Основи на програмирането с C++ - Януари 2022 Отпред"
-                                data-en-alt="Programming Basics with C++ - January 2022 Front"
-                                data-tr-alt="C++ ile Programlama Temelleri - Ocak 2022 Ön Yüz"
-                                alt="Programming Basics with C++ - January 2022 Front" />
-                        </div>
-                        <div class="card__face card__face--back">
-                            <img src="images/Certificates/Programming%20Basics%20with%20C%2B%2B%20-%20January%202022%20-%20Certificate-2.webp"
-                                loading="lazy" data-bg-alt="Основи на програмирането с C++ - Януари 2022 Отзад"
-                                data-en-alt="Programming Basics with C++ - January 2022 Back"
-                                data-tr-alt="C++ ile Programlama Temelleri - Ocak 2022 Arka Yüz"
-                                alt="Programming Basics with C++ - January 2022 Back" />
-                        </div>
-                    </div>
-
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-1.webp"
-                                loading="lazy" data-bg-alt="Програмни основи с C# - Май 2023 Отпред 1"
-                                data-en-alt="Programming Fundamentals with C# - May 2023 Front 1"
-                                data-tr-alt="C# ile Programlama Temelleri - Mayıs 2023 Ön Yüz 1"
-                                alt="Programming Fundamentals with C# - May 2023 Front 1" />
-                        </div>
-                        <div class="card__face card__face--back">
-                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-2.webp"
-                                loading="lazy" data-bg-alt="Програмни основи с C# - Май 2023 Отзад 2"
-                                data-en-alt="Programming Fundamentals with C# - May 2023 Back 2"
-                                data-tr-alt="C# ile Programlama Temelleri - Mayıs 2023 Arka Yüz 2"
-                                alt="Programming Fundamentals with C# - May 2023 Back 2" />
-                        </div>
-                    </div>
-
-                    <div class="card scroller-slide">
-                        <div class="card__face card__face--front">
-                            <img src="images/Certificates/Programming_Fundamentals_with_CSharp_May_2023_Certificate-3.webp"
-                                loading="lazy" data-bg-alt="Програмни основи с C# - Май 2023 Отпред 2"
-                                data-en-alt="Programming Fundamentals with C# - May 2023 Front 2"
-                                data-tr-alt="C# ile Programlama Temelleri - Mayıs 2023 Ön Yüz 2"
-                                alt="Programming Fundamentals with C# - May 2023 Front 2" />
-                        </div>
-                    </div>
-
+                <div class="grid grid-cols-3 gap-4" id="modal-gallery-grid">
                 </div>
             </div>
         </div>
-
-        <div class="programmingTools" id="programming">
-            <div class="section-title-aurora">
-                <h2 data-bg="Програмиране и Уеб" data-en="Programming & Web" data-tr="Programlama ve Web">Programming &
-                    Web</h2>
-                <div class="aurora">
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                </div>
-
-            </div>
-            <div class="icon-grid">
-                <a href="https://www.java.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-java-plain colored"></i><span data-bg="Java" data-en="Java"
-                            data-tr="Java">Java</span></div>
-                </a>
-                <a href="https://isocpp.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-cplusplus-plain colored"></i><span data-bg="C++"
-                            data-en="C++" data-tr="C++">C++</span></div>
-                </a>
-                <a href="https://dotnet.microsoft.com/languages/csharp" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-csharp-plain colored"></i><span data-bg="C#" data-en="C#"
-                            data-tr="C#">C#</span></div>
-                </a>
-                <a href="https://www.python.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-python-plain colored"></i><span data-bg="Python"
-                            data-en="Python" data-tr="Python">Python</span></div>
-                </a>
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-javascript-plain colored"></i><span data-bg="JavaScript"
-                            data-en="JavaScript" data-tr="JavaScript">JavaScript</span></div>
-                </a>
-                <a href="https://kotlinlang.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-kotlin-plain colored"></i><span data-bg="Kotlin"
-                            data-en="Kotlin" data-tr="Kotlin">Kotlin</span></div>
-                </a>
-                <a href="https://www.mathworks.com/products/matlab.html" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-matlab-plain colored"></i><span data-bg="MATLAB"
-                            data-en="MATLAB" data-tr="MATLAB">MATLAB</span></div>
-                </a>
-
-                <a href="https://html.spec.whatwg.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-html5-plain colored"></i><span data-bg="HTML5"
-                            data-en="HTML5" data-tr="HTML5">HTML5</span></div>
-                </a>
-                <a href="https://www.w3.org/Style/CSS/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-css3-plain colored"></i><span data-bg="CSS3" data-en="CSS3"
-                            data-tr="CSS3">CSS3</span></div>
-                </a>
-                <a href="https://reactjs.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-react-original colored"></i><span data-bg="React"
-                            data-en="React" data-tr="React">React</span></div>
-                </a>
-                <a href="https://reactnative.dev/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-react-original colored"></i><span data-bg="React Native"
-                            data-en="React Native" data-tr="React Native">React Native</span></div>
-                </a>
-                <a href="https://jquery.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-jquery-plain colored"></i><span data-bg="jQuery"
-                            data-en="jQuery" data-tr="jQuery">jQuery</span></div>
-                </a>
-                <a href="https://spring.io/projects/spring-framework" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-spring-plain colored"></i><span data-bg="Spring Framework"
-                            data-en="Spring Framework" data-tr="Spring Framework">Spring Framework</span></div>
-                </a>
-                <a href="https://spring.io/projects/spring-boot" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-spring-plain colored"></i><span data-bg="Spring Boot"
-                            data-en="Spring Boot" data-tr="Spring Boot">Spring Boot</span></div>
-                </a>
-                <a href="https://spring.io/projects/spring-security" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-spring-plain colored"></i><span data-bg="Spring Security"
-                            data-en="Spring Security" data-tr="Spring Security">Spring Security</span></div>
-                </a>
-
-                <a href="https://junit.org/junit5/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-junit-plain colored"></i><span data-bg="JUnit"
-                            data-en="JUnit" data-tr="JUnit">JUnit</span></div>
-                </a>
-                <a href="https://www.selenium.dev/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-python-plain colored"></i><span data-bg="Selenium"
-                            data-en="Selenium" data-tr="Selenium">Selenium</span></div>
-                </a>
-                <a href="https://pytorch.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-pytorch-original colored"></i><span data-bg="PyTorch"
-                            data-en="PyTorch" data-tr="PyTorch">PyTorch</span></div>
-                </a>
-            </div>
-        </div>
-
-        <div class="enviroments" id="tools">
-            <div class="section-title-aurora">
-                <h2 data-bg="Инструменти и среди" data-en="Tools & Environments" data-tr="Araçlar ve Ortamlar">Tools &
-                    Environments</h2>
-                <div class="aurora">
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                </div>
-
-            </div>
-            <div class="icon-grid">
-                <a href="https://visualstudio.microsoft.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-visualstudio-plain colored"></i><span
-                            data-bg="Visual Studio" data-en="Visual Studio" data-tr="Visual Studio">Visual Studio</span>
-                    </div>
-                </a>
-                <a href="https://code.visualstudio.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-vscode-plain colored"></i><span data-bg="VS Code"
-                            data-en="VS Code" data-tr="VS Code">VS Code</span></div>
-                </a>
-                <a href="https://www.jetbrains.com/idea/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-intellij-plain colored"></i><span data-bg="IntelliJ"
-                            data-en="IntelliJ" data-tr="IntelliJ">IntelliJ</span></div>
-                </a>
-                <a href="https://www.jetbrains.com/pycharm/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-pycharm-plain colored"></i><span data-bg="PyCharm"
-                            data-en="PyCharm" data-tr="PyCharm">PyCharm</span></div>
-                </a>
-                <a href="https://www.eclipse.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-eclipse-plain colored"></i><span data-bg="Eclipse"
-                            data-en="Eclipse" data-tr="Eclipse">Eclipse</span></div>
-                </a>
-                <a href="https://developer.android.com/studio" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-androidstudio-plain colored"></i><span
-                            data-bg="Android Studio" data-en="Android Studio" data-tr="Android Studio">Android
-                            Studio</span></div>
-                </a>
-                <a href="https://github.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-git-plain colored"></i><span data-bg="Git/GitHub"
-                            data-en="Git/GitHub" data-tr="Git/GitHub">Git/GitHub</span></div>
-                </a>
-                <a href="https://www.docker.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-docker-plain colored"></i><span data-bg="Docker"
-                            data-en="Docker" data-tr="Docker">Docker</span></div>
-                </a>
-                <a href="https://www.jenkins.io/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-jenkins-plain colored"></i><span data-bg="Jenkins"
-                            data-en="Jenkins" data-tr="Jenkins">Jenkins</span></div>
-                </a>
-                <a href="https://cmake.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-cmake-plain colored"></i><span data-bg="CMake"
-                            data-en="CMake" data-tr="CMake">CMake</span></div>
-                </a>
-                <a href="https://dotnet.microsoft.com/en-us/download" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-dotnetcore-plain colored"></i><span data-bg=".NET Core"
-                            data-en=".NET Core" data-tr=".NET Core">.NET Core</span></div>
-                </a>
-                <a href="https://www.mongodb.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-mongodb-plain colored"></i><span data-bg="MongoDB"
-                            data-en="MongoDB" data-tr="MongoDB">MongoDB</span></div>
-                </a>
-                <a href="https://www.postman.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-postman-plain colored"></i><span data-bg="Postman"
-                            data-en="Postman" data-tr="Postman">Postman</span></div>
-                </a>
-                <a href="https://tomcat.apache.org/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-tomcat-line colored"></i><span data-bg="Tomcat"
-                            data-en="Tomcat" data-tr="Tomcat">Tomcat</span></div>
-                </a>
-                <a href="https://www.canva.com/" target="_blank" class="icon-link">
-                    <div class="icon-item"><i class="devicon-canva-plain colored"></i><span data-bg="Canva"
-                            data-en="Canva" data-tr="Canva">Canva</span></div>
-                </a>
-            </div>
-        </div>
-
-        <div class="recentProjects" id="projects">
-            <div class="section-title-aurora">
-                <h2 data-bg="Последни проекти" data-en="Recent Projects" data-tr="Son Projeler">Recent Projects</h2>
-                <div class="aurora">
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                </div>
-
-            </div>
-            <div class="ag-format-container">
-                <div class="ag-courses_box">
-                    <div class="ag-courses_item">
-                        <a href="https://github.com/semayashar/LangForU_2025" class="ag-courses-item_link"
-                            target="_blank">
-                            <div class="ag-courses-item_bg"></div>
-                            <div class="ag-courses-item_title" data-bg="Уеб-базирана платформа за езиково обучение"
-                                data-en="Web-based language learning platform"
-                                data-tr="Web Tabanlı Dil Öğrenme Platformu">LangForU - Web-based language learning
-                                platform</div>
-                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2025" data-en="Finished: 2025"
-                                data-tr="Bitiş: 2025">
-                                Finished: 2025
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="ag-courses_item">
-                        <a href="https://github.com/semayashar/SportArete" class="ag-courses-item_link" target="_blank">
-                            <div class="ag-courses-item_bg"></div>
-                            <div class="ag-courses-item_title" data-bg="Уебсайт за електронна търговия"
-                                data-en="E-commerce website" data-tr="E-ticaret Web Sitesi">SportArete - E-commerce
-                                website</div>
-                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2023" data-en="Finished: 2023"
-                                data-tr="Bitiş: 2023">
-                                Finished: 2023
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="ag-courses_item">
-                        <a href="https://github.com/semayashar/ConeXion" class="ag-courses-item_link" target="_blank">
-                            <div class="ag-courses-item_bg"></div>
-                            <div class="ag-courses-item_title"
-                                data-bg="Платформа за социална мрежа (в процес на разработка)"
-                                data-en="Social Network Platform (Work In Progress)"
-                                data-tr="Sosyal Ağ Platformu (Yapım Aşamasında)">ConeXion - Social Network Platform
-                                (WIP)</div>
-                            <div class="ag-courses-item_date-box" data-bg="Начало: 2023" data-en="Start: 2023"
-                                data-tr="Başlangıç: 2023">Start:
-                                2023
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="ag-courses_item">
-                        <a href="https://github.com/semayashar/Personal_Portfolio-CV_Website"
-                            class="ag-courses-item_link" target="_blank">
-                            <div class="ag-courses-item_bg"></div>
-                            <div class="ag-courses-item_title" data-bg="Лично Портфолио/CV Уебсайт"
-                                data-en="Personal Portfolio/CV Website" data-tr="Kişisel Portföy/Özgeçmiş Web Sitesi">
-                                Personal Portfolio/CV Website</div>
-                            <div class="ag-courses-item_date-box" data-bg="Завършен: 2025" data-en="Finished: 2025"
-                                data-tr="Bitiş: 2025">
-                                Finished: 2025
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="connectWithMe" id="contact">
-            <div class="section-title-aurora">
-                <h2 data-bg="Свържи се с мен" data-en="Connect With Me" data-tr="Bana Ulaşın">Connect With Me </h2>
-                <div class="aurora">
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                </div>
-
-            </div>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/profile.php?id=100047554998619" target="_blank" class="facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/semayasharova/" target="_blank" class="instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/SemaYasharova" target="_blank" class="linkedin">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://x.com/SemaYasharova" target="_blank" class="x">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-                <a href="https://github.com/semayashar" target="_blank" class="github">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-
-            <hr class="divider">
-
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:semayasharova@gmail.com">semayasharova@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <span data-bg="+359 89 509 3716" data-en="+359 89 509 3716" data-tr="+359 89 509 3716">+359
-                                89 509 3716</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p data-bg="&copy; 2025 Сема Яшарова." data-en="&copy; 2025 Sema Yasharova."
-                data-tr="&copy; 2025 Sema Yaşarova.">&copy; 2025 Sema Yasharova.</p>
-        </div>
-
-        <script src="js/main.js"></script>
     </div>
+    <div id="fs-viewer"
+        class="modal hidden fixed inset-0 z-[120] bg-black/90 backdrop-blur-sm flex items-center justify-center">
+        <button id="fs-close"
+            class="absolute top-6 right-6 text-white text-5xl hover:text-primary z-50 transition transform hover:rotate-90 duration-300"
+            aria-label="Close">&times;</button>
+
+        <div class="absolute top-6 left-6 text-white/70 text-sm hidden sm:block">
+            Wheel / Pinch to zoom · Drag to pan · ESC to close
+        </div>
+
+        <div id="fs-stage" class="w-full h-full overflow-hidden touch-none cursor-grab">
+            <img id="fs-img" src="" alt="Preview" class="select-none pointer-events-none" style="
+           position:absolute;
+           top:50%;
+           left:50%;
+           transform: translate(-50%, -50%) scale(1);
+           transform-origin: center center;
+           max-width: 95vw;
+           max-height: 95vh;
+         ">
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
