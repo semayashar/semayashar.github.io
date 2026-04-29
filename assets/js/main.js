@@ -49,11 +49,14 @@ const translations = {
     mob_journey: { en: "Experience", bg: "Опит", tr: "Deneyim" },
     mob_projects: { en: "Projects", bg: "Проекти", tr: "Projeler" },
     mob_contact: { en: "Contact", bg: "Контакти", tr: "İletişim" },
+    
+    // --- UPDATED HERO SUBTITLE ---
     hero_subtitle: {
-        en: "I think first. Then I build.",
-        bg: "Първо мисля. После създавам.",
-        tr: "Önce düşünürüm. Sonra inşa ederim."
+        en: "Bringing ideas to life through code.",
+        bg: "Вдъхвам живот на идеите чрез код.",
+        tr: "Fikirleri kodlarla hayata geçiriyorum."
     },
+    
     hero_badge_desc: {
         en: "Software Engineer focused on full-stack development and scalable systems.",
         bg: "Софтуерен инженер с фокус върху full-stack разработка и мащабируеми системи.",
@@ -467,24 +470,30 @@ function sendEmail(e) {
     
     const lang = localStorage.getItem('pref-lang') || 'en';
     const isDark = document.documentElement.classList.contains('dark');
+    
+    // 1. Get the button to change text while sending
     const submitBtn = e.target.querySelector('button[type="submit"]');
     const originalBtnContent = submitBtn.innerHTML;
     
+    // Change button text to indicate loading
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
 
-    // Adapted to the actual fields inside your index.html
-    const params = {
+    // 2. Get values from the inputs
+    // NOTE: Removed 'subject' because there is no subject input in your index.html contact form.
+    var params = {
         from_name: document.getElementById("name").value,
         email: document.getElementById("email").value, 
         message: document.getElementById("message").value,
     };
 
+    // 3. Send email using EmailJS with your IDs
     const serviceID = "service_yz3eqg8";
     const templateID = "template_1c3d1xd";
 
     emailjs.send(serviceID, templateID, params)
         .then(res => {
+            // SUCCESS: Reset form and show Green Popup
             document.getElementById("name").value = "";
             document.getElementById("email").value = "";
             document.getElementById("message").value = "";
@@ -496,13 +505,14 @@ function sendEmail(e) {
                 title: translations.alert_success_title[lang] || translations.alert_success_title['en'],
                 text: translations.alert_success_msg[lang] || translations.alert_success_msg['en'],
                 icon: 'success',
-                confirmButtonColor: '#2563eb',
+                confirmButtonColor: '#2563eb', // matched to your primary color
                 background: isDark ? '#1C1C1C' : '#fcfcfc',
                 color: isDark ? '#E5E7EB' : '#1A1A1A',
                 customClass: { popup: 'font-mono' }
             });
         })
         .catch(err => {
+            // ERROR: Show Red Popup
             console.error(err);
             submitBtn.innerHTML = originalBtnContent;
             submitBtn.disabled = false;
