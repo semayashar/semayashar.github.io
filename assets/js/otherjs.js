@@ -1,17 +1,19 @@
-// --- 0. EMAILJS INIT ---
-(function() {
-    emailjs.init("zfBIv-14_8HS3QYQ4");
-})();
 
-// --- 1. TAILWIND CONFIG ---
 tailwind.config = {
     darkMode: 'class',
     theme: {
         extend: {
             colors: {
-                primary: '#2563eb', secondary: '#1e40af', accent: '#3b82f6',
-                dark: '#0f172a', light: '#f8fafc', deskLight: '#fcfcfc',
-                deskDark: '#121212', ink: '#1A1A1A', sticky: '#FDE68A', darkSticky: '#D97706',
+                primary: '#2563eb',
+                secondary: '#1e40af',
+                accent: '#3b82f6',
+                dark: '#0f172a',
+                light: '#f8fafc',
+                deskLight: '#fcfcfc',
+                deskDark: '#121212',
+                ink: '#1A1A1A',
+                sticky: '#FDE68A',
+                darkSticky: '#D97706',
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
@@ -38,17 +40,22 @@ tailwind.config = {
     }
 }
 
-// --- 2. DATA (Translations & Projects) ---
+// --- 1. FULL TRANSLATION DICTIONARY ---
+// --- 1. FULL TRANSLATION DICTIONARY ---
 const translations = {
+    // Навигация
     nav_about: { en: "About", bg: "За мен", tr: "Hakkımda" },
     nav_journey: { en: "Experience", bg: "Опит", tr: "Deneyim" },
     nav_projects: { en: "Projects", bg: "Проекти", tr: "Projeler" },
     nav_contact: { en: "Contact", bg: "Контакти", tr: "İletişim" },
+
     mob_home: { en: "Home", bg: "Начало", tr: "Ana Sayfa" },
     mob_about: { en: "About", bg: "За мен", tr: "Hakkımda" },
     mob_journey: { en: "Experience", bg: "Опит", tr: "Deneyim" },
     mob_projects: { en: "Projects", bg: "Проекти", tr: "Projeler" },
     mob_contact: { en: "Contact", bg: "Контакти", tr: "İletişim" },
+
+    // Hero секция
     hero_subtitle: {
         en: "I think first. Then I build.",
         bg: "Първо мисля. После създавам.",
@@ -69,7 +76,13 @@ const translations = {
         bg: "Винаги създавам, уча и споделям знания. Отворена съм за нови възможности! 💡",
         tr: "Sürekli üretiyor, öğreniyor ve bilgi paylaşıyorum. Yeni fırsatlara açığım! 💡"
     },
-    hero_polaroid: { en: "graduation day 🎓", bg: "денят на дипломирането 🎓", tr: "mezuniyet günü 🎓" },
+    hero_polaroid: {
+        en: "graduation day 🎓",
+        bg: "денят на дипломирането 🎓",
+        tr: "mezuniyet günü 🎓"
+    },
+
+    // За мен
     about_title: { en: "Who Am I?", bg: "Коя съм аз?", tr: "Ben Kimim?" },
     about_p1: {
         en: "I am a dedicated Software Engineer currently pursuing my Master's degree at the University of Ruse 'Angel Kanchev', with a focus on full-stack and backend development.",
@@ -86,6 +99,8 @@ const translations = {
         bg: "Залагам на чистата архитектура, непрекъснатото учене и споделянето на знания чрез преподаване. Най-добре се развивам в среда, в която доброто инженерство върви ръка за ръка с практичното решаване на проблеми.",
         tr: "Temiz mimariye, sürekli öğrenmeye ve öğretmenlik yoluyla bilgi paylaşmaya önem veriyorum. Güçlü mühendisliğin pratik problem çözme ile birleştiği ortamlarda en iyi şekilde çalışırım."
     },
+
+    // Езици
     lang_title: { en: "Languages I Speak", bg: "Езици, които владея", tr: "Konuştuğum Diller" },
     lang_bg: { en: "Bulgarian", bg: "Български", tr: "Bulgarca" },
     lang_native1: { en: "Native", bg: "Майчин", tr: "Anadil" },
@@ -93,8 +108,11 @@ const translations = {
     lang_native2: { en: "Native", bg: "Майчин", tr: "Anadil" },
     lang_en: { en: "English", bg: "Английски", tr: "İngilizce" },
     lang_de: { en: "German", bg: "Немски", tr: "Almanca" },
+
+    // Пътят (Опит и Образование)
     journey_title: { en: "The Journey", bg: "Пътят", tr: "Yolculuk" },
     journey_subtitle: { en: "Experience & Education", bg: "Опит и образование", tr: "Deneyim ve Eğitim" },
+
     exp_role: { en: "Math & Programming Teacher", bg: "Учител по математика и програмиране", tr: "Matematik ve Programlama Öğretmeni" },
     exp_date: { en: "Jan 2026 - Present", bg: "Януари 2026 - до момента", tr: "Ocak 2026 - Günümüz" },
     exp_li1: {
@@ -112,20 +130,28 @@ const translations = {
         bg: "Адаптирам методите си на преподаване, за да направя техническите теми по-лесни за усвояване на различни нива.",
         tr: "Teknik konuların farklı seviyelerde daha kolay anlaşılması için öğretim yöntemlerimi uyarlıyorum."
     },
+
+    // Образование
     edu_master: { en: "Master's Degree in Software Engineering", bg: "Магистър по софтуерно инженерство", tr: "Yazılım Mühendisliği Yüksek Lisansı" },
     edu_uni1: { en: "University of Ruse \"Angel Kanchev\"", bg: "Русенски университет „Ангел Кънчев“", tr: "Rusçuk Üniversitesi \"Angel Kanchev\"" },
     edu_loc1: { en: "Ruse, Bulgaria", bg: "Русе, България", tr: "Rusçuk, Bulgaristan" },
+
     edu_bachelor: { en: "Bachelor's Degree in Software Engineering", bg: "Бакалавър по софтуерно инженерство", tr: "Yazılım Mühendisliği Lisansı" },
     edu_uni2: { en: "University of Ruse \"Angel Kanchev\"", bg: "Русенски университет „Ангел Кънчев“", tr: "Rusçuk Üniversitesi \"Angel Kanchev\"" },
     edu_loc2: { en: "Ruse, Bulgaria", bg: "Русе, България", tr: "Rusçuk, Bulgaristan" },
+
     edu_highschool: { en: "Software and Hardware Sciences", bg: "Софтуерни и хардуерни науки", tr: "Yazılım ve Donanım Bilimleri" },
     edu_hs_name: { en: "Hristo Botev Secondary School", bg: "СУ „Христо Ботев“", tr: "Hristo Botev Lisesi" },
     edu_loc3: { en: "Ruse, Bulgaria", bg: "Русе, България", tr: "Rusçuk, Bulgaristan" },
+
+    // Технологии и Проекти
     skills_title: { en: "Tech Toolkit", bg: "Технологичен стек", tr: "Teknoloji Araç Seti" },
     proj_subtitle: { en: "Portfolio", bg: "Портфолио", tr: "Portföy" },
     proj_title: { en: "Recent Projects", bg: "Последни проекти", tr: "Son Projeler" },
     cert_title: { en: "Certifications", bg: "Сертификати", tr: "Sertifikalar" },
     cert_subtitle: { en: "Click to flip. Drag to move.", bg: "Кликнете, за да обърнете. Плъзнете, за да преместите.", tr: "Çevirmek için tıkla. Taşımak için sürükle." },
+
+    // Контакт
     contact_title: { en: "Drop a line...", bg: "Свържете се с мен...", tr: "Bir mesaj bırakın..." },
     contact_name_label: { en: "Name", bg: "Име", tr: "İsim" },
     contact_email_label: { en: "Email", bg: "Имейл", tr: "E-posta" },
@@ -133,14 +159,16 @@ const translations = {
     contact_send: { en: "Send", bg: "Изпрати", tr: "Gönder" },
     contact_info_email: { en: "Email", bg: "Имейл", tr: "E-posta" },
     contact_info_loc: { en: "Location", bg: "Местоположение", tr: "Konum" },
+
+    // Модални прозорци и алерти
     modal_main_view: { en: "Main View (Click to expand)", bg: "Основен изглед (кликнете, за да уголемите)", tr: "Ana Görünüm (Büyütmek için tıkla)" },
     modal_gallery: { en: "Gallery", bg: "Галерия", tr: "Galeri" },
     modal_workflow_title: { en: "Features / Workflow", bg: "Функции / Работен процес", tr: "Özellikler / İş Akışı" },
     modal_btn: { en: "View Repository", bg: "Вижте хранилището", tr: "Depoyu Görüntüle" },
-    alert_success_title: { en: "Message Sent!", bg: "Изпратено!", tr: "Gönderildi!" },
-    alert_success_msg: { en: "Thank you for contacting me. I will get back to you soon.", bg: "Благодаря, че се свързахте с мен. Ще ви отговоря скоро.", tr: "İletişime geçtiğiniz için teşekkürler. Size yakında dönüş yapacağım." }
+    alert_success_title: { en: "Sent!", bg: "Изпратено!", tr: "Gönderildi!" },
+    alert_success_msg: { en: "I'll get back to you soon.", bg: "Ще ви отговоря възможно най-скоро.", tr: "En kısa sürede size döneceğim." }
 };
-
+// --- 2. PROJECTS DATA ---
 const projectsData = {
     langforu: {
         title: "LangForU",
@@ -258,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function changeLanguage(lang) {
     localStorage.setItem('pref-lang', lang);
 
+    // Map the dictionary to HTML data-keys
     document.querySelectorAll('.lang-text').forEach(el => {
         const key = el.getAttribute('data-key');
         if (key && translations[key] && translations[key][lang]) {
@@ -277,7 +306,7 @@ function changeLanguage(lang) {
     });
 }
 
-// --- 5. DRAG AND FLIP LOGIC ---
+// --- 5. DRAG AND FLIP LOGIC (Refactored to Prevent Flexbox Jumps) ---
 let isDragging = false;
 let dragStartTime = 0;
 
@@ -313,11 +342,17 @@ function makeDraggable(el) {
         el.style.animation = 'none';
         el.classList.add('drag-active');
 
+        // Read computed positions instead of offsetTop/offsetLeft to support relative components accurately
         const style = window.getComputedStyle(el);
         initialLeft = parseFloat(style.left) || 0;
         initialTop = parseFloat(style.top) || 0;
 
-        if (style.position === 'static') el.style.position = 'relative';
+        // If it is entirely static, enable relative so standard top/left apply correctly
+        if (style.position === 'static') {
+            el.style.position = 'relative';
+        }
+
+        // If element was anchored by right or bottom, wipe it so our new left/top apply properly
         if (style.right !== 'auto' && el.style.right !== '') el.style.right = 'auto';
         if (style.bottom !== 'auto' && el.style.bottom !== '') el.style.bottom = 'auto';
 
@@ -346,6 +381,7 @@ function makeDraggable(el) {
     function setNewPos(clientX, clientY) {
         let dx = clientX - dragStartX;
         let dy = clientY - dragStartY;
+
         el.style.left = (initialLeft + dx) + "px";
         el.style.top = (initialTop + dy) + "px";
     }
@@ -394,13 +430,13 @@ function openModal(id) {
 
     const galleryGrid = document.getElementById('modal-gallery-grid');
     galleryGrid.innerHTML = d.gallery.map((gImg, idx) => `
-        <div class="h-20 sm:h-28 bg-gray-200 dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700 overflow-hidden cursor-pointer group relative" onclick="openFullscreen(${idx + 1})">
-            <img src="${gImg}" onerror="this.src='https://placehold.co/300x200?text=Gallery'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                <i class="fas fa-expand text-white text-xl"></i>
-            </div>
-        </div>
-    `).join('');
+                <div class="h-20 sm:h-28 bg-gray-200 dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700 overflow-hidden cursor-pointer group relative" onclick="openFullscreen(${idx + 1})">
+                    <img src="${gImg}" onerror="this.src='https://placehold.co/300x200?text=Gallery'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fas fa-expand text-white text-xl"></i>
+                    </div>
+                </div>
+            `).join('');
 
     const m = document.getElementById('project-modal');
     m.classList.remove('hidden');
@@ -461,60 +497,19 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// --- 7. CONTACT FORM (Using EmailJS) ---
+// --- 7. CONTACT FORM ---
 function sendEmail(e) {
-    e.preventDefault(); 
-    
+    e.preventDefault();
     const lang = localStorage.getItem('pref-lang') || 'en';
     const isDark = document.documentElement.classList.contains('dark');
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    const originalBtnContent = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
 
-    // Adapted to the actual fields inside your index.html
-    const params = {
-        from_name: document.getElementById("name").value,
-        email: document.getElementById("email").value, 
-        message: document.getElementById("message").value,
-    };
-
-    const serviceID = "service_yz3eqg8";
-    const templateID = "template_1c3d1xd";
-
-    emailjs.send(serviceID, templateID, params)
-        .then(res => {
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("message").value = "";
-            
-            submitBtn.innerHTML = originalBtnContent;
-            submitBtn.disabled = false;
-
-            Swal.fire({
-                title: translations.alert_success_title[lang] || translations.alert_success_title['en'],
-                text: translations.alert_success_msg[lang] || translations.alert_success_msg['en'],
-                icon: 'success',
-                confirmButtonColor: '#2563eb',
-                background: isDark ? '#1C1C1C' : '#fcfcfc',
-                color: isDark ? '#E5E7EB' : '#1A1A1A',
-                customClass: { popup: 'font-mono' }
-            });
-        })
-        .catch(err => {
-            console.error(err);
-            submitBtn.innerHTML = originalBtnContent;
-            submitBtn.disabled = false;
-
-            Swal.fire({
-                title: "Oops!",
-                text: "Something went wrong. Please try again later.",
-                icon: "error",
-                confirmButtonColor: '#2563eb',
-                background: isDark ? '#1C1C1C' : '#fcfcfc',
-                color: isDark ? '#E5E7EB' : '#1A1A1A',
-                customClass: { popup: 'font-mono' }
-            });
-        });
+    Swal.fire({
+        title: translations.alert_success_title[lang] || translations.alert_success_title['en'],
+        text: translations.alert_success_msg[lang] || translations.alert_success_msg['en'],
+        icon: 'success',
+        confirmButtonColor: '#2563eb',
+        background: isDark ? '#1C1C1C' : '#fcfcfc',
+        color: isDark ? '#E5E7EB' : '#1A1A1A',
+        customClass: { popup: 'font-mono' }
+    }).then(() => e.target.reset());
 }

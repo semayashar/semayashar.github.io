@@ -1,124 +1,228 @@
-/* =============================================
-   Global / Page
-   ============================================= */
-
-:root {
-  --page-bg: #f8fafc;
-
-  /* Shadows */
-  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.10), 0 8px 10px -6px rgba(0, 0, 0, 0.10);
-
-  /* Blob colors */
-  --blob-indigo: rgba(99, 102, 241, 0.40);
-  --blob-pink: rgba(236, 72, 153, 0.40);
-  --blob-violet: rgba(139, 92, 246, 0.40);
-
-  /* Glass */
-  --glass-bg: rgba(255, 255, 255, 0.80);
-  --glass-card-bg: rgba(255, 255, 255, 0.70);
-  --glass-border: rgba(255, 255, 255, 0.30);
-  --glass-card-border: rgba(255, 255, 255, 0.50);
-}
-
 body {
-  background-color: var(--page-bg);
+  background-color: #fcfcfc;
+  color: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+    linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+  background-size: 50px 50px;
+  transition: background-color 0.3s, color 0.3s;
   overflow-x: hidden;
 }
 
-/* =============================================
-   Animated Gradient Background
-   ============================================= */
+.dark body {
+  background-color: #121212;
+  color: #E5E7EB;
+  background-image:
+    linear-gradient(to right, #222222 1px, transparent 1px),
+    linear-gradient(to bottom, #222222 1px, transparent 1px);
+}
 
-.gradient-bg {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  background: var(--page-bg);
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+/* --- Tape Effect --- */
+.tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 90px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  z-index: 20;
+}
+
+.tape.corner {
+  left: -15px;
+  top: -15px;
+  transform: rotate(-45deg);
+  width: 60px;
+}
+
+.dark .tape {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Drag Logic --- */
+.draggable {
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  will-change: transform;
+  /* Removed position: absolute to fix flexbox jumping bugs. 
+               Hero items use Tailwind's 'absolute' class individually. */
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+.drag-active {
+  z-index: 999 !important;
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.1s !important;
+}
+
+/* --- Flipping Certificates Fix (Dynamic Height via Aspect Ratio) --- */
+.cert-wrapper {
+  perspective: 1500px;
+  width: 170px;
+  margin: 10px;
+  position: relative;
+}
+
+.cert-card {
+  width: 100%;
+  aspect-ratio: 1 / 1.45;
+  /* Enforces enough height for text to fit dynamically */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  cursor: pointer;
+}
+
+.cert-card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.cert-front,
+.cert-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  padding: 10px;
+  display: inline-table;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cert-front img,
+.cert-back img {
+  width: 100%;
+  flex-grow: 1;
+  object-fit: cover;
+  min-height: 0;
+  /* Ensures flexbox sizing doesn't overflow */
+  border: 1px solid #e5e7eb;
+}
+
+.cert-title {
+  margin-top: 8px;
+  font-size: 1.125rem;
+  line-height: 1.1;
+}
+
+.cert-date {
+  margin-top: 2px;
+}
+
+.cert-back {
+  transform: rotateY(180deg);
+}
+
+.dark .cert-front,
+.dark .cert-back {
+  background: #1A1A1A;
+  border-color: #333;
+}
+
+.dark .cert-front img,
+.dark .cert-back img {
+  border-color: #444;
+}
+
+/* --- Polaroids --- */
+.polaroid-style {
+  background: white;
+  padding: 12px 12px 40px 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+  border: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.dark .polaroid-style {
+  background: #1A1A1A;
+  border-color: #333;
+}
+
+.polaroid-mini {
+  background: white;
+  padding: 6px 6px 20px 6px;
+  box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.15);
+  border: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.dark .polaroid-mini {
+  background: #1A1A1A;
+  border-color: #333;
+}
+
+/* --- Language Progress Bars --- */
+.lang-track {
+  height: 12px;
+  background-color: transparent;
+  border: 2px solid #333;
+  border-radius: 4px;
+  position: relative;
   overflow: hidden;
 }
 
-.gradient-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.6;
-  animation: blob 15s infinite alternate;
-  will-change: transform;
+.dark .lang-track {
+  border-color: #555;
 }
 
-.blob-1 {
-  top: -10%;
-  left: -10%;
-  width: 600px;
-  height: 600px;
-  background: var(--blob-indigo);
+.lang-fill {
+  height: 100%;
+  border-radius: 2px;
 }
 
-.blob-2 {
-  top: 40%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: var(--blob-pink);
-  animation-delay: -5s;
+/* --- Forms --- */
+.input-line {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #6b7280;
+  outline: none;
+  width: 100%;
+  padding: 8px 0;
+  transition: border-color 0.3s;
+  color: inherit;
 }
 
-.blob-3 {
-  bottom: -10%;
-  left: 20%;
-  width: 700px;
-  height: 700px;
-  background: var(--blob-violet);
-  animation-delay: -10s;
+.input-line:focus {
+  border-color: #2563eb;
 }
 
-@keyframes blob {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(40px, -30px, 0) scale(1.08); }
-  100% { transform: translate3d(-30px, 20px, 0) scale(0.95); }
-}
-
-/* =============================================
-   Glassmorphism Helpers
-   ============================================= */
-
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--glass-border);
-}
-
-.glass-card {
-  background: var(--glass-card-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-card-border);
-}
-
-/* =============================================
-   Timeline Line
-   ============================================= */
-
-.timeline-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #6366f1, #ec4899);
-  transform: translateX(-50%);
-  border-radius: 9999px;
-}
-
-/* =============================================
-   Modal Transitions
-   ============================================= */
-
+/* --- Modals --- */
 .modal {
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal.hidden {
@@ -133,102 +237,42 @@ body {
   pointer-events: auto;
 }
 
-/* =============================================
-   Custom Scrollbar
-   ============================================= */
-
-::-webkit-scrollbar {
-  width: 10px;
+.typewriter-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: currentColor;
+  animation: blink 1s step-end infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 5px;
+.fs-nav-btn {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+.fs-nav-btn:hover {
+  background: rgba(37, 99, 235, 0.8);
+  transform: translateY(-50%) scale(1.05);
 }
 
-/* =============================================
-   Certificate Flip Cards (FIXED)
-   - Uses .cert-card as the flipping "inner"
-   - Gives stable size via aspect-ratio
-   - Shows full image via object-fit: contain
-   ============================================= */
-
-/* The 3D camera */
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-/* The flipping element (you toggle .is-flipped on this) */
-.cert-card {
-  position: relative;                 /* anchors front/back absolute positioning */
-  width: 100%;
-  aspect-ratio: 3 / 4;                /* stable height without hardcoding */
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-
-  border-radius: 1rem;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: var(--shadow-card);
-}
-
-/* Flip state */
-.cert-card.is-flipped {
-  transform: rotateY(180deg);
-}
-
-/* Card faces */
-.flip-card-front,
-.flip-card-back {
+.flip-hint {
   position: absolute;
-  inset: 0;                           /* same as top/right/bottom/left:0 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-
-  background: #fff;
+  bottom: 5px;
+  right: 8px;
+  color: #94a3b8;
+  font-size: 16px;
+  transition: color 0.3s;
 }
 
-/* Back face rotated so it appears after flip */
-.flip-card-back {
-  transform: rotateY(180deg);
-}
-
-/* Certificate image sizing
-   - contain = full certificate visible (no crop)
-   - padding keeps it off the edges (like p-2) */
-.cert-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  padding: 8px;
-  background: #fff;
-}
-
-/* Optional: slightly taller cards on larger screens */
-@media (min-width: 640px) {
-  .cert-card { aspect-ratio: 4 / 5; }
-}
-
-@media (min-width: 1024px) {
-  .cert-card { aspect-ratio: 3 / 4; }
-}
-
-/* Optional: accessibility – reduce motion */
-@media (prefers-reduced-motion: reduce) {
-  .gradient-blob { animation: none; }
-  .cert-card { transition: none; }
+.cert-card:hover .flip-hint {
+  color: #2563eb;
 }
