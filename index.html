@@ -124,7 +124,7 @@
 
             <p class="font-mono text-xs md:text-sm tracking-[0.3em] uppercase text-gray-500 mt-2 md:mt-4 lang-text bg-white/70 dark:bg-black/70 backdrop-blur-sm inline-block px-4 py-1 rounded"
                 data-key="hero_subtitle">
-                Curious mind. Practical code.
+                Thoughtful code for real people.
             </p>
 
             <div class="pointer-events-auto mt-8 flex flex-wrap justify-center gap-3 px-4">
@@ -138,6 +138,12 @@
                     <i class="fas fa-paper-plane"></i>
                     Let's Talk
                 </a>
+            </div>
+
+            <div class="hero-mobile-stickers pointer-events-auto mt-6 flex md:hidden flex-wrap justify-center gap-2 px-6">
+                <span><i class="fas fa-star"></i> Full-stack</span>
+                <span><i class="fas fa-brain"></i> AI curious</span>
+                <span><i class="fas fa-chalkboard-user"></i> Teaching</span>
             </div>
         </div>
 
@@ -160,7 +166,7 @@
                     </div>
                     <h2 class="text-white font-bold text-xl mb-1">Sema.</h2>
                     <p class="text-gray-400 text-[10px] md:text-xs font-mono leading-tight lang-text"
-                        data-key="hero_badge_desc">Software engineer who likes clear systems and useful products.</p>
+                        data-key="hero_badge_desc">Full-stack developer with a soft spot for clean flows and useful details.</p>
                 </div>
             </div>
 
@@ -210,6 +216,37 @@
                     class="bg-dark text-white p-2 md:p-3 rounded-lg shadow-md border border-gray-700 flex items-center justify-center gap-2">
                     <i class="devicon-github-original text-white text-xl md:text-2xl"></i>
                     <span class="font-mono text-[10px] md:text-xs font-bold mr-1">Git commit</span>
+                </div>
+            </div>
+
+            <div class="draggable hero-card-code absolute pointer-events-auto">
+                <div class="code-sticker">
+                    <div class="code-sticker-head">
+                        <span></span><span></span><span></span>
+                        <strong>today.js</strong>
+                    </div>
+                    <div class="font-mono text-[10px] md:text-xs leading-relaxed">
+                        <p><span class="text-purple-500">const</span> focus = <span class="text-green-600">'useful UI'</span>;</p>
+                        <p><span class="text-purple-500">return</span> clearIdeas(focus);</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="draggable hero-card-mini-note absolute pointer-events-auto">
+                <div class="mini-note">
+                    <div class="tape tape-corner-mini"></div>
+                    <p class="font-handwriting text-xl leading-tight lang-text" data-key="hero_mini_note">
+                        Small details matter.
+                    </p>
+                </div>
+            </div>
+
+            <div class="draggable hero-card-stack absolute pointer-events-auto">
+                <div class="stack-sticker">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Java</span>
+                    <span>C#</span>
+                    <span>JS</span>
                 </div>
             </div>
 
@@ -269,20 +306,26 @@
 
                         <p class="mb-5 lang-text" data-key="about_p1">
                             I'm Sema, a software engineer and Master's student at the University of Ruse
-                            'Angel Kanchev'. I like turning unclear ideas into apps that feel organized,
-                            useful, and easy to keep improving.
+                            'Angel Kanchev'. I like turning rough ideas into calm, useful interfaces and systems that
+                            people can actually enjoy using.
                         </p>
                         <p class="mb-5">
                             <span
                                 class="bg-yellow-200 dark:bg-yellow-900/50 text-ink dark:text-white font-semibold px-1 rounded lang-text"
-                                data-key="about_p2">Most of my work sits around full-stack development, AI features,
-                                e-commerce, and learning platforms.</span>
+                                data-key="about_p2">My favorite work is where logic, design, and everyday usefulness
+                                meet.</span>
                         </p>
                         <p class="lang-text" data-key="about_p3">
-                            I care about code that other people can understand, and I enjoy teaching because it keeps me
-                            close to the basics. I'm happiest when a problem is a little messy and there is room to make
-                            it simpler.
+                            I care about code that other people can understand. Teaching math and programming keeps me
+                            close to the basics, and building projects keeps me curious about how small choices make a
+                            product feel easier, faster, and kinder to use.
                         </p>
+
+                        <div class="about-sticker-row" aria-label="Current focus">
+                            <span><i class="fas fa-compass"></i> thoughtful UI</span>
+                            <span><i class="fas fa-database"></i> solid backend</span>
+                            <span><i class="fas fa-wand-magic-sparkles"></i> AI features</span>
+                        </div>
                     </div>
                 </div>
 
@@ -954,7 +997,7 @@
     </section>
 
     <footer class="py-10 text-center text-xs font-mono text-gray-400 border-t border-gray-200 dark:border-gray-800">
-        <p>&copy; 2026 Sema Yasharova. Curious mind. Practical code.</p>
+        <p>&copy; 2026 Sema Yasharova. Thoughtful code for real people.</p>
     </footer>
 
     <div id="project-modal"

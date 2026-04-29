@@ -25,12 +25,12 @@ const translations = {
     mob_projects: { en: "Projects", bg: "Проекти", tr: "Projeler" },
     mob_contact: { en: "Contact", bg: "Контакти", tr: "İletişim" },
     hero_subtitle: {
-        en: "Curious mind. Practical code.",
+        en: "Thoughtful code for real people.",
         bg: "Първо мисля. После създавам.",
         tr: "Önce düşünürüm. Sonra inşa ederim."
     },
     hero_badge_desc: {
-        en: "Software engineer who likes clear systems and useful products.",
+        en: "Full-stack developer with a soft spot for clean flows and useful details.",
         bg: "Софтуерен инженер с фокус върху full-stack разработка и мащабируеми системи.",
         tr: "Full-stack geliştirme ve ölçeklenebilir sistemlere odaklanan bir Yazılım Mühendisiyim."
     },
@@ -44,20 +44,25 @@ const translations = {
         bg: "Винаги създавам, уча и споделям знания. Отворена съм за нови възможности! 💡",
         tr: "Sürekli üretiyor, öğreniyor ve bilgi paylaşıyorum. Yeni fırsatlara açığım! 💡"
     },
+    hero_mini_note: {
+        en: "Small details matter.",
+        bg: "Малките детайли имат значение.",
+        tr: "Küçük detaylar önemlidir."
+    },
     hero_polaroid: { en: "graduation day 🎓", bg: "денят на дипломирането 🎓", tr: "mezuniyet günü 🎓" },
     about_title: { en: "A bit about me", bg: "Коя съм аз?", tr: "Ben Kimim?" },
     about_p1: {
-        en: "I'm Sema, a software engineer and Master's student at the University of Ruse 'Angel Kanchev'. I like turning unclear ideas into apps that feel organized, useful, and easy to keep improving.",
+        en: "I'm Sema, a software engineer and Master's student at the University of Ruse 'Angel Kanchev'. I like turning rough ideas into calm, useful interfaces and systems that people can actually enjoy using.",
         bg: "Аз съм отдаден софтуерен инженер и в момента продължавам обучението си в магистърска програма по софтуерно инженерство в Русенския университет „Ангел Кънчев“, с фокус върху full-stack разработка.",
         tr: "Şu anda Rusçuk Üniversitesi \"Angel Kanchev\"'de yüksek lisans eğitimime devam eden, full-stack geliştirmeye odaklanan bir Yazılım Mühendisiyim."
     },
     about_p2: {
-        en: "Most of my work sits around full-stack development, AI features, e-commerce, and learning platforms.",
+        en: "My favorite work is where logic, design, and everyday usefulness meet.",
         bg: "Опитът ми включва изграждане на мащабируеми системи в сферата на изкуствения интелект, електронната търговия и социалните платформи.",
         tr: "Deneyimim; yapay zeka, e-ticaret ve sosyal platformlar için ölçeklenebilir sistemler geliştirmeyi kapsıyor."
     },
     about_p3: {
-        en: "I care about code that other people can understand, and I enjoy teaching because it keeps me close to the basics. I'm happiest when a problem is a little messy and there is room to make it simpler.",
+        en: "I care about code that other people can understand. Teaching math and programming keeps me close to the basics, and building projects keeps me curious about how small choices make a product feel easier, faster, and kinder to use.",
         bg: "Залагам на чистата архитектура, непрекъснатото учене и споделянето на знания чрез преподаване. Най-добре се развивам в среда, в която доброто инженерство върви ръка за ръка с практичното решаване на проблеми.",
         tr: "Temiz mimariye, sürekli öğrenmeye ve öğretmenlik yoluyla bilgi paylaşmaya önem veriyorum. Güçlü mühendisliğin pratik problem çözme ile birleştiği ortamlarda en iyi şekilde çalışırım."
     },
