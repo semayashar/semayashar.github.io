@@ -72,9 +72,9 @@ const translations = {
     hero_polaroid: { en: "graduation day 🎓", bg: "денят на дипломирането 🎓", tr: "mezuniyet günü 🎓" },
     about_title: { en: "Who Am I?", bg: "Коя съм аз?", tr: "Ben Kimim?" },
     about_p1: {
-        en: "I am a dedicated Software Engineer currently pursuing my Master's degree at the University of Ruse 'Angel Kanchev', with a focus on full-stack and backend development.",
-        bg: "Аз съм отдаден софтуерен инженер и в момента продължавам обучението си в магистърска програма по софтуерно инженерство в Русенския университет „Ангел Кънчев“, с фокус върху full-stack и backend разработка.",
-        tr: "Şu anda Rusçuk Üniversitesi \"Angel Kanchev\"'de yüksek lisans eğitimime devam eden, full-stack ve backend geliştirmeye odaklanan bir Yazılım Mühendisiyim."
+        en: "I am a dedicated Software Engineer currently pursuing my Master's degree at the University of Ruse 'Angel Kanchev', with a focus on full-stack development.",
+        bg: "Аз съм отдаден софтуерен инженер и в момента продължавам обучението си в магистърска програма по софтуерно инженерство в Русенския университет „Ангел Кънчев“, с фокус върху full-stack разработка.",
+        tr: "Şu anda Rusçuk Üniversitesi \"Angel Kanchev\"'de yüksek lisans eğitimime devam eden, full-stack geliştirmeye odaklanan bir Yazılım Mühendisiyim."
     },
     about_p2: {
         en: "My experience includes building scalable systems in AI, e-commerce, and social platforms.",
