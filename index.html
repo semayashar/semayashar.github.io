@@ -21,7 +21,8 @@
 
 <body class="selection:bg-primary selection:text-white relative">
 <div class="overflow-x-hidden w-full">
-    <nav class="fixed w-full z-50 bg-white/90 dark:bg-[#121212]/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-all duration-300"
+    <!-- ЗАКРЕПЕН Z-INDEX НА НАВИГАЦИЯТА (z-[150]) -->
+    <nav class="fixed w-full z-[150] bg-white/90 dark:bg-[#121212]/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-all duration-300"
         id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
@@ -72,8 +73,9 @@
         </div>
     </nav>
 
+    <!-- МОБИЛНО МЕНЮ С Z-[160] (над навигацията) -->
     <div id="mobile-menu"
-        class="hidden fixed inset-0 bg-deskLight/95 dark:bg-deskDark/95 backdrop-blur-xl z-[999] flex flex-col items-center justify-start pt-32 space-y-8 transition-all duration-300">
+        class="hidden fixed inset-0 bg-deskLight/95 dark:bg-deskDark/95 backdrop-blur-xl z-[160] flex flex-col items-center justify-start pt-32 space-y-8 transition-all duration-300">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-3xl text-ink dark:text-white"><i
                 class="fas fa-times"></i></button>
         <a href="#welcomePage" class="text-4xl font-handwriting lang-text mobile-link text-ink dark:text-white hover:text-primary transition"
@@ -132,8 +134,9 @@
                 </div>
             </div>
 
+            <!-- ЗАКРЕПЕН Z-INDEX ЗА ТЕРМИНАЛА (от 100 на 20) -->
             <div class="draggable absolute pointer-events-auto"
-                style="bottom: 3%;left: 13%;--rot: 2deg;animation: auto ease 0s 1 normal none running none;z-index: 100;">
+                style="bottom: 3%;left: 13%;--rot: 2deg;animation: auto ease 0s 1 normal none running none;z-index: 20;">
                 <div
                     class="w-64 md:w-80 bg-white/95 dark:bg-[#1E1E1E]/95 backdrop-blur-md rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-floating">
                     <div
@@ -159,7 +162,7 @@
                 <div class="w-48 md:w-60 bg-sticky dark:bg-darkSticky shadow-polaroid p-5 relative rounded-sm">
                     <div class="tape"></div>
                     <p class="font-handwriting text-ink text-xl md:text-2xl leading-relaxed lang-text"
-                        data-key="hero_sticky">Always building, exploring, and teaching. Open to new dev opportunities!</p>
+                        data-key="hero_sticky">Always building, exploring, and teaching. Open to new dev opportunities!💡</p>
                 </div>
             </div>
 
@@ -214,7 +217,7 @@
 
                         <p class="mb-5 lang-text" data-key="about_p1">
                             I am a dedicated Software Engineer currently pursuing my Master's degree at the University
-                            of Ruse 'Angel Kanchev', specializing in full-stack and backend development.
+                            of Ruse 'Angel Kanchev', with a focus on full-stack development.
                         </p>
                         <p class="mb-5">
                             <span
