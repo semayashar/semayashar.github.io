@@ -1,5 +1,5 @@
 // --- 0. EMAILJS INIT ---
-(function() {
+(function () {
     emailjs.init("zfBIv-14_8HS3QYQ4");
 })();
 
@@ -49,14 +49,14 @@ const translations = {
     mob_journey: { en: "Experience", bg: "Опит", tr: "Deneyim" },
     mob_projects: { en: "Projects", bg: "Проекти", tr: "Projeler" },
     mob_contact: { en: "Contact", bg: "Контакти", tr: "İletişim" },
-    
+
     // --- UPDATED HERO SUBTITLE ---
     hero_subtitle: {
         en: "Bringing ideas to life through code.",
         bg: "Вдъхвам живот на идеите чрез код.",
         tr: "Fikirleri kodlarla hayata geçiriyorum."
     },
-    
+
     hero_badge_desc: {
         en: "Software Engineer focused on full-stack development and scalable systems.",
         bg: "Софтуерен инженер с фокус върху full-stack разработка и мащабируеми системи.",
@@ -249,12 +249,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mobile menu
     const mMenu = document.getElementById('mobile-menu');
-    document.getElementById('mobile-menu-btn').onclick = () => mMenu.classList.remove('hidden');
-    document.getElementById('close-menu-btn').onclick = () => mMenu.classList.add('hidden');
+    const hero = document.getElementById('welcomePage');
+
+    document.getElementById('mobile-menu-btn').onclick = () => {
+        mMenu.classList.remove('hidden');
+
+        // hide background cleanly
+        hero.style.opacity = "0";
+        hero.style.pointerEvents = "none";
+    };
+
+    document.getElementById('close-menu-btn').onclick = () => {
+        mMenu.classList.add('hidden');
+
+        hero.style.opacity = "1";
+        hero.style.pointerEvents = "auto";
+    };
+
+    // also when clicking links
+    document.querySelectorAll('.mobile-link').forEach(l => {
+        l.onclick = () => {
+            mMenu.classList.add('hidden');
+            hero.style.opacity = "1";
+            hero.style.pointerEvents = "auto";
+        };
+    });
     document.querySelectorAll('.mobile-link').forEach(l => l.onclick = () => mMenu.classList.add('hidden'));
 
-    // Initialize Draggables
-    document.querySelectorAll('.draggable').forEach(makeDraggable);
+    if (window.innerWidth > 768) {
+        document.querySelectorAll('.draggable').forEach(makeDraggable);
+    } else {
+        // Mobile: disable dragging + animations
+        document.querySelectorAll('.draggable').forEach(el => {
+            el.style.animation = "none";
+            el.style.transform = "scale(0.8)";
+        });
+    }
 });
 
 // --- 4. LANGUAGE FUNCTION ---
@@ -466,15 +496,15 @@ document.addEventListener('keydown', (e) => {
 
 // --- 7. CONTACT FORM (Using EmailJS) ---
 function sendEmail(e) {
-    e.preventDefault(); 
-    
+    e.preventDefault();
+
     const lang = localStorage.getItem('pref-lang') || 'en';
     const isDark = document.documentElement.classList.contains('dark');
-    
+
     // 1. Get the button to change text while sending
     const submitBtn = e.target.querySelector('button[type="submit"]');
     const originalBtnContent = submitBtn.innerHTML;
-    
+
     // Change button text to indicate loading
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
@@ -483,7 +513,7 @@ function sendEmail(e) {
     // NOTE: Removed 'subject' because there is no subject input in your index.html contact form.
     var params = {
         from_name: document.getElementById("name").value,
-        email: document.getElementById("email").value, 
+        email: document.getElementById("email").value,
         message: document.getElementById("message").value,
     };
 
@@ -497,7 +527,7 @@ function sendEmail(e) {
             document.getElementById("name").value = "";
             document.getElementById("email").value = "";
             document.getElementById("message").value = "";
-            
+
             submitBtn.innerHTML = originalBtnContent;
             submitBtn.disabled = false;
 
@@ -528,3 +558,4 @@ function sendEmail(e) {
             });
         });
 }
+
