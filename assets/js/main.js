@@ -1,5 +1,5 @@
 // --- 0. EMAILJS INIT ---
-(function() {
+(function () {
     emailjs.init("zfBIv-14_8HS3QYQ4");
 })();
 
@@ -49,14 +49,11 @@ const translations = {
     mob_journey: { en: "Experience", bg: "Опит", tr: "Deneyim" },
     mob_projects: { en: "Projects", bg: "Проекти", tr: "Projeler" },
     mob_contact: { en: "Contact", bg: "Контакти", tr: "İletişim" },
-    
-    // --- UPDATED HERO SUBTITLE ---
     hero_subtitle: {
-        en: "Bringing ideas to life through code.",
-        bg: "Вдъхвам живот на идеите чрез код.",
-        tr: "Fikirleri kodlarla hayata geçiriyorum."
+        en: "I think first. Then I build.",
+        bg: "Първо мисля. После създавам.",
+        tr: "Önce düşünürüm. Sonra inşa ederim."
     },
-    
     hero_badge_desc: {
         en: "Software Engineer focused on full-stack development and scalable systems.",
         bg: "Софтуерен инженер с фокус върху full-stack разработка и мащабируеми системи.",
@@ -247,11 +244,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Language setup
     changeLanguage(localStorage.getItem('pref-lang') || 'en');
 
-    // Mobile menu
+    // Mobile menu - НОВАТА ЛОГИКА ТУК
     const mMenu = document.getElementById('mobile-menu');
-    document.getElementById('mobile-menu-btn').onclick = () => mMenu.classList.remove('hidden');
-    document.getElementById('close-menu-btn').onclick = () => mMenu.classList.add('hidden');
-    document.querySelectorAll('.mobile-link').forEach(l => l.onclick = () => mMenu.classList.add('hidden'));
+    
+    document.getElementById('mobile-menu-btn').onclick = () => {
+        mMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Спира скрола
+    };
+
+    document.getElementById('close-menu-btn').onclick = () => {
+        mMenu.classList.add('hidden');
+        document.body.style.overflow = ''; // Връща скрола
+    };
+
+    // Затваряме менюто и връщаме скрола, когато се кликне на линк
+    document.querySelectorAll('.mobile-link').forEach(l => {
+        l.onclick = () => {
+            mMenu.classList.add('hidden');
+            document.body.style.overflow = ''; // Връща скрола при клик на линк
+        };
+    });
 
     // Initialize Draggables
     document.querySelectorAll('.draggable').forEach(makeDraggable);
@@ -466,20 +478,20 @@ document.addEventListener('keydown', (e) => {
 
 // --- 7. CONTACT FORM (Using EmailJS) ---
 function sendEmail(e) {
-    e.preventDefault(); 
-    
+    e.preventDefault();
+
     const lang = localStorage.getItem('pref-lang') || 'en';
     const isDark = document.documentElement.classList.contains('dark');
     const submitBtn = e.target.querySelector('button[type="submit"]');
     const originalBtnContent = submitBtn.innerHTML;
-    
+
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
 
     // Adapted to the actual fields inside your index.html
     const params = {
         from_name: document.getElementById("name").value,
-        email: document.getElementById("email").value, 
+        email: document.getElementById("email").value,
         message: document.getElementById("message").value,
     };
 
@@ -491,7 +503,7 @@ function sendEmail(e) {
             document.getElementById("name").value = "";
             document.getElementById("email").value = "";
             document.getElementById("message").value = "";
-            
+
             submitBtn.innerHTML = originalBtnContent;
             submitBtn.disabled = false;
 

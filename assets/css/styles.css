@@ -7,6 +7,7 @@ body {
     linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
   background-size: 50px 50px;
   transition: background-color 0.3s, color 0.3s;
+  overflow-x: hidden;
 }
 
 .dark body {
@@ -275,6 +276,3 @@ body {
 .cert-card:hover .flip-hint {
   color: #2563eb;
 }
-
-
-
