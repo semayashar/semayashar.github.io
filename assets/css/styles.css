@@ -176,8 +176,8 @@ body.is-locked {
 }
 
 .hero-card-git {
-  top: 25%;
-  left: 45%;
+  top: 20%;
+  left: 20%;
   --rot: -12deg;
   animation: float 4s ease-in-out infinite;
   animation-play-state: paused;
