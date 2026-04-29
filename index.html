@@ -4,24 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Sema Yasharova, a software engineer focused on full-stack development, clean architecture, and scalable systems.">
     <title>Sema Yasharova — Software Engineer</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind.config.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="assets/js/main.js" defer></script>
 
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body class="selection:bg-primary selection:text-white relative">
+<div id="scroll-progress" aria-hidden="true"></div>
+<div id="cursor-spotlight" aria-hidden="true"></div>
 <div class="overflow-x-hidden w-full">
-    <!-- ЗАКРЕПЕН Z-INDEX НА НАВИГАЦИЯТА (z-[150]) -->
+
     <nav class="fixed w-full z-[150] bg-white/90 dark:bg-[#121212]/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-all duration-300"
         id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,25 +41,25 @@
                 <div
                     class="hidden md:flex space-x-8 items-center font-mono text-xs uppercase tracking-widest font-bold">
                     <a href="#about"
-                        class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition lang-text"
+                        class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition lang-text"
                         data-key="nav_about">About</a>
                     <a href="#experience"
-                        class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition lang-text"
+                        class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition lang-text"
                         data-key="nav_journey">Journey</a>
                     <a href="#projects"
-                        class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition lang-text"
+                        class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition lang-text"
                         data-key="nav_projects">Projects</a>
                     <a href="#contact"
-                        class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition lang-text"
+                        class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition lang-text"
                         data-key="nav_contact">Contact</a>
 
                     <div
                         class="flex items-center bg-gray-100 dark:bg-gray-800 rounded p-1 ml-4 border border-gray-200 dark:border-gray-700">
-                        <button onclick="changeLanguage('en')" id="btn-en"
+                        <button data-language-option="en" id="btn-en"
                             class="px-3 py-1 text-xs font-bold rounded bg-white dark:bg-gray-700 shadow-sm text-primary transition-all">EN</button>
-                        <button onclick="changeLanguage('bg')" id="btn-bg"
+                        <button data-language-option="bg" id="btn-bg"
                             class="px-3 py-1 text-xs font-bold rounded text-slate-500 hover:text-primary transition-all">BG</button>
-                        <button onclick="changeLanguage('tr')" id="btn-tr"
+                        <button data-language-option="tr" id="btn-tr"
                             class="px-3 py-1 text-xs font-bold rounded text-slate-500 hover:text-primary transition-all">TR</button>
                     </div>
 
@@ -73,7 +79,6 @@
         </div>
     </nav>
 
-    <!-- МОБИЛНО МЕНЮ С Z-[160] (над навигацията) -->
     <div id="mobile-menu"
         class="hidden fixed inset-0 bg-deskLight/95 dark:bg-deskDark/95 backdrop-blur-xl z-[160] flex flex-col items-center justify-start pt-32 space-y-8 transition-all duration-300">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-3xl text-ink dark:text-white"><i
@@ -90,32 +95,55 @@
             data-key="mob_contact">Contact</a>
             
         <div class="flex gap-4 pt-8 border-t border-gray-300 dark:border-gray-700 w-2/3 justify-center">
-            <button onclick="changeLanguage('en')"
+            <button data-language-option="en"
                 class="px-4 py-2 text-sm font-bold bg-gray-200 dark:bg-gray-800 rounded dark:text-white">EN</button>
-            <button onclick="changeLanguage('bg')"
+            <button data-language-option="bg"
                 class="px-4 py-2 text-sm font-bold bg-gray-200 dark:bg-gray-800 rounded dark:text-white">BG</button>
-            <button onclick="changeLanguage('tr')"
+            <button data-language-option="tr"
                 class="px-4 py-2 text-sm font-bold bg-gray-200 dark:bg-gray-800 rounded dark:text-white">TR</button>
         </div>
     </div>
 
     <section id="welcomePage" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
 
-        <div class="absolute z-[110] text-center pointer-events-none w-full" data-aos="zoom-in" data-aos-duration="1500">
-            <h1
-                class="text-6xl md:text-[7rem] lg:text-[9rem] font-handwriting text-ink dark:text-white transform -rotate-2 drop-shadow-sm leading-none whitespace-nowrap">
-                Sema Yasharova
-            </h1>
-            <p class="font-mono text-xs md:text-sm tracking-[0.3em] uppercase text-gray-500 mt-6 lang-text bg-white/70 dark:bg-black/70 backdrop-blur-sm inline-block px-4 py-1 rounded"
+        <div class="absolute z-[110] text-center pointer-events-none w-full flex flex-col items-center" data-aos="zoom-in" data-aos-duration="1500">
+            <!-- Screen-reader only H1 for SEO -->
+            <h1 class="sr-only">Sema Yasharova</h1>
+
+            <!-- Animated SVG Signature -->
+            <svg class="signature-svg block mx-auto w-[92%] max-w-[860px] h-[120px] sm:h-[180px] md:h-[220px] transform -rotate-2 drop-shadow-sm text-ink dark:text-white" viewBox="0 0 860 220" aria-hidden="true">
+                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
+                      font-size="120" class="font-handwriting signature-stroke stroke-current">
+                    Sema Yasharova
+                </text>
+                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
+                      font-size="120" class="font-handwriting signature-fill">
+                    Sema Yasharova
+                </text>
+            </svg>
+
+            <p class="font-mono text-xs md:text-sm tracking-[0.3em] uppercase text-gray-500 mt-2 md:mt-4 lang-text bg-white/70 dark:bg-black/70 backdrop-blur-sm inline-block px-4 py-1 rounded"
                 data-key="hero_subtitle">
-                I think, then I build.
+                Curious mind. Practical code.
             </p>
+
+            <div class="pointer-events-auto mt-8 flex flex-wrap justify-center gap-3 px-4">
+                <a href="#projects"
+                    class="magnetic-link inline-flex items-center gap-2 bg-ink text-white dark:bg-white dark:text-ink px-5 py-3 rounded font-mono text-xs font-bold uppercase tracking-widest shadow-paper hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition">
+                    <i class="fas fa-folder-open"></i>
+                    Explore Work
+                </a>
+                <a href="#contact"
+                    class="magnetic-link inline-flex items-center gap-2 bg-white/80 dark:bg-black/50 text-ink dark:text-white px-5 py-3 rounded font-mono text-xs font-bold uppercase tracking-widest border border-gray-200 dark:border-gray-700 backdrop-blur hover:border-primary hover:text-primary transition">
+                    <i class="fas fa-paper-plane"></i>
+                    Let's Talk
+                </a>
+            </div>
         </div>
 
-        <div class="relative w-full max-w-[1400px] h-[85vh] mx-auto pointer-events-none">
+        <div class="hidden md:block relative w-full max-w-[1400px] h-[85vh] mx-auto pointer-events-none">
 
-            <div class="draggable absolute pointer-events-auto"
-                style="top: 5%;left: 2%;--rot: -4deg;animation: 6s ease-in-out 0s infinite normal none running float;z-index: 10;">
+            <div class="draggable hero-card-profile absolute pointer-events-auto">
                 <div
                     class="w-44 md:w-56 bg-[#222] dark:bg-[#111] p-4 rounded-xl border-t-4 border-gray-600 shadow-floating">
                     <div
@@ -125,18 +153,18 @@
                         <div class="w-8 h-1.5 bg-gray-500 rounded-full"></div>
                     </div>
                     <div class="w-full aspect-square rounded overflow-hidden mb-4 border border-gray-600 bg-gray-300">
-                        <img src="images/semaWelcome2.webp" onerror="this.src='https://placehold.co/400x400?text=Sema'"
-                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                        <img data-src="images/semaWelcome2.webp" data-fallback="https://placehold.co/400x400?text=Sema"
+                            alt="Sema Yasharova portrait"
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500"
+                            decoding="async" loading="lazy">
                     </div>
                     <h2 class="text-white font-bold text-xl mb-1">Sema.</h2>
                     <p class="text-gray-400 text-[10px] md:text-xs font-mono leading-tight lang-text"
-                        data-key="hero_badge_desc">Software Engineer, full-stack prototyping, systems, logic.</p>
+                        data-key="hero_badge_desc">Software engineer who likes clear systems and useful products.</p>
                 </div>
             </div>
 
-            <!-- ЗАКРЕПЕН Z-INDEX ЗА ТЕРМИНАЛА (от 100 на 20) -->
-            <div class="draggable absolute pointer-events-auto"
-                style="bottom: 3%;left: 13%;--rot: 2deg;animation: auto ease 0s 1 normal none running none;z-index: 20;">
+            <div class="draggable hero-card-terminal absolute pointer-events-auto">
                 <div
                     class="w-64 md:w-80 bg-white/95 dark:bg-[#1E1E1E]/95 backdrop-blur-md rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-floating">
                     <div
@@ -149,7 +177,7 @@
                     <div class="p-4 font-mono text-[10px] md:text-xs text-ink dark:text-darkInk space-y-2">
                         <p><span class="text-green-500">~ $</span> whoami</p>
                         <p class="text-gray-600 dark:text-gray-400 ml-4 lang-text" data-key="hero_term_whoami">Master's
-                            student &amp; dev with 3+ years diving into logic.</p>
+                            student &amp; developer with 3+ years of hands-on coding.</p>
                         <p><span class="text-green-500">~ $</span> ls core_skills/</p>
                         <p class="text-primary ml-4">C# Java JS AI Backend</p>
                         <p><span class="text-green-500">~ $</span> <span class="typewriter-cursor"></span></p>
@@ -157,28 +185,27 @@
                 </div>
             </div>
 
-            <div class="draggable absolute pointer-events-auto"
-                style="top: 4%;right: 20%;--rot: 5deg;animation: 7s ease-in-out 0s infinite normal none running float;z-index: 10;">
+            <div class="draggable hero-card-note absolute pointer-events-auto">
                 <div class="w-48 md:w-60 bg-sticky dark:bg-darkSticky shadow-polaroid p-5 relative rounded-sm">
                     <div class="tape"></div>
                     <p class="font-handwriting text-ink text-xl md:text-2xl leading-relaxed lang-text"
-                        data-key="hero_sticky">Always building, exploring, and teaching. Open to new dev opportunities!💡</p>
+                        data-key="hero_sticky">I like building things that make complicated ideas easier to use.</p>
                 </div>
             </div>
 
-            <div class="draggable absolute pointer-events-auto"
-                style="bottom: 11%;right: 3%;--rot: -6deg;animation: 5.5s ease-in-out 0s infinite normal none running float;z-index: 10;">
+            <div class="draggable hero-card-graduation absolute pointer-events-auto">
                 <div class="polaroid-style w-36 md:w-48">
                     <div class="tape corner"></div>
-                    <img src="images/graduation.webp" onerror="this.src='https://placehold.co/400x500?text=Grad'"
-                        class="w-full aspect-[3/4] object-cover mb-2 grayscale contrast-125 border border-gray-200 dark:border-gray-700">
+                    <img data-src="images/graduation.webp" data-fallback="https://placehold.co/400x500?text=Grad"
+                        alt="Sema Yasharova graduation photo"
+                        class="w-full aspect-[3/4] object-cover mb-2 grayscale hover:grayscale-0 contrast-125 border border-gray-200 dark:border-gray-700 transition duration-500"
+                        loading="lazy" decoding="async">
                     <p class="font-handwriting text-ink text-center text-lg md:text-xl mt-1 lang-text"
-                        data-key="hero_polaroid">graduation day</p>
+                        data-key="hero_polaroid">graduation day 🎓</p>
                 </div>
             </div>
 
-            <div class="draggable absolute pointer-events-auto"
-                style="top: 25%; left: 45%; --rot: -12deg; animation: 4s ease-in-out 0s infinite normal none running float; z-index: 10;">
+            <div class="draggable hero-card-git absolute pointer-events-auto">
                 <div
                     class="bg-dark text-white p-2 md:p-3 rounded-lg shadow-md border border-gray-700 flex items-center justify-center gap-2">
                     <i class="devicon-github-original text-white text-xl md:text-2xl"></i>
@@ -188,9 +215,33 @@
 
         </div>
 
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer pointer-events-auto"
-            onclick="document.getElementById('about').scrollIntoView();">
+        <button type="button"
+            class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer pointer-events-auto"
+            data-scroll-target="about" aria-label="Scroll to about section">
             <i class="fas fa-arrow-down text-gray-400 text-2xl"></i>
+        </button>
+    </section>
+
+    <section class="relative z-20 -mt-10 md:-mt-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4" data-aos="fade-up">
+                <div class="quick-stat">
+                    <span class="quick-stat-number">3+</span>
+                    <span class="quick-stat-label">Years Coding</span>
+                </div>
+                <div class="quick-stat">
+                    <span class="quick-stat-number">4</span>
+                    <span class="quick-stat-label">Featured Projects</span>
+                </div>
+                <div class="quick-stat">
+                    <span class="quick-stat-number">8</span>
+                    <span class="quick-stat-label">Certificates</span>
+                </div>
+                <div class="quick-stat">
+                    <span class="quick-stat-number">4</span>
+                    <span class="quick-stat-label">Languages</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -202,50 +253,51 @@
                 <div data-aos="fade-up" class="relative">
                     <div
                         class="bg-white dark:bg-[#1A1A1A] p-8 md:p-10 shadow-paper border border-gray-200 dark:border-gray-800 font-mono text-sm leading-relaxed text-gray-700 dark:text-gray-300 relative rounded">
-                        <div class="tape" style="top:-10px; left:50%; width:120px;"></div>
+                        <div class="tape tape-wide"></div>
 
                         <div
                             class="float-right w-28 md:w-36 ml-6 mb-4 mt-2 polaroid-style transform rotate-3 shadow-md border border-gray-200 dark:border-gray-700">
-                            <div class="tape corner" style="left:-15px; top:-15px; width:50px;"></div>
+                            <div class="tape corner tape-corner-photo"></div>
                             <img src="images/me/SemaYasharova.jpeg"
-                                onerror="this.src='https://placehold.co/300x300?text=Sema'"
-                                class="w-full aspect-[4/5] object-cover">
+                                data-fallback="https://placehold.co/300x300?text=Sema"
+                                alt="Sema Yasharova"
+                                class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
                         </div>
 
                         <h2 class="text-3xl font-bold text-ink dark:text-white mb-6 border-b-2 border-dashed border-gray-300 dark:border-gray-700 pb-2 lang-text"
-                            data-key="about_title">Who Am I?</h2>
+                            data-key="about_title">A bit about me</h2>
 
                         <p class="mb-5 lang-text" data-key="about_p1">
-                            I am a dedicated Software Engineer currently pursuing my Master's degree at the University
-                            of Ruse 'Angel Kanchev', with a focus on full-stack development.
+                            I'm Sema, a software engineer and Master's student at the University of Ruse
+                            'Angel Kanchev'. I like turning unclear ideas into apps that feel organized,
+                            useful, and easy to keep improving.
                         </p>
                         <p class="mb-5">
                             <span
                                 class="bg-yellow-200 dark:bg-yellow-900/50 text-ink dark:text-white font-semibold px-1 rounded lang-text"
-                                data-key="about_p2">My professional journey encompasses building scalable systems across
-                                AI, e-commerce, and educational platforms.</span>
+                                data-key="about_p2">Most of my work sits around full-stack development, AI features,
+                                e-commerce, and learning platforms.</span>
                         </p>
                         <p class="lang-text" data-key="about_p3">
-                            I am passionate about clean architecture, continuous learning, and sharing knowledge, as
-                            demonstrated by my experience teaching mathematics and programming to aspiring developers. I
-                            thrive in dynamic environments where standard engineering practices meet innovative
-                            problem-solving.
+                            I care about code that other people can understand, and I enjoy teaching because it keeps me
+                            close to the basics. I'm happiest when a problem is a little messy and there is room to make
+                            it simpler.
                         </p>
                     </div>
                 </div>
 
                 <div data-aos="fade-up" data-aos-delay="100"
-                    class="bg-[#1C1C1C] p-8 md:p-10 rounded-xl shadow-lg border border-[#333] transform rotate-1">
-                    <h3 class="font-handwriting text-4xl text-white mb-8 lang-text" data-key="lang_title">Languages I
+                    class="language-card bg-white dark:bg-[#1C1C1C] p-8 md:p-10 rounded-xl shadow-lg border border-gray-200 dark:border-[#333] transform rotate-1">
+                    <h3 class="font-handwriting text-4xl text-ink dark:text-white mb-8 lang-text" data-key="lang_title">Languages I
                         Speak</h3>
-                    <div class="space-y-7 text-gray-200">
+                    <div class="space-y-7 text-gray-700 dark:text-gray-200">
                         <div>
                             <div class="flex justify-between font-mono text-sm mb-2">
                                 <span class="font-bold tracking-wide lang-text" data-key="lang_bg">Bulgarian</span>
                                 <span class="lang-text" data-key="lang_native1">Native</span>
                             </div>
                             <div class="lang-track">
-                                <div class="lang-fill bg-green-500" style="width: 100%"></div>
+                                <div class="lang-fill lang-fill-full bg-green-500"></div>
                             </div>
                         </div>
                         <div>
@@ -254,7 +306,7 @@
                                 <span class="lang-text" data-key="lang_native2">Native</span>
                             </div>
                             <div class="lang-track">
-                                <div class="lang-fill bg-green-500" style="width: 100%"></div>
+                                <div class="lang-fill lang-fill-full bg-green-500"></div>
                             </div>
                         </div>
                         <div>
@@ -263,7 +315,7 @@
                                 <span>B2/C1</span>
                             </div>
                             <div class="lang-track">
-                                <div class="lang-fill bg-yellow-500" style="width: 85%"></div>
+                                <div class="lang-fill lang-fill-advanced bg-yellow-500"></div>
                             </div>
                         </div>
                         <div>
@@ -272,7 +324,7 @@
                                 <span>A1/A2</span>
                             </div>
                             <div class="lang-track">
-                                <div class="lang-fill bg-orange-500" style="width: 30%"></div>
+                                <div class="lang-fill lang-fill-basic bg-orange-500"></div>
                             </div>
                         </div>
                     </div>
@@ -325,10 +377,11 @@
                         class="bg-white dark:bg-[#1A1A1A] rounded shadow-paper border border-gray-200 dark:border-gray-800 p-6 flex items-center gap-6 transform hover:-translate-y-1 transition duration-300">
                         <div
                             class="w-20 h-24 polaroid-mini flex-shrink-0 transform -rotate-3 border border-gray-200 p-1.5 pb-5">
-                            <div class="tape corner" style="left:-10px; top:-10px; width:30px;"></div>
+                            <div class="tape corner tape-corner-mini"></div>
                             <img src="images/schools/rusenksi_uni2.webp"
-                                onerror="this.src='https://placehold.co/100x100?text=Uni'"
-                                class="w-full h-full object-cover">
+                                data-fallback="https://placehold.co/100x100?text=Uni"
+                                alt="University of Ruse"
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="font-mono font-bold text-lg text-ink dark:text-white leading-tight lang-text"
@@ -348,10 +401,11 @@
                         class="bg-white dark:bg-[#1A1A1A] rounded shadow-paper border border-gray-200 dark:border-gray-800 p-6 flex items-center gap-6 transform hover:-translate-y-1 transition duration-300">
                         <div
                             class="w-20 h-24 polaroid-mini flex-shrink-0 transform rotate-2 border border-gray-200 p-1.5 pb-5">
-                            <div class="tape corner" style="left:-10px; top:-10px; width:30px;"></div>
+                            <div class="tape corner tape-corner-mini"></div>
                             <img src="images/schools/rusenksi_uni.webp"
-                                onerror="this.src='https://placehold.co/100x100?text=Uni'"
-                                class="w-full h-full object-cover">
+                                data-fallback="https://placehold.co/100x100?text=Uni"
+                                alt="University of Ruse campus"
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="font-mono font-bold text-lg text-ink dark:text-white leading-tight lang-text"
@@ -371,10 +425,11 @@
                         class="bg-white dark:bg-[#1A1A1A] rounded shadow-paper border border-gray-200 dark:border-gray-800 p-6 flex items-center gap-6 transform hover:-translate-y-1 transition duration-300 opacity-90">
                         <div
                             class="w-20 h-24 polaroid-mini flex-shrink-0 transform -rotate-2 border border-gray-200 p-1.5 pb-5">
-                            <div class="tape corner" style="left:-10px; top:-10px; width:30px;"></div>
+                            <div class="tape corner tape-corner-mini"></div>
                             <img src="images/schools/su_hristo_botev.webp"
-                                onerror="this.src='https://placehold.co/100x100?text=School'"
-                                class="w-full h-full object-cover">
+                                data-fallback="https://placehold.co/100x100?text=School"
+                                alt="Hristo Botev Secondary School"
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="font-mono font-bold text-lg text-ink dark:text-white leading-tight lang-text"
@@ -401,7 +456,15 @@
             <h2 class="font-mono text-sm tracking-[0.2em] uppercase mb-12 bg-ink dark:bg-white text-white dark:text-ink inline-block px-5 py-2 rounded-full font-bold lang-text"
                 data-key="skills_title">Tech Toolkit</h2>
 
-            <div class="flex flex-wrap justify-center gap-4 md:gap-5" data-aos="fade-up">
+            <div class="flex flex-wrap justify-center gap-2 mb-10" data-aos="fade-up">
+                <button class="skill-filter is-active" data-skill-filter="all">All</button>
+                <button class="skill-filter" data-skill-filter="language">Languages</button>
+                <button class="skill-filter" data-skill-filter="framework">Frameworks</button>
+                <button class="skill-filter" data-skill-filter="data">Data</button>
+                <button class="skill-filter" data-skill-filter="tool">Tools</button>
+            </div>
+
+            <div id="skill-cloud" class="flex flex-wrap justify-center gap-4 md:gap-5" data-aos="fade-up">
 
                 <div
                     class="px-5 py-3 bg-white dark:bg-[#222] shadow-sm border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-sm flex items-center gap-2 transform hover:-translate-y-1 transition hover:shadow-md cursor-default">
@@ -526,23 +589,33 @@
                         class="hidden md:block w-48 bg-[#EFEFEF] dark:bg-[#1A1A1A] border-r border-gray-300 dark:border-gray-700 p-4">
                         <p class="text-[10px] uppercase font-bold text-gray-400 mb-2 font-mono">Favorites</p>
                         <ul class="space-y-1 font-mono text-xs">
-                            <li
-                                class="bg-gray-200 dark:bg-gray-800 text-ink dark:text-white px-2 py-1.5 rounded flex items-center gap-2">
-                                <i class="fas fa-folder text-blue-400"></i> All Projects</li>
-                            <li
-                                class="px-2 py-1.5 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-800 rounded flex items-center gap-2 transition cursor-pointer">
-                                <i class="fas fa-star text-yellow-400"></i> Highlights</li>
-                            <li
-                                class="px-2 py-1.5 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-800 rounded flex items-center gap-2 transition cursor-pointer">
-                                <i class="fab fa-github text-gray-400"></i> Repositories</li>
+                            <li>
+                                <button type="button" data-project-filter="all"
+                                    class="project-filter is-active px-2 py-1.5 rounded flex items-center gap-2 transition cursor-pointer">
+                                    <i class="fas fa-folder text-blue-400"></i> All Projects
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" data-project-filter="highlight"
+                                    class="project-filter px-2 py-1.5 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-800 rounded flex items-center gap-2 transition cursor-pointer">
+                                    <i class="fas fa-star text-yellow-400"></i> Highlights
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" data-project-filter="repository"
+                                    class="project-filter px-2 py-1.5 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-800 rounded flex items-center gap-2 transition cursor-pointer">
+                                    <i class="fab fa-github text-gray-400"></i> Repositories
+                                </button>
+                            </li>
                         </ul>
                     </div>
 
                     <div class="flex-1 p-6 md:p-10 bg-white dark:bg-[#151515] overflow-y-auto">
                         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
 
-                            <div class="flex flex-col items-center group cursor-pointer"
-                                onclick="openModal('langforu')">
+                            <button type="button"
+                                class="project-card flex flex-col items-center group cursor-pointer"
+                                data-project-id="langforu" data-project-tags="highlight repository ai backend education">
                                 <div class="relative w-24 h-20 mb-3 transition-transform group-hover:scale-110">
                                     <i
                                         class="fas fa-folder absolute inset-0 text-7xl md:text-[5rem] text-[#8CB4F6]"></i>
@@ -551,10 +624,11 @@
                                 </div>
                                 <span
                                     class="font-mono text-xs text-center text-ink dark:text-white group-hover:bg-primary group-hover:text-white px-1.5 py-0.5 rounded transition">LangForU</span>
-                            </div>
+                            </button>
 
-                            <div class="flex flex-col items-center group cursor-pointer"
-                                onclick="openModal('travelis')">
+                            <button type="button"
+                                class="project-card flex flex-col items-center group cursor-pointer"
+                                data-project-id="travelis" data-project-tags="highlight repository travel backend">
                                 <div class="relative w-24 h-20 mb-3 transition-transform group-hover:scale-110">
                                     <i
                                         class="fas fa-folder absolute inset-0 text-7xl md:text-[5rem] text-[#F6C38C]"></i>
@@ -563,10 +637,11 @@
                                 </div>
                                 <span
                                     class="font-mono text-xs text-center text-ink dark:text-white group-hover:bg-primary group-hover:text-white px-1.5 py-0.5 rounded transition">Travelis</span>
-                            </div>
+                            </button>
 
-                            <div class="flex flex-col items-center group cursor-pointer"
-                                onclick="openModal('sportarete')">
+                            <button type="button"
+                                class="project-card flex flex-col items-center group cursor-pointer"
+                                data-project-id="sportarete" data-project-tags="repository ecommerce backend">
                                 <div class="relative w-24 h-20 mb-3 transition-transform group-hover:scale-110">
                                     <i
                                         class="fas fa-folder absolute inset-0 text-7xl md:text-[5rem] text-[#8CF6A1]"></i>
@@ -575,10 +650,11 @@
                                 </div>
                                 <span
                                     class="font-mono text-xs text-center text-ink dark:text-white group-hover:bg-primary group-hover:text-white px-1.5 py-0.5 rounded transition">SportArete</span>
-                            </div>
+                            </button>
 
-                            <div class="flex flex-col items-center group cursor-pointer"
-                                onclick="openModal('conexion')">
+                            <button type="button"
+                                class="project-card flex flex-col items-center group cursor-pointer"
+                                data-project-id="conexion" data-project-tags="repository social backend clean-architecture">
                                 <div class="relative w-24 h-20 mb-3 transition-transform group-hover:scale-110">
                                     <i
                                         class="fas fa-folder absolute inset-0 text-7xl md:text-[5rem] text-[#C98CF6]"></i>
@@ -587,7 +663,7 @@
                                 </div>
                                 <span
                                     class="font-mono text-xs text-center text-ink dark:text-white group-hover:bg-primary group-hover:text-white px-1.5 py-0.5 rounded transition">Conexion</span>
-                            </div>
+                            </button>
 
                         </div>
                     </div>
@@ -609,20 +685,22 @@
             <div class="relative w-full min-h-[800px] bg-[#EAE6DB]/40 dark:bg-[#1A1A1A]/40 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-inner flex flex-wrap justify-center items-center py-16 px-6 sm:px-12 gap-8 lg:gap-12"
                 id="cert-desk">
 
-                <div class="cert-wrapper draggable mb-8 md:mb-0 md:mt-[10px]" style="transform: rotate(-3deg);"
+                <div class="cert-wrapper cert-tilt-neg-3 draggable mb-8 md:mb-0 md:mt-[10px]"
                     data-aos="zoom-in">
-                    <div class="cert-card" onclick="flipCard(this)">
+                    <div class="cert-card" data-flip-card tabindex="0" role="button">
                         <div class="cert-front">
                             <div class="tape corner"></div>
                             <img src="images/certificates/programming-basics-july-2021-certificate-1.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Cert+1'">
+                                data-fallback="https://placehold.co/400x560?text=Cert+1"
+                                alt="Programming Basics certificate front" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">Prog Basics</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Jul 2021</p>
                             <i class="fas fa-undo flip-hint"></i>
                         </div>
                         <div class="cert-back">
                             <img src="images/certificates/programming-basics-july-2021-certificate-2.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Back'">
+                                data-fallback="https://placehold.co/400x560?text=Back"
+                                alt="Programming Basics certificate back" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">Prog Basics</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Jul 2021</p>
                             <i class="fas fa-undo flip-hint"></i>
@@ -630,13 +708,14 @@
                     </div>
                 </div>
 
-                <div class="cert-wrapper draggable mb-8 md:mb-0 md:-mt-[20px]" style="transform: rotate(5deg);"
+                <div class="cert-wrapper cert-tilt-pos-5 draggable mb-8 md:mb-0 md:-mt-[20px]"
                     data-aos="zoom-in" data-aos-delay="50">
-                    <div class="cert-card" onclick="flipCard(this)">
+                    <div class="cert-card" data-flip-card tabindex="0" role="button">
                         <div class="cert-front">
                             <div class="tape"></div>
                             <img src="images/certificates/programming-basics-with-c-january-2022-certificate-1.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Cert+2'">
+                                data-fallback="https://placehold.co/400x560?text=Cert+2"
+                                alt="Programming Basics with C++ certificate front" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">Prog Basics C++
                             </p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Jan 2022</p>
@@ -644,7 +723,8 @@
                         </div>
                         <div class="cert-back">
                             <img src="images/certificates/programming-basics-with-c-january-2022-certificate-2.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Back'">
+                                data-fallback="https://placehold.co/400x560?text=Back"
+                                alt="Programming Basics with C++ certificate back" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">Prog Basics C++
                             </p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Jan 2022</p>
@@ -653,20 +733,22 @@
                     </div>
                 </div>
 
-                <div class="cert-wrapper draggable mb-8 md:mb-0 md:mt-[15px]" style="transform: rotate(-4deg);"
+                <div class="cert-wrapper cert-tilt-neg-4 draggable mb-8 md:mb-0 md:mt-[15px]"
                     data-aos="zoom-in" data-aos-delay="100">
-                    <div class="cert-card" onclick="flipCard(this)">
+                    <div class="cert-card" data-flip-card tabindex="0" role="button">
                         <div class="cert-front">
                             <div class="tape corner"></div>
                             <img src="images/certificates/c-fundamentals-march-2022-certificate-1.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Cert+3'">
+                                data-fallback="https://placehold.co/400x560?text=Cert+3"
+                                alt="C++ Fundamentals certificate front" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">C++ Fund.</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Mar 2022</p>
                             <i class="fas fa-undo flip-hint"></i>
                         </div>
                         <div class="cert-back">
                             <img src="images/certificates/c-fundamentals-march-2022-certificate-2.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Back'">
+                                data-fallback="https://placehold.co/400x560?text=Back"
+                                alt="C++ Fundamentals certificate back" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">C++ Fund.</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Mar 2022</p>
                             <i class="fas fa-undo flip-hint"></i>
@@ -674,20 +756,22 @@
                     </div>
                 </div>
 
-                <div class="cert-wrapper draggable mb-8 md:mb-0 md:-mt-[10px]" style="transform: rotate(3deg);"
+                <div class="cert-wrapper cert-tilt-pos-3 draggable mb-8 md:mb-0 md:-mt-[10px]"
                     data-aos="zoom-in" data-aos-delay="150">
-                    <div class="cert-card" onclick="flipCard(this)">
+                    <div class="cert-card" data-flip-card tabindex="0" role="button">
                         <div class="cert-front">
                             <div class="tape"></div>
                             <img src="images/certificates/c-advanced-may-2022-certificate-1.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Cert+4'">
+                                data-fallback="https://placehold.co/400x560?text=Cert+4"
+                                alt="C++ Advanced certificate front" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">C++ Advanced</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">May 2022</p>
                             <i class="fas fa-undo flip-hint"></i>
                         </div>
                         <div class="cert-back">
                             <img src="images/certificates/c-advanced-may-2022-certificate-2.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Back'">
+                                data-fallback="https://placehold.co/400x560?text=Back"
+                                alt="C++ Advanced certificate back" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">C++ Advanced</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">May 2022</p>
                             <i class="fas fa-undo flip-hint"></i>
@@ -695,13 +779,14 @@
                     </div>
                 </div>
 
-                <div class="cert-wrapper draggable mb-8 md:mb-0 md:mt-[25px]" style="transform: rotate(-6deg);"
+                <div class="cert-wrapper cert-tilt-neg-6 draggable mb-8 md:mb-0 md:mt-[25px]"
                     data-aos="zoom-in" data-aos-delay="200">
-                    <div class="cert-card" onclick="flipCard(this)">
+                    <div class="cert-card" data-flip-card tabindex="0" role="button">
                         <div class="cert-front">
                             <div class="tape"></div>
                             <img src="images/certificates/programming-basics-march-2023-certificate-1.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Cert+5'">
+                                data-fallback="https://placehold.co/400x560?text=Cert+5"
+                                alt="Programming Basics 2023 certificate front" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">Prog Basics 23
                             </p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Mar 2023</p>
@@ -709,7 +794,8 @@
                         </div>
                         <div class="cert-back">
                             <img src="images/certificates/programming-basics-march-2023-certificate-2.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Back'">
+                                data-fallback="https://placehold.co/400x560?text=Back"
+                                alt="Programming Basics 2023 certificate back" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">Prog Basics 23
                             </p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Mar 2023</p>
@@ -718,20 +804,22 @@
                     </div>
                 </div>
 
-                <div class="cert-wrapper draggable mb-8 md:mb-0" style="transform: rotate(2deg);" data-aos="zoom-in"
+                <div class="cert-wrapper cert-tilt-pos-2 draggable mb-8 md:mb-0" data-aos="zoom-in"
                     data-aos-delay="250">
-                    <div class="cert-card" onclick="flipCard(this)">
+                    <div class="cert-card" data-flip-card tabindex="0" role="button">
                         <div class="cert-front">
                             <div class="tape corner"></div>
                             <img src="images/certificates/programming-fundamentals-with-csharp-may-2023-certificate-1.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Cert+6'">
+                                data-fallback="https://placehold.co/400x560?text=Cert+6"
+                                alt="C# Fundamentals certificate front" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">C# Fund.</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">May 2023</p>
                             <i class="fas fa-undo flip-hint"></i>
                         </div>
                         <div class="cert-back">
                             <img src="images/certificates/programming-fundamentals-with-csharp-may-2023-certificate-2.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Back'">
+                                data-fallback="https://placehold.co/400x560?text=Back"
+                                alt="C# Fundamentals certificate back" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">C# Fund.</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">May 2023</p>
                             <i class="fas fa-undo flip-hint"></i>
@@ -739,20 +827,22 @@
                     </div>
                 </div>
 
-                <div class="cert-wrapper draggable mb-8 md:mb-0 md:-mt-[15px]" style="transform: rotate(-4deg);"
+                <div class="cert-wrapper cert-tilt-neg-4 draggable mb-8 md:mb-0 md:-mt-[15px]"
                     data-aos="zoom-in" data-aos-delay="300">
-                    <div class="cert-card" onclick="flipCard(this)">
+                    <div class="cert-card" data-flip-card tabindex="0" role="button">
                         <div class="cert-front">
                             <div class="tape"></div>
                             <img src="images/certificates/c-advanced-may-2023-certificate-1.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Cert+7'">
+                                data-fallback="https://placehold.co/400x560?text=Cert+7"
+                                alt="C++ Advanced 2023 certificate front" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">C++ Adv 23</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">May 2023</p>
                             <i class="fas fa-undo flip-hint"></i>
                         </div>
                         <div class="cert-back">
                             <img src="images/certificates/c-advanced-may-2023-certificate-2.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Back'">
+                                data-fallback="https://placehold.co/400x560?text=Back"
+                                alt="C++ Advanced 2023 certificate back" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">C++ Adv 23</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">May 2023</p>
                             <i class="fas fa-undo flip-hint"></i>
@@ -760,20 +850,22 @@
                     </div>
                 </div>
 
-                <div class="cert-wrapper draggable mb-8 md:mb-0 md:mt-[15px]" style="transform: rotate(5deg);"
+                <div class="cert-wrapper cert-tilt-pos-5 draggable mb-8 md:mb-0 md:mt-[15px]"
                     data-aos="zoom-in" data-aos-delay="350">
-                    <div class="cert-card" onclick="flipCard(this)">
+                    <div class="cert-card" data-flip-card tabindex="0" role="button">
                         <div class="cert-front">
                             <div class="tape corner"></div>
                             <img src="images/certificates/ms-sql-september-2023-certificate-1.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Cert+8'">
+                                data-fallback="https://placehold.co/400x560?text=Cert+8"
+                                alt="MS SQL certificate front" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">MS SQL</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Sept 2023</p>
                             <i class="fas fa-undo flip-hint"></i>
                         </div>
                         <div class="cert-back">
                             <img src="images/certificates/ms-sql-september-2023-certificate-2.webp"
-                                onerror="this.src='https://placehold.co/400x560?text=Back'">
+                                data-fallback="https://placehold.co/400x560?text=Back"
+                                alt="MS SQL certificate back" loading="lazy" decoding="async">
                             <p class="font-handwriting text-center text-ink dark:text-white cert-title">MS SQL</p>
                             <p class="font-mono text-center text-[10px] text-gray-400 cert-date">Sept 2023</p>
                             <i class="fas fa-undo flip-hint"></i>
@@ -794,23 +886,23 @@
                     class="w-full md:w-1/2 p-8 md:p-14 relative z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[#333]">
                     <h3 class="font-handwriting text-5xl mb-10 text-white lang-text" data-key="contact_title">Drop a
                         line...</h3>
-                    <form onsubmit="sendEmail(event)" class="space-y-8">
+                    <form id="contact-form" class="space-y-8">
                         <div>
                             <p class="font-mono text-[10px] uppercase text-gray-400 mb-1 tracking-widest lang-text"
                                 data-key="contact_name_label">Name</p>
-                            <input type="text" id="name" required
+                            <input type="text" id="name" name="from_name" autocomplete="name" required
                                 class="input-line text-white font-mono text-sm placeholder-gray-600" placeholder="">
                         </div>
                         <div>
                             <p class="font-mono text-[10px] uppercase text-gray-400 mb-1 tracking-widest lang-text"
                                 data-key="contact_email_label">Email</p>
-                            <input type="email" id="email" required
+                            <input type="email" id="email" name="from_email" autocomplete="email" required
                                 class="input-line text-white font-mono text-sm placeholder-gray-600" placeholder="">
                         </div>
                         <div>
                             <p class="font-mono text-[10px] uppercase text-gray-400 mb-1 tracking-widest lang-text"
                                 data-key="contact_msg_label">What's on your mind?</p>
-                            <textarea id="message" required
+                            <textarea id="message" name="message" required
                                 class="input-line text-white font-mono text-sm h-16 resize-none placeholder-gray-600"
                                 placeholder=""></textarea>
                         </div>
@@ -848,10 +940,10 @@
                         <p class="font-handwriting text-2xl text-white leading-none">∘ Hamburg, Germany</p>
                     </div>
                     <div class="flex gap-6 pt-6">
-                        <a href="https://github.com/semayashar"
+                        <a href="https://github.com/semayashar" target="_blank" rel="noopener"
                             class="text-3xl text-gray-400 hover:text-white transition transform hover:-translate-y-1"><i
                                 class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/SemaYasharova"
+                        <a href="https://www.linkedin.com/in/SemaYasharova" target="_blank" rel="noopener"
                             class="text-3xl text-gray-400 hover:text-primary transition transform hover:-translate-y-1"><i
                                 class="fab fa-linkedin-in"></i></a>
                     </div>
@@ -862,7 +954,7 @@
     </section>
 
     <footer class="py-10 text-center text-xs font-mono text-gray-400 border-t border-gray-200 dark:border-gray-800">
-        <p>&copy; 2026 Sema Yasharova. I think, then I build.</p>
+        <p>&copy; 2026 Sema Yasharova. Curious mind. Practical code.</p>
     </footer>
 
     <div id="project-modal"
@@ -871,15 +963,15 @@
         <div class="bg-deskLight dark:bg-[#1E1E1E] rounded-xl w-full max-w-6xl h-[90vh] md:h-auto max-h-[95vh] overflow-hidden relative shadow-2xl flex flex-col md:flex-row border border-gray-300 dark:border-gray-700 transform scale-95 transition-transform duration-300"
             id="modal-content">
 
-            <button onclick="closeModal()"
+            <button type="button" data-modal-close
                 class="absolute top-4 right-4 text-ink dark:text-white text-3xl hover:text-red-500 z-50 transition bg-white/50 dark:bg-black/50 rounded-full w-10 h-10 flex items-center justify-center"><i
                     class="fas fa-times"></i></button>
 
             <div
                 class="w-full md:w-1/2 flex-1 md:flex-none p-6 md:p-8 flex flex-col border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 relative bg-gray-50 dark:bg-black overflow-y-auto">
 
-                <div class="mac-window bg-white dark:bg-[#151515] overflow-hidden mb-6 rounded-lg cursor-pointer group flex-shrink-0 border border-gray-200 dark:border-gray-800"
-                    onclick="openFullscreen(0)">
+                <button type="button" data-fullscreen-open="0"
+                    class="mac-window w-full bg-white dark:bg-[#151515] overflow-hidden mb-6 rounded-lg cursor-pointer group flex-shrink-0 border border-gray-200 dark:border-gray-800 text-left">
                     <div
                         class="h-8 bg-[#E5E5E5] dark:bg-[#2D2D2D] border-b border-gray-300 dark:border-gray-700 flex items-center px-3 gap-2">
                         <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
@@ -891,13 +983,15 @@
                     <div
                         class="relative w-full aspect-[16/10] flex items-center justify-center overflow-hidden bg-black">
                         <img src="" id="modal-img"
+                            data-fallback="https://placehold.co/900x560?text=Project"
+                            alt="Project preview"
                             class="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500">
                         <div
                             class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                             <i class="fas fa-expand text-white text-4xl drop-shadow-md"></i>
                         </div>
                     </div>
-                </div>
+                </button>
 
                 <p class="font-mono text-[10px] text-gray-400 uppercase tracking-[0.2em] mb-3 lang-text"
                     data-key="modal_gallery">Gallery</p>
@@ -920,7 +1014,7 @@
                     class="space-y-3 mb-10 text-sm font-mono text-gray-700 dark:text-gray-300 list-inside list-disc">
                 </ul>
 
-                <a id="modal-link" href="#" target="_blank"
+                <a id="modal-link" href="#" target="_blank" rel="noopener"
                     class="inline-flex items-center justify-center w-full md:w-auto mt-auto bg-ink dark:bg-white text-white dark:text-ink font-mono py-4 px-8 rounded hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition shadow-lg text-sm font-bold mx-auto">
                     <i class="fab fa-github mr-3 text-lg"></i> <span class="lang-text" data-key="modal_btn">View
                         Repository</span>
@@ -931,29 +1025,26 @@
 
     <div id="fs-viewer"
         class="modal hidden fixed inset-0 z-[210] bg-black/95 backdrop-blur-2xl flex items-center justify-center">
-        <button onclick="closeFullscreen()"
+        <button type="button" data-fullscreen-close
             class="absolute top-6 right-6 text-white/70 hover:text-white text-4xl z-50 transition transform hover:rotate-90 duration-300">&times;</button>
 
-        <button onclick="changeFsImage(-1); event.stopPropagation();"
+        <button type="button" data-fullscreen-nav="-1"
             class="fs-nav-btn absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white w-14 h-14 md:w-20 md:h-20 rounded-full flex items-center justify-center z-50 transition">
             <i class="fas fa-chevron-left text-2xl md:text-4xl"></i>
         </button>
 
-        <div class="w-full h-full p-4 md:p-24 flex items-center justify-center" onclick="closeFullscreen(event)">
+        <div class="w-full h-full p-4 md:p-24 flex items-center justify-center" data-fullscreen-backdrop>
             <img id="fs-img" src=""
                 class="max-w-full max-h-full object-contain drop-shadow-2xl rounded-lg transition-opacity duration-300"
-                onclick="event.stopPropagation()">
+                alt="Project gallery preview">
         </div>
 
-        <button onclick="changeFsImage(1); event.stopPropagation();"
+        <button type="button" data-fullscreen-nav="1"
             class="fs-nav-btn absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white w-14 h-14 md:w-20 md:h-20 rounded-full flex items-center justify-center z-50 transition">
             <i class="fas fa-chevron-right text-2xl md:text-4xl"></i>
         </button>
     </div>
 </div>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="assets/js/main.js"></script>
-
 </body>
 
 </html>

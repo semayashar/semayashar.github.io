@@ -1,44 +1,19 @@
-// --- 0. EMAILJS INIT ---
-(function () {
-    emailjs.init("zfBIv-14_8HS3QYQ4");
-})();
+// --- 0. LAZY THIRD-PARTY SCRIPTS ---
+const EXTERNAL_SCRIPTS = {
+    emailjs: 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js',
+    sweetalert: 'https://cdn.jsdelivr.net/npm/sweetalert2@11'
+};
 
-// --- 1. TAILWIND CONFIG ---
-tailwind.config = {
-    darkMode: 'class',
-    theme: {
-        extend: {
-            colors: {
-                primary: '#2563eb', secondary: '#1e40af', accent: '#3b82f6',
-                dark: '#0f172a', light: '#f8fafc', deskLight: '#fcfcfc',
-                deskDark: '#121212', ink: '#1A1A1A', sticky: '#FDE68A', darkSticky: '#D97706',
-            },
-            fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                handwriting: ['Caveat', 'cursive'],
-                mono: ['Courier Prime', 'monospace'],
-            },
-            boxShadow: {
-                'paper': '0 10px 30px -5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.05)',
-                'floating': '0 30px 60px -15px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.1)',
-                'polaroid': '0 15px 35px -5px rgba(0,0,0,0.15)',
-            },
-            animation: {
-                'float-slow': 'float 6s ease-in-out infinite',
-                'float-med': 'float 5s ease-in-out infinite',
-                'float-fast': 'float 4s ease-in-out infinite',
-            },
-            keyframes: {
-                float: {
-                    '0%, 100%': { transform: 'translateY(0) rotate(var(--rot))' },
-                    '50%': { transform: 'translateY(-12px) rotate(var(--rot))' },
-                }
-            }
-        }
-    }
-}
+const EMAILJS_CONFIG = {
+    publicKey: 'zfBIv-14_8HS3QYQ4',
+    serviceId: 'service_yz3eqg8',
+    templateId: 'template_1c3d1xd'
+};
 
-// --- 2. DATA (Translations & Projects) ---
+const loadedScriptPromises = new Map();
+let emailJsReady = null;
+
+// --- 1. DATA (Translations & Projects) ---
 const translations = {
     nav_about: { en: "About", bg: "За мен", tr: "Hakkımda" },
     nav_journey: { en: "Experience", bg: "Опит", tr: "Deneyim" },
@@ -50,39 +25,39 @@ const translations = {
     mob_projects: { en: "Projects", bg: "Проекти", tr: "Projeler" },
     mob_contact: { en: "Contact", bg: "Контакти", tr: "İletişim" },
     hero_subtitle: {
-        en: "I think first. Then I build.",
+        en: "Curious mind. Practical code.",
         bg: "Първо мисля. После създавам.",
         tr: "Önce düşünürüm. Sonra inşa ederim."
     },
     hero_badge_desc: {
-        en: "Software Engineer focused on full-stack development and scalable systems.",
+        en: "Software engineer who likes clear systems and useful products.",
         bg: "Софтуерен инженер с фокус върху full-stack разработка и мащабируеми системи.",
         tr: "Full-stack geliştirme ve ölçeklenebilir sistemlere odaklanan bir Yazılım Mühendisiyim."
     },
     hero_term_whoami: {
-        en: "Master's student and software engineer with 3+ years of coding experience.",
+        en: "Master's student and developer with 3+ years of hands-on coding.",
         bg: "Магистър по софтуерно инженерство и разработчик с над 3 години опит в програмирането.",
         tr: "3 yılı aşkın kodlama deneyimine sahip, yüksek lisans öğrencisi ve yazılım geliştiricisiyim."
     },
     hero_sticky: {
-        en: "Always building, learning, and sharing knowledge. Open to new opportunities! 💡",
+        en: "I like building things that make complicated ideas easier to use.",
         bg: "Винаги създавам, уча и споделям знания. Отворена съм за нови възможности! 💡",
         tr: "Sürekli üretiyor, öğreniyor ve bilgi paylaşıyorum. Yeni fırsatlara açığım! 💡"
     },
     hero_polaroid: { en: "graduation day 🎓", bg: "денят на дипломирането 🎓", tr: "mezuniyet günü 🎓" },
-    about_title: { en: "Who Am I?", bg: "Коя съм аз?", tr: "Ben Kimim?" },
+    about_title: { en: "A bit about me", bg: "Коя съм аз?", tr: "Ben Kimim?" },
     about_p1: {
-        en: "I am a dedicated Software Engineer currently pursuing my Master's degree at the University of Ruse 'Angel Kanchev', with a focus on full-stack development.",
+        en: "I'm Sema, a software engineer and Master's student at the University of Ruse 'Angel Kanchev'. I like turning unclear ideas into apps that feel organized, useful, and easy to keep improving.",
         bg: "Аз съм отдаден софтуерен инженер и в момента продължавам обучението си в магистърска програма по софтуерно инженерство в Русенския университет „Ангел Кънчев“, с фокус върху full-stack разработка.",
         tr: "Şu anda Rusçuk Üniversitesi \"Angel Kanchev\"'de yüksek lisans eğitimime devam eden, full-stack geliştirmeye odaklanan bir Yazılım Mühendisiyim."
     },
     about_p2: {
-        en: "My experience includes building scalable systems in AI, e-commerce, and social platforms.",
+        en: "Most of my work sits around full-stack development, AI features, e-commerce, and learning platforms.",
         bg: "Опитът ми включва изграждане на мащабируеми системи в сферата на изкуствения интелект, електронната търговия и социалните платформи.",
         tr: "Deneyimim; yapay zeka, e-ticaret ve sosyal platformlar için ölçeklenebilir sistemler geliştirmeyi kapsıyor."
     },
     about_p3: {
-        en: "I care about clean architecture, continuous learning, and sharing knowledge through teaching. I work best in environments where solid engineering meets practical problem solving.",
+        en: "I care about code that other people can understand, and I enjoy teaching because it keeps me close to the basics. I'm happiest when a problem is a little messy and there is room to make it simpler.",
         bg: "Залагам на чистата архитектура, непрекъснатото учене и споделянето на знания чрез преподаване. Най-добре се развивам в среда, в която доброто инженерство върви ръка за ръка с практичното решаване на проблеми.",
         tr: "Temiz mimariye, sürekli öğrenmeye ve öğretmenlik yoluyla bilgi paylaşmaya önem veriyorum. Güçlü mühendisliğin pratik problem çözme ile birleştiği ortamlarda en iyi şekilde çalışırım."
     },
@@ -212,66 +187,358 @@ const projectsData = {
     }
 };
 
-// --- 3. INIT & EVENT LISTENERS ---
-document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
+// --- 2. APPLICATION BOOTSTRAP ---
+const LANGUAGE_BUTTON_ACTIVE = "px-3 py-1 text-xs font-bold rounded bg-white dark:bg-gray-700 shadow-sm text-primary transition-all";
+const LANGUAGE_BUTTON_INACTIVE = "px-3 py-1 text-xs font-bold rounded text-slate-500 hover:text-primary transition-all";
 
-    // Theme setup
-    const themeBtn = document.getElementById('theme-toggle');
-    const themeBtnMob = document.getElementById('theme-toggle-mobile');
-    const themeIcon = document.getElementById('theme-toggle-icon');
-    const themeIconMob = document.getElementById('theme-toggle-icon-mobile');
+let activeProjectId = null;
+let lastFocusedElement = null;
 
-    const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    if (isDark) {
-        document.documentElement.classList.add('dark');
-        themeIcon.className = 'fas fa-sun text-yellow-400';
-        themeIconMob.className = 'fas fa-sun text-yellow-400';
-    }
+document.addEventListener('DOMContentLoaded', initApp);
 
-    function toggle() {
-        document.documentElement.classList.toggle('dark');
-        const darkNow = document.documentElement.classList.contains('dark');
-        localStorage.theme = darkNow ? 'dark' : 'light';
-        const cls = darkNow ? 'fas fa-sun text-yellow-400' : 'fas fa-moon text-slate-600';
-        themeIcon.className = cls;
-        themeIconMob.className = cls;
-    }
+function initApp() {
+    initRevealOnScroll();
+    initMotionScopes();
+    initTheme();
+    initLanguageControls();
+    initMobileMenu();
+    initScrollTargets();
+    initScrollProgress();
+    initCursorSpotlight();
+    initSkillFilters();
+    initProjectBrowser();
+    initCertificateCards();
+    initLazyVisibleImages();
+    initImageFallbacks();
+    initModalControls();
+    initActiveNavigation();
+    initContactForm();
 
-    themeBtn.addEventListener('click', toggle);
-    themeBtnMob.addEventListener('click', toggle);
-
-    // Language setup
+    document.querySelectorAll('.draggable').forEach(makeDraggable);
     changeLanguage(localStorage.getItem('pref-lang') || 'en');
+}
 
-    // Mobile menu - НОВАТА ЛОГИКА ТУК
-    const mMenu = document.getElementById('mobile-menu');
-    
-    document.getElementById('mobile-menu-btn').onclick = () => {
-        mMenu.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Спира скрола
-    };
+function initRevealOnScroll() {
+    const revealItems = Array.from(document.querySelectorAll('[data-aos]'));
+    if (!revealItems.length) return;
 
-    document.getElementById('close-menu-btn').onclick = () => {
-        mMenu.classList.add('hidden');
-        document.body.style.overflow = ''; // Връща скрола
-    };
-
-    // Затваряме менюто и връщаме скрола, когато се кликне на линк
-    document.querySelectorAll('.mobile-link').forEach(l => {
-        l.onclick = () => {
-            mMenu.classList.add('hidden');
-            document.body.style.overflow = ''; // Връща скрола при клик на линк
-        };
+    revealItems.forEach((item) => {
+        item.style.setProperty('--reveal-delay', `${Number(item.dataset.aosDelay || 0)}ms`);
+        item.style.setProperty('--reveal-duration', `${Number(item.dataset.aosDuration || 800)}ms`);
     });
 
-    // Initialize Draggables
-    document.querySelectorAll('.draggable').forEach(makeDraggable);
-});
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealItems.forEach((item) => item.classList.add('is-visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+    revealItems.forEach((item) => observer.observe(item));
+}
+
+function initMotionScopes() {
+    const motionScopes = [
+        document.getElementById('welcomePage'),
+        ...document.querySelectorAll('.language-card')
+    ].filter(Boolean);
+
+    if (!motionScopes.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        motionScopes.forEach((scope) => scope.classList.add('is-motion-visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            entry.target.classList.toggle('is-motion-visible', entry.isIntersecting);
+        });
+    }, { rootMargin: '120px 0px', threshold: 0.05 });
+
+    motionScopes.forEach((scope) => observer.observe(scope));
+}
+
+function initLazyVisibleImages(root = document) {
+    const images = Array.from(root.querySelectorAll('img[data-src]'));
+    if (!images.length) return;
+
+    const loadImage = (image) => {
+        if (!image.dataset.src) return;
+        image.src = image.dataset.src;
+        image.removeAttribute('data-src');
+        applyImageFallback(image);
+    };
+
+    if (!('IntersectionObserver' in window)) {
+        images.forEach(loadImage);
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            loadImage(entry.target);
+            observer.unobserve(entry.target);
+        });
+    }, { rootMargin: '300px 0px', threshold: 0.01 });
+
+    images.forEach((image) => observer.observe(image));
+}
+
+function initTheme() {
+    const themeButtons = [
+        document.getElementById('theme-toggle'),
+        document.getElementById('theme-toggle-mobile')
+    ].filter(Boolean);
+    const themeIcons = [
+        document.getElementById('theme-toggle-icon'),
+        document.getElementById('theme-toggle-icon-mobile')
+    ].filter(Boolean);
+
+    const setTheme = (isDark) => {
+        document.documentElement.classList.toggle('dark', isDark);
+        localStorage.theme = isDark ? 'dark' : 'light';
+        const iconClass = isDark ? 'fas fa-sun text-yellow-400' : 'fas fa-moon text-slate-600';
+        themeIcons.forEach((icon) => {
+            icon.className = iconClass;
+        });
+    };
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(localStorage.theme === 'dark' || (!('theme' in localStorage) && prefersDark));
+
+    themeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            setTheme(!document.documentElement.classList.contains('dark'));
+        });
+    });
+}
+
+function initLanguageControls() {
+    document.querySelectorAll('[data-language-option]').forEach((button) => {
+        button.addEventListener('click', () => changeLanguage(button.dataset.languageOption));
+    });
+}
+
+function initMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const openButton = document.getElementById('mobile-menu-btn');
+    const closeButton = document.getElementById('close-menu-btn');
+    if (!menu || !openButton || !closeButton) return;
+
+    const closeMenu = () => {
+        menu.classList.add('hidden');
+        document.body.classList.remove('is-locked');
+    };
+
+    openButton.addEventListener('click', () => {
+        menu.classList.remove('hidden');
+        document.body.classList.add('is-locked');
+        closeButton.focus();
+    });
+
+    closeButton.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-link').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+    });
+}
+
+function initScrollTargets() {
+    document.querySelectorAll('[data-scroll-target]').forEach((button) => {
+        button.addEventListener('click', () => {
+            document.getElementById(button.dataset.scrollTarget)?.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+}
+
+function initScrollProgress() {
+    const progress = document.getElementById('scroll-progress');
+    if (!progress) return;
+
+    const updateProgress = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const percent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        progress.style.width = `${Math.min(percent, 100)}%`;
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+}
+
+function initCursorSpotlight() {
+    const spotlight = document.getElementById('cursor-spotlight');
+    if (!spotlight || window.matchMedia('(pointer: coarse)').matches) return;
+
+    let pendingFrame = null;
+    let nextX = 0;
+    let nextY = 0;
+
+    window.addEventListener('pointermove', (event) => {
+        nextX = event.clientX;
+        nextY = event.clientY;
+
+        if (pendingFrame) return;
+        pendingFrame = requestAnimationFrame(() => {
+            spotlight.style.setProperty('--x', `${nextX}px`);
+            spotlight.style.setProperty('--y', `${nextY}px`);
+            spotlight.style.opacity = '1';
+            pendingFrame = null;
+        });
+    }, { passive: true });
+
+    document.addEventListener('pointerleave', () => {
+        spotlight.style.opacity = '0';
+    });
+}
+
+function initSkillFilters() {
+    const filters = document.querySelectorAll('[data-skill-filter]');
+    const skillCloud = document.getElementById('skill-cloud');
+    if (!filters.length || !skillCloud) return;
+
+    const categories = {
+        language: ['c#', 'java', 'c++', 'javascript', 'typescript', 'python', 'html/css'],
+        framework: ['asp.net', 'spring', 'react', 'vue', 'tailwind', 'bootstrap', 'scss', 'entity'],
+        data: ['sql', 'postgresql', 'ms sql', 'mysql', 'mongodb', 'database'],
+        tool: ['git', 'docker', 'linux', 'jira', 'postman', 'selenium', 'photoshop', 'rest', 'ci/cd', 'clean arch']
+    };
+
+    const chips = Array.from(skillCloud.children).filter((chip) => chip.tagName === 'DIV' && chip.textContent.trim());
+
+    filters.forEach((button) => {
+        button.addEventListener('click', () => {
+            const filter = button.dataset.skillFilter;
+            filters.forEach((item) => item.classList.toggle('is-active', item === button));
+
+            chips.forEach((chip) => {
+                const text = chip.textContent.toLowerCase();
+                const isMatch = filter === 'all' || categories[filter].some((keyword) => text.includes(keyword));
+                chip.classList.toggle('is-muted', !isMatch);
+            });
+        });
+    });
+}
+
+function initProjectBrowser() {
+    const projectCards = Array.from(document.querySelectorAll('[data-project-id]'));
+    const projectFilters = Array.from(document.querySelectorAll('[data-project-filter]'));
+
+    projectCards.forEach((card) => {
+        card.addEventListener('click', () => openModal(card.dataset.projectId));
+    });
+
+    projectFilters.forEach((filterButton) => {
+        filterButton.setAttribute('aria-pressed', String(filterButton.classList.contains('is-active')));
+        filterButton.addEventListener('click', () => {
+            const filter = filterButton.dataset.projectFilter;
+            projectFilters.forEach((button) => {
+                const isActive = button === filterButton;
+                button.classList.toggle('is-active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
+
+            projectCards.forEach((card) => {
+                const tags = card.dataset.projectTags?.split(' ') || [];
+                card.classList.toggle('is-hidden', filter !== 'all' && !tags.includes(filter));
+            });
+        });
+    });
+}
+
+function initCertificateCards() {
+    document.querySelectorAll('[data-flip-card]').forEach((card) => {
+        card.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            flipCard(card);
+        });
+    });
+}
+
+function initImageFallbacks(root = document) {
+    root.querySelectorAll('img[data-fallback]').forEach(applyImageFallback);
+}
+
+function applyImageFallback(image) {
+    image.onerror = () => {
+        if (image.src === image.dataset.fallback) return;
+        image.removeAttribute('srcset');
+        image.src = image.dataset.fallback;
+    };
+}
+
+function initModalControls() {
+    const projectModal = document.getElementById('project-modal');
+    const fullscreenViewer = document.getElementById('fs-viewer');
+
+    document.querySelector('[data-modal-close]')?.addEventListener('click', closeModal);
+    document.querySelector('[data-fullscreen-close]')?.addEventListener('click', closeFullscreen);
+    document.querySelector('[data-fullscreen-open]')?.addEventListener('click', (event) => {
+        openFullscreen(Number(event.currentTarget.dataset.fullscreenOpen || 0));
+    });
+
+    document.querySelectorAll('[data-fullscreen-nav]').forEach((button) => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation();
+            changeFsImage(Number(button.dataset.fullscreenNav));
+        });
+    });
+
+    document.querySelector('[data-fullscreen-backdrop]')?.addEventListener('click', (event) => {
+        if (event.target === event.currentTarget) closeFullscreen();
+    });
+
+    projectModal?.addEventListener('click', (event) => {
+        if (event.target === projectModal) closeModal();
+    });
+
+    fullscreenViewer?.addEventListener('click', (event) => {
+        if (event.target === fullscreenViewer) closeFullscreen();
+    });
+}
+
+function initActiveNavigation() {
+    const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+    if (!navLinks.length || !('IntersectionObserver' in window)) return;
+
+    const sections = navLinks
+        .map((link) => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+    const setActive = (sectionId) => {
+        navLinks.forEach((link) => {
+            link.classList.toggle('is-active', link.getAttribute('href') === `#${sectionId}`);
+        });
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) setActive(entry.target.id);
+        });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+    sections.forEach((section) => observer.observe(section));
+}
+
+function initContactForm() {
+    document.getElementById('contact-form')?.addEventListener('submit', sendEmail);
+}
 
 // --- 4. LANGUAGE FUNCTION ---
 function changeLanguage(lang) {
     localStorage.setItem('pref-lang', lang);
+    document.documentElement.lang = lang;
 
     document.querySelectorAll('.lang-text').forEach(el => {
         const key = el.getAttribute('data-key');
@@ -279,17 +546,23 @@ function changeLanguage(lang) {
             if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                 el.placeholder = translations[key][lang];
             } else {
-                el.innerHTML = translations[key][lang];
+                el.textContent = translations[key][lang];
             }
         }
     });
 
+    document.querySelectorAll('[data-language-option]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.languageOption === lang));
+    });
+
     ['en', 'bg', 'tr'].forEach(b => {
         const btn = document.getElementById(`btn-${b}`);
-        if (btn) btn.className = b === lang
-            ? "px-3 py-1 text-xs font-bold rounded bg-white dark:bg-gray-700 shadow-sm text-primary transition-all"
-            : "px-3 py-1 text-xs font-bold rounded text-slate-500 hover:text-primary transition-all";
+        if (btn) btn.className = b === lang ? LANGUAGE_BUTTON_ACTIVE : LANGUAGE_BUTTON_INACTIVE;
     });
+
+    if (activeProjectId && document.getElementById('project-modal')?.classList.contains('visible')) {
+        renderProjectModal(activeProjectId);
+    }
 }
 
 // --- 5. DRAG AND FLIP LOGIC ---
@@ -299,27 +572,22 @@ let dragStartTime = 0;
 function makeDraggable(el) {
     let dragStartX = 0, dragStartY = 0;
     let initialLeft = 0, initialTop = 0;
+    let maxLeft = Infinity, maxTop = Infinity;
+    let pendingFlipCard = null;
 
-    el.onmousedown = dragMouseDown;
-    el.ontouchstart = dragTouchStart;
+    el.addEventListener('pointerdown', startDrag);
 
-    function dragMouseDown(e) {
-        if (['a', 'i', 'button'].includes(e.target.tagName.toLowerCase())) return;
-        e.preventDefault();
-        dragStartX = e.clientX;
-        dragStartY = e.clientY;
+    function startDrag(event) {
+        if (!event.isPrimary || ['a', 'i', 'button'].includes(event.target.tagName.toLowerCase())) return;
+        event.preventDefault();
+        pendingFlipCard = event.target.closest('[data-flip-card]');
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
         initDrag();
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function dragTouchStart(e) {
-        if (['a', 'i', 'button'].includes(e.target.tagName.toLowerCase())) return;
-        dragStartX = e.touches[0].clientX;
-        dragStartY = e.touches[0].clientY;
-        initDrag();
-        document.ontouchend = closeDragElement;
-        document.ontouchmove = elementDragTouch;
+        el.setPointerCapture(event.pointerId);
+        el.addEventListener('pointermove', elementDrag);
+        el.addEventListener('pointerup', closeDragElement);
+        el.addEventListener('pointercancel', closeDragElement);
     }
 
     function initDrag() {
@@ -338,39 +606,51 @@ function makeDraggable(el) {
 
         const container = el.parentElement;
         if (container) {
+            maxLeft = Math.max(container.clientWidth - el.offsetWidth, 0);
+            maxTop = Math.max(container.clientHeight - el.offsetHeight, 0);
+
             const children = Array.from(container.children).filter(c => c.classList.contains('draggable'));
             children.forEach(c => {
-                if (!c.style.zIndex) c.style.zIndex = 10;
-                else c.style.zIndex = parseInt(c.style.zIndex) > 100 ? 10 : c.style.zIndex;
+                if (!c.dataset.baseZIndex) {
+                    const baseZIndex = window.getComputedStyle(c).zIndex;
+                    c.dataset.baseZIndex = baseZIndex === 'auto' ? '10' : baseZIndex;
+                }
+                c.style.zIndex = c.dataset.baseZIndex;
             });
         }
         el.style.zIndex = 1000;
     }
 
-    function elementDrag(e) {
-        e.preventDefault();
+    function elementDrag(event) {
+        event.preventDefault();
         isDragging = true;
-        setNewPos(e.clientX, e.clientY);
-    }
-
-    function elementDragTouch(e) {
-        isDragging = true;
-        setNewPos(e.touches[0].clientX, e.touches[0].clientY);
+        setNewPos(event.clientX, event.clientY);
     }
 
     function setNewPos(clientX, clientY) {
-        let dx = clientX - dragStartX;
-        let dy = clientY - dragStartY;
-        el.style.left = (initialLeft + dx) + "px";
-        el.style.top = (initialTop + dy) + "px";
+        const dx = clientX - dragStartX;
+        const dy = clientY - dragStartY;
+        const nextLeft = Math.min(Math.max(initialLeft + dx, 0), maxLeft);
+        const nextTop = Math.min(Math.max(initialTop + dy, 0), maxTop);
+
+        el.style.left = nextLeft + "px";
+        el.style.top = nextTop + "px";
     }
 
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-        document.ontouchend = null;
-        document.ontouchmove = null;
+    function closeDragElement(event) {
+        if (event?.pointerId && el.hasPointerCapture(event.pointerId)) {
+            el.releasePointerCapture(event.pointerId);
+        }
+        el.removeEventListener('pointermove', elementDrag);
+        el.removeEventListener('pointerup', closeDragElement);
+        el.removeEventListener('pointercancel', closeDragElement);
         el.classList.remove('drag-active');
+
+        if (!isDragging && pendingFlipCard) {
+            flipCard(pendingFlipCard);
+        }
+
+        pendingFlipCard = null;
 
         if (isDragging && (Date.now() - dragStartTime > 150)) {
             setTimeout(() => isDragging = false, 50);
@@ -390,62 +670,104 @@ let fsImages = [];
 let fsCurrentIndex = 0;
 
 function openModal(id) {
-    const d = projectsData[id];
+    if (!projectsData[id]) return;
+
+    activeProjectId = id;
+    lastFocusedElement = document.activeElement;
+    renderProjectModal(id);
+
+    const modal = document.getElementById('project-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('visible');
+    requestAnimationFrame(() => document.getElementById('modal-content').classList.remove('scale-95'));
+    document.body.classList.add('is-locked');
+    document.querySelector('[data-modal-close]')?.focus();
+}
+
+function renderProjectModal(id) {
+    const project = projectsData[id];
     const lang = localStorage.getItem('pref-lang') || 'en';
 
-    document.getElementById('modal-title').innerText = d.title;
-    document.getElementById('modal-desc').innerHTML = d.desc[lang] || d.desc.en;
-    document.getElementById('modal-img').src = d.img;
-    document.getElementById('modal-link').href = d.link;
+    document.getElementById('modal-title').textContent = project.title;
+    document.getElementById('modal-desc').innerHTML = project.desc[lang] || project.desc.en;
+    document.getElementById('modal-link').href = project.link;
+
+    const modalImage = document.getElementById('modal-img');
+    modalImage.src = project.img;
+    modalImage.alt = `${project.title} main preview`;
+    applyImageFallback(modalImage);
 
     const tags = document.getElementById('modal-tags');
-    tags.innerHTML = d.tags.map(t => `<span class="px-4 py-1.5 bg-gray-200 dark:bg-gray-800 text-ink dark:text-gray-300 rounded-full text-xs font-mono font-bold">${t}</span>`).join('');
+    tags.replaceChildren(...project.tags.map((tag) => {
+        const span = document.createElement('span');
+        span.className = 'px-4 py-1.5 bg-gray-200 dark:bg-gray-800 text-ink dark:text-gray-300 rounded-full text-xs font-mono font-bold';
+        span.textContent = tag;
+        return span;
+    }));
 
-    const wf = document.getElementById('modal-workflow');
-    const wfData = d.workflow[lang] || d.workflow.en;
-    wf.innerHTML = wfData.map(i => `<li>${i}</li>`).join('');
+    const workflow = document.getElementById('modal-workflow');
+    const workflowData = project.workflow[lang] || project.workflow.en;
+    workflow.replaceChildren(...workflowData.map((item) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        return li;
+    }));
 
-    fsImages = [d.img, ...d.gallery];
-
+    fsImages = [project.img, ...project.gallery];
     const galleryGrid = document.getElementById('modal-gallery-grid');
-    galleryGrid.innerHTML = d.gallery.map((gImg, idx) => `
-        <div class="h-20 sm:h-28 bg-gray-200 dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700 overflow-hidden cursor-pointer group relative" onclick="openFullscreen(${idx + 1})">
-            <img src="${gImg}" onerror="this.src='https://placehold.co/300x200?text=Gallery'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                <i class="fas fa-expand text-white text-xl"></i>
-            </div>
-        </div>
-    `).join('');
+    galleryGrid.replaceChildren(...project.gallery.map((imageSrc, index) => createGalleryButton(imageSrc, index + 1, project.title)));
+}
 
-    const m = document.getElementById('project-modal');
-    m.classList.remove('hidden');
-    m.classList.add('visible');
-    setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95'), 10);
-    document.body.style.overflow = 'hidden';
+function createGalleryButton(imageSrc, index, projectTitle) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'h-20 sm:h-28 bg-gray-200 dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700 overflow-hidden cursor-pointer group relative';
+    button.addEventListener('click', () => openFullscreen(index));
+
+    const image = document.createElement('img');
+    image.src = imageSrc;
+    image.dataset.fallback = 'https://placehold.co/300x200?text=Gallery';
+    image.alt = `${projectTitle} gallery preview ${index}`;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    image.className = 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-500';
+    applyImageFallback(image);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100';
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-expand text-white text-xl';
+    overlay.appendChild(icon);
+
+    button.append(image, overlay);
+    return button;
 }
 
 function closeModal() {
     document.getElementById('modal-content').classList.add('scale-95');
-    const m = document.getElementById('project-modal');
-    m.classList.remove('visible');
-    setTimeout(() => m.classList.add('hidden'), 300);
-    document.body.style.overflow = '';
+    const modal = document.getElementById('project-modal');
+    modal.classList.remove('visible');
+    setTimeout(() => modal.classList.add('hidden'), 300);
+    document.body.classList.remove('is-locked');
+    activeProjectId = null;
+    lastFocusedElement?.focus?.();
 }
 
 function openFullscreen(index = 0) {
+    if (!fsImages.length) return;
     fsCurrentIndex = index;
     const fsImg = document.getElementById('fs-img');
     fsImg.src = fsImages[fsCurrentIndex];
-    const m = document.getElementById('fs-viewer');
-    m.classList.remove('hidden');
-    m.classList.add('visible');
+    fsImg.alt = `${projectsData[activeProjectId]?.title || 'Project'} preview ${fsCurrentIndex + 1}`;
+    const modal = document.getElementById('fs-viewer');
+    modal.classList.remove('hidden');
+    modal.classList.add('visible');
 }
 
-function closeFullscreen(e) {
-    if (e && (e.target.id === 'fs-img' || e.target.closest('.fs-nav-btn'))) return;
-    const m = document.getElementById('fs-viewer');
-    m.classList.remove('visible');
-    setTimeout(() => m.classList.add('hidden'), 300);
+function closeFullscreen() {
+    const modal = document.getElementById('fs-viewer');
+    modal.classList.remove('visible');
+    setTimeout(() => modal.classList.add('hidden'), 300);
 }
 
 function changeFsImage(direction) {
@@ -476,60 +798,116 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+function loadScriptOnce(src) {
+    if (loadedScriptPromises.has(src)) return loadedScriptPromises.get(src);
+
+    const promise = new Promise((resolve, reject) => {
+        const existingScript = document.querySelector(`script[src="${src}"]`);
+        if (existingScript) {
+            existingScript.addEventListener('load', resolve, { once: true });
+            existingScript.addEventListener('error', reject, { once: true });
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+
+    loadedScriptPromises.set(src, promise);
+    return promise;
+}
+
+function ensureEmailJs() {
+    if (emailJsReady) return emailJsReady;
+
+    emailJsReady = loadScriptOnce(EXTERNAL_SCRIPTS.emailjs).then(() => {
+        if (!window.emailjs) throw new Error('EmailJS failed to load.');
+        emailjs.init(EMAILJS_CONFIG.publicKey);
+    });
+
+    return emailJsReady;
+}
+
 // --- 7. CONTACT FORM (Using EmailJS) ---
-function sendEmail(e) {
-    e.preventDefault();
+async function sendEmail(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
 
     const lang = localStorage.getItem('pref-lang') || 'en';
-    const isDark = document.documentElement.classList.contains('dark');
-    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
     const originalBtnContent = submitBtn.innerHTML;
 
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
 
-    // Adapted to the actual fields inside your index.html
+    const formData = new FormData(form);
+    const fromName = String(formData.get('from_name') || '').trim();
+    const fromEmail = String(formData.get('from_email') || '').trim();
+    const message = String(formData.get('message') || '').trim();
+
     const params = {
-        from_name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value,
+        from_name: fromName,
+        name: fromName,
+        from_email: fromEmail,
+        user_email: fromEmail,
+        email: fromEmail,
+        reply_to: fromEmail,
+        message,
+        to_name: 'Sema Yasharova'
     };
 
-    const serviceID = "service_yz3eqg8";
-    const templateID = "template_1c3d1xd";
+    try {
+        await ensureEmailJs();
+        await emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.templateId,
+            params,
+            EMAILJS_CONFIG.publicKey
+        );
+        form.reset();
 
-    emailjs.send(serviceID, templateID, params)
-        .then(res => {
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("message").value = "";
-
-            submitBtn.innerHTML = originalBtnContent;
-            submitBtn.disabled = false;
-
-            Swal.fire({
-                title: translations.alert_success_title[lang] || translations.alert_success_title['en'],
-                text: translations.alert_success_msg[lang] || translations.alert_success_msg['en'],
-                icon: 'success',
-                confirmButtonColor: '#2563eb',
-                background: isDark ? '#1C1C1C' : '#fcfcfc',
-                color: isDark ? '#E5E7EB' : '#1A1A1A',
-                customClass: { popup: 'font-mono' }
-            });
-        })
-        .catch(err => {
-            console.error(err);
-            submitBtn.innerHTML = originalBtnContent;
-            submitBtn.disabled = false;
-
-            Swal.fire({
-                title: "Oops!",
-                text: "Something went wrong. Please try again later.",
-                icon: "error",
-                confirmButtonColor: '#2563eb',
-                background: isDark ? '#1C1C1C' : '#fcfcfc',
-                color: isDark ? '#E5E7EB' : '#1A1A1A',
-                customClass: { popup: 'font-mono' }
-            });
+        showAlert({
+            title: translations.alert_success_title[lang] || translations.alert_success_title.en,
+            text: translations.alert_success_msg[lang] || translations.alert_success_msg.en,
+            icon: 'success'
         });
+    } catch (error) {
+        console.error(error);
+        showAlert({
+            title: "Oops!",
+            text: "Something went wrong. Please try again later.",
+            icon: "error"
+        });
+    } finally {
+        submitBtn.innerHTML = originalBtnContent;
+        submitBtn.disabled = false;
+    }
+}
+
+async function showAlert({ title, text, icon }) {
+    const isDark = document.documentElement.classList.contains('dark');
+
+    try {
+        if (!window.Swal) await loadScriptOnce(EXTERNAL_SCRIPTS.sweetalert);
+    } catch (error) {
+        console.error(error);
+        window.alert(`${title}\n${text}`);
+        return;
+    }
+
+    Swal.fire({
+        title,
+        text,
+        icon,
+        confirmButtonColor: '#2563eb',
+        background: isDark ? '#1C1C1C' : '#fcfcfc',
+        color: isDark ? '#E5E7EB' : '#1A1A1A',
+        customClass: { popup: 'font-mono' }
+    });
 }
